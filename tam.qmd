@@ -1,0 +1,16 @@
+---
+title: "TAM"
+---
+
+## TAMとは
+RのLibraryの一つです。
+
+
+## インストール
+
+```{r}
+library(TAM)
+
+```
+
+

@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "StudyNotes",
+    "section": "",
+    "text": "勉強がてら，学んだことをまとめています。"
+  },
+  {
+    "objectID": "index.html#このサイトについて",
+    "href": "index.html#このサイトについて",
+    "title": "StudyNotes",
+    "section": "",
+    "text": "勉強がてら，学んだことをまとめています。"
+  },
+  {
+    "objectID": "index.html#扱うトピック",
+    "href": "index.html#扱うトピック",
+    "title": "StudyNotes",
+    "section": "扱うトピック",
+    "text": "扱うトピック\n\nR\n大規模学力調査（PISAやTIMSS）\nLinux"
+  },
+  {
+    "objectID": "index.html#サイトの構造",
+    "href": "index.html#サイトの構造",
+    "title": "StudyNotes",
+    "section": "サイトの構造",
+    "text": "サイトの構造\n\nTAMの使い方: TAMに関するチュートリアル\nPISAデータ"
+  },
+  {
+    "objectID": "tam.html",
+    "href": "tam.html",
+    "title": "TAM",
+    "section": "",
+    "text": "RのLibraryの一つです。"
+  },
+  {
+    "objectID": "tam.html#tamとは",
+    "href": "tam.html#tamとは",
+    "title": "TAM",
+    "section": "",
+    "text": "RのLibraryの一つです。"
+  },
+  {
+    "objectID": "tam.html#インストール",
+    "href": "tam.html#インストール",
+    "title": "TAM",
+    "section": "インストール",
+    "text": "インストール\n\nlibrary(TAM)\n\nLoading required package: CDM\n\n\nLoading required package: mvtnorm\n\n\n**********************************\n** CDM 8.2-6 (2022-08-25 15:43:23)       \n** Cognitive Diagnostic Models  **\n**********************************\n\n\n* TAM 4.2-21 (2024-02-19 18:52:08)"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]
