@@ -1,0 +1,44 @@
+project:
+  type: website
+
+website:
+  title: "StudyNotes"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "教育測定"
+        href: irt_index.qmd
+      - text: "社会調査"
+        href: survey_index.qmd
+      - text: "情報機器"
+        href: ict_index.qmd
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - section: "教育測定"
+        href: irt_index.qmd
+        contents:
+          - irt_2pl.qmd
+          - irt_mirt.qmd
+          - irt_tam.qmd
+          - irt_measurement_error.qmd
+      - section: "社会調査"
+        href: survey_index.qmd
+        contents:
+          - survey_weight.qmd
+          - survey_benzecris.qmd
+      - section: "情報機器"
+        href: ict_index.qmd
+        contents:
+
+
+format:
+  html:
+    theme: journal
+    css: styles.css
+    toc: true

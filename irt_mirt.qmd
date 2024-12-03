@@ -1,0 +1,97 @@
+# mirtの使い方
+
+[mirt: Multidimensional Item Resonse Theory](https://cran.r-project.org/web/packages/mirt/index.html) は，
+多次元項目反応理論を行うパッケージです。
+2PLや3PLといった基本的な項目反応理論はもちろん，
+多次元モデルやダミーデータの生成も可能です。
+
+---
+
+## ダミーデータの生成
+mirtの2PLは，下記の式で表現されます。
+
+$$P(\theta|\alpha, d)=\frac{1}{1+exp(-(\alpha \theta + d))}$$
+
+[通常のIRT](irt_2pl.qmd)の場合，$exp()$の中は，定数$D(=1.7)$，識別力$a$，困難度$b$を用いて，
+$-Da(\theta - b)$となります。
+これは，$-(Da\theta + (-Dab))$なので，$\alpha = Da$, $d = -Dab$です。
+mirtを使う場合はこのパラメータに合わせるために，
+$\alpha$は識別力$a$を$D$倍，
+$d$は困難度を$-Da$倍した値を設定します[^1]。
+
+[^1]: [奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．](https://www.jstage.jst.go.jp/article/jjpsy/86/4/86_86.14213/_article/-char/ja)
+
+たとえば，mirtによるダミーデータの生成は次のようになります。
+
+```{r}
+set.seed(123)
+# サンプルサイズと項目数の設定
+size <- 3000 # サンプルサイズ（受検者数）
+item_n <- 20 # 項目数（テストの問題数）
+
+# 項目パラメータの設定
+b_para <- seq(-3, 3, length.out = item_n) # 項目困難度
+a_para <- rep(0.9, item_n) # 項目識別力
+
+# 受検者の能力値を正規分布から生成
+theta <- rnorm(size, 0, 1)
+
+# 2PLモデルに基づく応答データの生成
+resp <- mirt::simdata(
+  a = a_para * 1.7, # alphaの設定
+  d = b_para * -1.7 * a_para, # dの設定
+  Theta = theta, # 能力値
+  itemtype = "2PL" # モデルタイプ
+)
+```
+
+
+## mirtによる2PL
+
+```{r}
+# 2PLモデルの推定
+# verbose = FALSEで出力を抑制
+mod <- mirt::mirt(resp, 1, verbose = FALSE)
+```
+
+推定されたパラメータの確認は，`coef`関数で行います。
+引数`IRTpars`をTRUEにすると，
+$P(\theta|\alpha, d)=\frac{1}{1+exp(-Da(\theta - b))}$
+の形の$a$と$b$が出力されます。
+ただし$D=1$で計算されているので，
+$D=1.7$の識別力パラメータを得るには1.7で割る必要があります[^2]。
+
+[^2]: [IRT parameterization](https://embracingheterogeneity.github.io/website/01a_LR.html#the-mirt-version)
+
+
+```{r}
+mirt_coef <- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items
+# 識別力
+mirt_coef[, 1] / 1.7
+# 困難度
+mirt_coef[, 2]
+```
+
+## 受検者の能力推定
+mirtでは，`fscores`関数で受検者の能力推定ができます。
+デフォルトではEAPが出力されますが，
+引数（`method`）を変更することで，
+MLE，WLE，MAPなども出力できます。
+
+```{r}
+eap <- mirt::fscores(mod, verbose = FALSE)
+## 計算に時間がかかるので省略
+# mle <- mirt::fscores(mod, method = "ML")
+# wle <- mirt::fscores(mod, method = "WLE")
+# map <- mirt::fscores(mod, method = "MAP")
+```
+
+thetaとeapの関連を`plot`関数で表示してみます。
+
+
+```{r}
+plot(theta, eap)
+```
+
+
+

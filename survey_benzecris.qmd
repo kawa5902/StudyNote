@@ -1,0 +1,53 @@
+# ベンゼクリの修正割合
+
+ベンゼクリの修正割合を計算できる`modif.rate`関数
+（[GDAtools](https://cran.r-project.org/web/packages/GDAtools/index.html)）が
+[FactoMineR](https://cran.r-project.org/web/packages/FactoMineR/index.html)
+の`MCA`関数に使えなかったので`MCA`用に修正してみました。
+
+## FactoMineRで使える関数
+```{r}
+modif_rate <- function(mca) {
+  # 引数チェック
+  if (!"MCA" %in% class(mca)) {
+    stop("Input must be an MCA result, such as from FactoMineR::MCA().")
+  }
+
+  # 質的変数の数を取得
+  Q <- length(mca$call$quali)
+  if (Q < 2) {
+    stop("Analysis must include at least two qualitative variables.")
+  }
+
+  # 閾値の計算
+  seuil <- 1 / Q
+
+  # 固有値のフィルタリング
+  eigenvalues <- mca$eig[, 1]
+  valid_eigenvalues <- eigenvalues[eigenvalues >= seuil]
+
+  # 修正寄与率の計算
+  pseudo <- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2
+
+  # 寄与率の正規化
+  m_rate <- pseudo / sum(pseudo)
+
+  # 累積修正寄与率
+  cum_m_rate <- cumsum(m_rate)
+
+  # データフレームを返す
+  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))
+}
+```
+
+## 使用例
+
+```{r}
+data(tea, package = "FactoMineR")
+mca <- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)
+
+modif_rate(mca)
+```
+
+
+

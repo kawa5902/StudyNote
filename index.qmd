@@ -1,0 +1,13 @@
+---
+title: ""
+---
+
+## このサイトについて
+勉強したことをまとめています。
+現在，テスト中です・・・。
+
+
+## 扱っているトピック
+- **[教育測定](irt_index.qmd)**: 教育測定に関するメモ（IRT，TAM，mirt）
+- **[社会調査](survey_index.qmd)**: 社会調査に関するメモ（survey，FactoMineR）
+- **[情報機器](ict_index.qmd)**: 情報機器に関するメモ（Windows，Linux）

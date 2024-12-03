@@ -1,0 +1,83 @@
+# SPSSの「ケースの重み付け」
+
+一部の界隈では有名だと思うのですが，
+SPSSのケースの重み付けでは標本ウェイトを扱うことはできません。
+
+## データセットの作成
+
+使用するデータセットは以下のRコードで作成します[^1]。
+この事例では，母集団における男女比は5:5。
+事情が合って，標本における男女比が7:3になったとのことです。
+
+[^1]: 元ネタは[読書日記（2013年5月19日）](https://elsur.jpn.org/mt/2013/05/001729.html) です。
+
+- `ans`: 回答データ（1～4の値）
+- `gender`: 性別（1: 男性, 2: 女性）
+- `w`: 標本ウェイト
+
+```{r}
+d <- data.frame(
+  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),
+  gender = c(rep(1, 7), rep(2, 3)),
+  w = c(rep(5 / 7, 7), rep(5 / 3, 3))
+)
+```
+
+## 標本ウェイトを使用した分析
+
+以下のコードで，`survey`パッケージを使用して調査設計を定義します。
+この事例では，男女別に標本抽出が行われていますので，
+男女が層（strata）になります。
+
+```{r}
+# 調査設計オブジェクトの作成
+des <- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)
+## ウェイトの代わりに抽出確率を計算しても可
+# d$prob <- 1 / d$w
+# des <- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)
+```
+
+ウェイトを考慮して平均を計算し、性別ごとの結果を比較します。
+
+```{r}
+# 全体の平均
+survey::svymean(~ans, des)
+
+# 性別ごとの平均
+survey::svyby(~ans, by = ~gender, des, survey::svymean)
+```
+
+
+## SPSSのケースの重み付け
+
+SPSSの場合，標準誤差はおそらく次のように算出されています。
+
+```{r}
+# 標準誤差
+weighted.mean2 <- function(x, w, na.rm = FALSE) {
+  if (na.rm) {
+    w <- w[!is.na(x)]
+    x <- x[!is.na(x)]
+  }
+  wm <- weighted.mean(x, w)
+  wv <- sum(w * (x - wm)^2) / (sum(w) - 1)
+  wse <- sqrt(wv / sum(w))
+  c(mean = wm, se = wse)
+}
+```
+
+```{r}
+# 重み付き平均
+weighted.mean2(d$ans, d$w)
+
+# データを性別で分割
+data_by_gender <- split(d, d$gender)
+
+# 男女別の平均と分散を計算
+sapply(data_by_gender, function(subset_data) {
+  weighted.mean2(subset_data$ans, subset_data$w)
+})
+```
+
+
+

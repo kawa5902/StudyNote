@@ -1,0 +1,63 @@
+# TAMの使い方
+
+[TAM（Test Analysis Modules）](https://cran.r-project.org/web/packages/TAM/index.html) は，大規模学力調査で利用される項目反応理論（IRT）の各種分析技法を実行できるパッケージです。
+
+
+## TAMによる2PL
+
+最初に，mirtを使ってダミーデータを生成します。
+設定については[mirt](irt_mirt.qmd#ダミーデータの生成)を参照してください。
+
+```{r}
+#| code-fold: true
+set.seed(123)
+size <- 3000
+item_n <- 20
+
+b_para <- seq(-3, 3, length.out = item_n)
+a_para <- rep(0.9, item_n)
+
+theta <- rnorm(size, 0, 1)
+
+resp <- mirt::simdata(
+  a = a_para * 1.7,
+  d = b_para * -1.7 * a_para,
+  Theta = theta,
+  itemtype = "2PL"
+)
+```
+
+TAMでは，`tam.mml.2pl`関数で2PLを推定します。
+
+```{r}
+# 2PLモデルの推定
+# progress = FALSEで出力を抑制
+mod <- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))
+```
+
+TAMで識別力・困難度を出力するのは少し面倒です[^1]。
+
+[^1]: [IRT parameterization](https://embracingheterogeneity.github.io/website/01a_LR.html#the-tam-version)
+
+```{r}
+# 識別力の確認
+mod$B[, 2, 1] / 1.7
+
+# 困難度の確認
+mod$xsi[, 1] / mod$B[, 2, 1]
+```
+
+## 受検者の能力推定
+TAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。
+
+```{r}
+mle <- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta
+wle <- TAM::tam.wle(mod, progress = FALSE)$theta
+eap <- mod$person$EAP
+```
+
+真の能力値（theta）と推定された能力の関係を描画してみます。
+```{r}
+plot(theta, mle) # thetaとMLE
+```
+

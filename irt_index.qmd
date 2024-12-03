@@ -1,0 +1,12 @@
+# 教育測定に関するメモ
+
+教育測定関係のメモをまとめています。
+
+## 記事
+- [IRTの概要](irt_2pl.qmd)
+- [mirtの使い方](irt_mirt.qmd)
+- [TAMの使い方](irt_tam.qmd)
+- [測定の誤差](irt_measurement_error.qmd)
+
+## Books
+- [Rによる項目反応理論](https://www.ohmsha.co.jp/book/9784274050176/)

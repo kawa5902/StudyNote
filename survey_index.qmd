@@ -1,0 +1,16 @@
+# 社会調査に関するメモ
+
+社会調査関係のメモ
+
+## 記事
+- [SPSSの「ケースの重み付け」](survey_weight.qmd)
+- [ベンゼクリの修正割合](survey_benzecris.qmd)
+
+
+## memo
+- [The survey Package for R, 15 Years on](https://isi-iass.org/home/wp-content/uploads/Survey_Statistician_2023_July_N88_019.pdf)
+- [Survey Data Analsysis with R](https://stats.oarc.ucla.edu/r/seminars/survey-data-analysis-with-r/)
+
+- [Exploring Complex Survey Data Analysis Using R](https://tidy-survey-r.github.io/tidy-survey-book/)
+
+- [PEAS](https://www.restore.ac.uk/PEAS/about.php)
