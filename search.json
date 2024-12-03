@@ -1,0 +1,396 @@
+[
+  {
+    "objectID": "irt_2pl.html",
+    "href": "irt_2pl.html",
+    "title": "2PLの概要",
+    "section": "",
+    "text": "IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう1。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。\nここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。\n\n\n\n学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています2。 2PLにおいて，能力\\(\\theta\\)の受検者が項目\\(j\\)に正答する確率\\(P_j(\\theta)\\)は，以下の式になります。\n\\[P_j(\\theta) = \\frac{1}{1+exp(-Da_j(\\theta - b_j))}\\]\n式中の記号の意味は，次の通り。\n\n能力: \\(\\theta\\)\n項目困難度: \\(b\\)\n項目識別力: \\(a\\)\n尺度因子: \\(D\\)（通常1.7）\n\n能力値\\(\\theta\\)の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。\n\nicc &lt;- function(params, tr = c(-4, 4), np = 100) {\n  # 引数チェック\n  if (!is.list(params) || !all(c(\"a\", \"b\") %in% names(params))) {\n    stop(\"`params` must be a list with named elements `a` and `b`.\")\n  }\n  if (length(params$a) != length(params$b)) {\n    stop(\"`params$a` and `params$b` must have the same length.\")\n  }\n\n  # 正答確率関数\n  p2pl &lt;- function(t, a, b) {\n    1 / (1 + exp(-1.7 * a * (t - b)))\n  }\n\n  # 能力範囲を生成\n  t_vals &lt;- seq(tr[1], tr[2], length.out = np)\n\n  # プロットの初期化\n  plot(NULL, xlim = tr, ylim = c(0, 1), type = \"n\",\n       xlab = \"θ\", ylab = \"正答確率\",\n       main = \"ICC\")\n  grid()\n\n  # 各項目の特性曲線を描画\n  for (i in seq_along(params$a)) {\n    a &lt;- params$a[i]\n    b &lt;- params$b[i]\n    p_vals &lt;- p2pl(t_vals, a, b)\n    lines(t_vals, p_vals, lwd = 2, col = i)  # 番号を色に対応\n    abline(v = b, col = i, lty = 2)          # 困難度のライン\n  }\n\n  # 凡例を追加\n  legend(\"bottomright\", legend = paste(\"a =\", params$a, \", b =\", params$b),\n         col = seq_along(params$a), lwd = 2, bg = \"white\")\n}\n\nparams1 &lt;- list(\n  a = c(0.7, 0.9, 0.5),\n  b = c(-1, 0, 1)\n)\n\nicc(params1)\n\n\n\n\n\n\n\n\nいずれの項目にせよ，受検者の能力\\(\\theta\\)について， \\(\\theta=b\\)になったところで正答確率が0.5（=50%）になっています。 また，\\(a\\)の値が大きいほど，曲線が急激に立ち上がる （\\(\\theta=b\\)の前後で正答確率が大きく上昇する）こともわかります。\n正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，\\(a\\)が0.1と0.8の項目を比べて説明しましょう。\n\nparams2 &lt;- list(\n  a = c(0.1, 0.8),\n  b = c(0, 0)\n)\n\nicc(params2)\n\n\n\n\n\n\n\n\n\\(a\\)の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，\\(a\\)の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "irt_2pl.html#cttとirt",
+    "href": "irt_2pl.html#cttとirt",
+    "title": "2PLの概要",
+    "section": "",
+    "text": "IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう1。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。\nここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "irt_2pl.html#パラメータロジスティックモデル",
+    "href": "irt_2pl.html#パラメータロジスティックモデル",
+    "title": "2PLの概要",
+    "section": "",
+    "text": "学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています2。 2PLにおいて，能力\\(\\theta\\)の受検者が項目\\(j\\)に正答する確率\\(P_j(\\theta)\\)は，以下の式になります。\n\\[P_j(\\theta) = \\frac{1}{1+exp(-Da_j(\\theta - b_j))}\\]\n式中の記号の意味は，次の通り。\n\n能力: \\(\\theta\\)\n項目困難度: \\(b\\)\n項目識別力: \\(a\\)\n尺度因子: \\(D\\)（通常1.7）\n\n能力値\\(\\theta\\)の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。\n\nicc &lt;- function(params, tr = c(-4, 4), np = 100) {\n  # 引数チェック\n  if (!is.list(params) || !all(c(\"a\", \"b\") %in% names(params))) {\n    stop(\"`params` must be a list with named elements `a` and `b`.\")\n  }\n  if (length(params$a) != length(params$b)) {\n    stop(\"`params$a` and `params$b` must have the same length.\")\n  }\n\n  # 正答確率関数\n  p2pl &lt;- function(t, a, b) {\n    1 / (1 + exp(-1.7 * a * (t - b)))\n  }\n\n  # 能力範囲を生成\n  t_vals &lt;- seq(tr[1], tr[2], length.out = np)\n\n  # プロットの初期化\n  plot(NULL, xlim = tr, ylim = c(0, 1), type = \"n\",\n       xlab = \"θ\", ylab = \"正答確率\",\n       main = \"ICC\")\n  grid()\n\n  # 各項目の特性曲線を描画\n  for (i in seq_along(params$a)) {\n    a &lt;- params$a[i]\n    b &lt;- params$b[i]\n    p_vals &lt;- p2pl(t_vals, a, b)\n    lines(t_vals, p_vals, lwd = 2, col = i)  # 番号を色に対応\n    abline(v = b, col = i, lty = 2)          # 困難度のライン\n  }\n\n  # 凡例を追加\n  legend(\"bottomright\", legend = paste(\"a =\", params$a, \", b =\", params$b),\n         col = seq_along(params$a), lwd = 2, bg = \"white\")\n}\n\nparams1 &lt;- list(\n  a = c(0.7, 0.9, 0.5),\n  b = c(-1, 0, 1)\n)\n\nicc(params1)\n\n\n\n\n\n\n\n\nいずれの項目にせよ，受検者の能力\\(\\theta\\)について， \\(\\theta=b\\)になったところで正答確率が0.5（=50%）になっています。 また，\\(a\\)の値が大きいほど，曲線が急激に立ち上がる （\\(\\theta=b\\)の前後で正答確率が大きく上昇する）こともわかります。\n正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，\\(a\\)が0.1と0.8の項目を比べて説明しましょう。\n\nparams2 &lt;- list(\n  a = c(0.1, 0.8),\n  b = c(0, 0)\n)\n\nicc(params2)\n\n\n\n\n\n\n\n\n\\(a\\)の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，\\(a\\)の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "irt_2pl.html#footnotes",
+    "href": "irt_2pl.html#footnotes",
+    "title": "2PLの概要",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nこの説明，厳密には間違っています。「100点満点のテスト」というとき， おそらく私たちは「受検者の能力を測る」ことを意識していません。 他方で，IRTにせよCTTにせよ，教育測定の前提には「能力を測る」という問題意識があります。↩︎\n経年変化調査については， 国立教育政策研究所のウェブサイト を参照してください。↩︎",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "survey_benzecris.html",
+    "href": "survey_benzecris.html",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "ベンゼクリの修正割合を計算できるmodif.rate関数 （GDAtools）が FactoMineR のMCA関数に使えなかったのでMCA用に修正してみました。\n\n\n\nmodif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}\n\n\n\n\n\ndata(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "survey_benzecris.html#factominerで使える関数",
+    "href": "survey_benzecris.html#factominerで使える関数",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "modif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "survey_benzecris.html#使用例",
+    "href": "survey_benzecris.html#使用例",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "data(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "survey_weight.html",
+    "href": "survey_weight.html",
+    "title": "SPSSの「ケースの重み付け」",
+    "section": "",
+    "text": "一部の界隈では有名だと思うのですが， SPSSのケースの重み付けでは標本ウェイトを扱うことはできません。\n\n\n使用するデータセットは以下のRコードで作成します1。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。\n\nans: 回答データ（1～4の値）\ngender: 性別（1: 男性, 2: 女性）\nw: 標本ウェイト\n\n\nd &lt;- data.frame(\n  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),\n  gender = c(rep(1, 7), rep(2, 3)),\n  w = c(rep(5 / 7, 7), rep(5 / 3, 3))\n)\n\n\n\n\n以下のコードで，surveyパッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。\n\n# 調査設計オブジェクトの作成\ndes &lt;- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)\n## ウェイトの代わりに抽出確率を計算しても可\n# d$prob &lt;- 1 / d$w\n# des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)\n\nウェイトを考慮して平均を計算し、性別ごとの結果を比較します。\n\n# 全体の平均\nsurvey::svymean(~ans, des)\n\n      mean     SE\nans 2.3571 0.3571\n\n# 性別ごとの平均\nsurvey::svyby(~ans, by = ~gender, des, survey::svymean)\n\n  gender      ans        se\n1      1 2.714286 0.4205600\n2      2 2.000000 0.5773503\n\n\n\n\n\nSPSSの場合，標準誤差はおそらく次のように算出されています。\n\n# 標準誤差\nweighted.mean2 &lt;- function(x, w, na.rm = FALSE) {\n  if (na.rm) {\n    w &lt;- w[!is.na(x)]\n    x &lt;- x[!is.na(x)]\n  }\n  wm &lt;- weighted.mean(x, w)\n  wv &lt;- sum(w * (x - wm)^2) / (sum(w) - 1)\n  wse &lt;- sqrt(wv / sum(w))\n  c(mean = wm, se = wse)\n}\n\n\n# 重み付き平均\nweighted.mean2(d$ans, d$w)\n\n     mean        se \n2.3571429 0.3319131 \n\n# データを性別で分割\ndata_by_gender &lt;- split(d, d$gender)\n\n# 男女別の平均と分散を計算\nsapply(data_by_gender, function(subset_data) {\n  weighted.mean2(subset_data$ans, subset_data$w)\n})\n\n             1         2\nmean 2.7142857 2.0000000\nse   0.5150788 0.4082483",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "SPSSの「ケースの重み付け」"
+    ]
+  },
+  {
+    "objectID": "survey_weight.html#データセットの作成",
+    "href": "survey_weight.html#データセットの作成",
+    "title": "SPSSの「ケースの重み付け」",
+    "section": "",
+    "text": "使用するデータセットは以下のRコードで作成します1。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。\n\nans: 回答データ（1～4の値）\ngender: 性別（1: 男性, 2: 女性）\nw: 標本ウェイト\n\n\nd &lt;- data.frame(\n  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),\n  gender = c(rep(1, 7), rep(2, 3)),\n  w = c(rep(5 / 7, 7), rep(5 / 3, 3))\n)",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "SPSSの「ケースの重み付け」"
+    ]
+  },
+  {
+    "objectID": "survey_weight.html#標本ウェイトを使用した分析",
+    "href": "survey_weight.html#標本ウェイトを使用した分析",
+    "title": "SPSSの「ケースの重み付け」",
+    "section": "",
+    "text": "以下のコードで，surveyパッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。\n\n# 調査設計オブジェクトの作成\ndes &lt;- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)\n## ウェイトの代わりに抽出確率を計算しても可\n# d$prob &lt;- 1 / d$w\n# des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)\n\nウェイトを考慮して平均を計算し、性別ごとの結果を比較します。\n\n# 全体の平均\nsurvey::svymean(~ans, des)\n\n      mean     SE\nans 2.3571 0.3571\n\n# 性別ごとの平均\nsurvey::svyby(~ans, by = ~gender, des, survey::svymean)\n\n  gender      ans        se\n1      1 2.714286 0.4205600\n2      2 2.000000 0.5773503",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "SPSSの「ケースの重み付け」"
+    ]
+  },
+  {
+    "objectID": "survey_weight.html#spssのケースの重み付け-1",
+    "href": "survey_weight.html#spssのケースの重み付け-1",
+    "title": "SPSSの「ケースの重み付け」",
+    "section": "",
+    "text": "SPSSの場合，標準誤差はおそらく次のように算出されています。\n\n# 標準誤差\nweighted.mean2 &lt;- function(x, w, na.rm = FALSE) {\n  if (na.rm) {\n    w &lt;- w[!is.na(x)]\n    x &lt;- x[!is.na(x)]\n  }\n  wm &lt;- weighted.mean(x, w)\n  wv &lt;- sum(w * (x - wm)^2) / (sum(w) - 1)\n  wse &lt;- sqrt(wv / sum(w))\n  c(mean = wm, se = wse)\n}\n\n\n# 重み付き平均\nweighted.mean2(d$ans, d$w)\n\n     mean        se \n2.3571429 0.3319131 \n\n# データを性別で分割\ndata_by_gender &lt;- split(d, d$gender)\n\n# 男女別の平均と分散を計算\nsapply(data_by_gender, function(subset_data) {\n  weighted.mean2(subset_data$ans, subset_data$w)\n})\n\n             1         2\nmean 2.7142857 2.0000000\nse   0.5150788 0.4082483",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "SPSSの「ケースの重み付け」"
+    ]
+  },
+  {
+    "objectID": "survey_weight.html#footnotes",
+    "href": "survey_weight.html#footnotes",
+    "title": "SPSSの「ケースの重み付け」",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n元ネタは読書日記（2013年5月19日） です。↩︎",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "SPSSの「ケースの重み付け」"
+    ]
+  },
+  {
+    "objectID": "irt_index.html",
+    "href": "irt_index.html",
+    "title": "教育測定に関するメモ",
+    "section": "",
+    "text": "教育測定関係のメモをまとめています。\n\n\n\nIRTの概要\nmirtの使い方\nTAMの使い方\n測定の誤差\n\n\n\n\n\nRによる項目反応理論",
+    "crumbs": [
+      "Home",
+      "教育測定"
+    ]
+  },
+  {
+    "objectID": "irt_index.html#記事",
+    "href": "irt_index.html#記事",
+    "title": "教育測定に関するメモ",
+    "section": "",
+    "text": "IRTの概要\nmirtの使い方\nTAMの使い方\n測定の誤差",
+    "crumbs": [
+      "Home",
+      "教育測定"
+    ]
+  },
+  {
+    "objectID": "irt_index.html#books",
+    "href": "irt_index.html#books",
+    "title": "教育測定に関するメモ",
+    "section": "",
+    "text": "Rによる項目反応理論",
+    "crumbs": [
+      "Home",
+      "教育測定"
+    ]
+  },
+  {
+    "objectID": "irt_mirt.html",
+    "href": "irt_mirt.html",
+    "title": "mirtの使い方",
+    "section": "",
+    "text": "mirt: Multidimensional Item Resonse Theory は， 多次元項目反応理論を行うパッケージです。 2PLや3PLといった基本的な項目反応理論はもちろん， 多次元モデルやダミーデータの生成も可能です。\n\n\n\nmirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)\n\n\n\n\n\n# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306 \n\n\n\n\n\nmirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_mirt.html#ダミーデータの生成",
+    "href": "irt_mirt.html#ダミーデータの生成",
+    "title": "mirtの使い方",
+    "section": "",
+    "text": "mirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_mirt.html#mirtによる2pl",
+    "href": "irt_mirt.html#mirtによる2pl",
+    "title": "mirtの使い方",
+    "section": "",
+    "text": "# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_mirt.html#受検者の能力推定",
+    "href": "irt_mirt.html#受検者の能力推定",
+    "title": "mirtの使い方",
+    "section": "",
+    "text": "mirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_mirt.html#footnotes",
+    "href": "irt_mirt.html#footnotes",
+    "title": "mirtの使い方",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．↩︎\nIRT parameterization↩︎",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_tam.html",
+    "href": "irt_tam.html",
+    "title": "TAMの使い方",
+    "section": "",
+    "text": "TAM（Test Analysis Modules） は，大規模学力調査で利用される項目反応理論（IRT）の各種分析技法を実行できるパッケージです。\n\n\n最初に，mirtを使ってダミーデータを生成します。 設定についてはmirtを参照してください。\n\n\nCode\nset.seed(123)\nsize &lt;- 3000\nitem_n &lt;- 20\n\nb_para &lt;- seq(-3, 3, length.out = item_n)\na_para &lt;- rep(0.9, item_n)\n\ntheta &lt;- rnorm(size, 0, 1)\n\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7,\n  d = b_para * -1.7 * a_para,\n  Theta = theta,\n  itemtype = \"2PL\"\n)\n\n\nTAMでは，tam.mml.2pl関数で2PLを推定します。\n\n# 2PLモデルの推定\n# progress = FALSEで出力を抑制\nmod &lt;- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))\n\nTAMで識別力・困難度を出力するのは少し面倒です1。\n\n# 識別力の確認\nmod$B[, 2, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8130275 0.7288229 0.9361247 0.8524752 0.9724010 0.8757284 0.8753386 0.9197561 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9263706 0.9572551 0.9273018 0.9023423 0.8733341 0.8902100 0.9011621 0.8586929 \n  Item_17   Item_18   Item_19   Item_20 \n0.9797010 0.7904457 0.8540210 0.8205279 \n\n# 困難度の確認\nmod$xsi[, 1] / mod$B[, 2, 1]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2573789 -3.1601025 -2.2997212 -2.1571105 -1.6189005 -1.4515025 -1.1525825 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7331885 -0.4406474 -0.1206649  0.1854097  0.4649443  0.8459277  1.1017130 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3793933  1.8235713  1.9504486  2.5446387  2.9344478  3.1024069 \n\n\n\n\n\nTAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。\n\nmle &lt;- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta\nwle &lt;- TAM::tam.wle(mod, progress = FALSE)$theta\neap &lt;- mod$person$EAP\n\n真の能力値（theta）と推定された能力の関係を描画してみます。\n\nplot(theta, mle) # thetaとMLE",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_tam.html#tamによる2pl",
+    "href": "irt_tam.html#tamによる2pl",
+    "title": "TAMの使い方",
+    "section": "",
+    "text": "最初に，mirtを使ってダミーデータを生成します。 設定についてはmirtを参照してください。\n\n\nCode\nset.seed(123)\nsize &lt;- 3000\nitem_n &lt;- 20\n\nb_para &lt;- seq(-3, 3, length.out = item_n)\na_para &lt;- rep(0.9, item_n)\n\ntheta &lt;- rnorm(size, 0, 1)\n\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7,\n  d = b_para * -1.7 * a_para,\n  Theta = theta,\n  itemtype = \"2PL\"\n)\n\n\nTAMでは，tam.mml.2pl関数で2PLを推定します。\n\n# 2PLモデルの推定\n# progress = FALSEで出力を抑制\nmod &lt;- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))\n\nTAMで識別力・困難度を出力するのは少し面倒です1。\n\n# 識別力の確認\nmod$B[, 2, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8130275 0.7288229 0.9361247 0.8524752 0.9724010 0.8757284 0.8753386 0.9197561 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9263706 0.9572551 0.9273018 0.9023423 0.8733341 0.8902100 0.9011621 0.8586929 \n  Item_17   Item_18   Item_19   Item_20 \n0.9797010 0.7904457 0.8540210 0.8205279 \n\n# 困難度の確認\nmod$xsi[, 1] / mod$B[, 2, 1]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2573789 -3.1601025 -2.2997212 -2.1571105 -1.6189005 -1.4515025 -1.1525825 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7331885 -0.4406474 -0.1206649  0.1854097  0.4649443  0.8459277  1.1017130 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3793933  1.8235713  1.9504486  2.5446387  2.9344478  3.1024069",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_tam.html#受検者の能力推定",
+    "href": "irt_tam.html#受検者の能力推定",
+    "title": "TAMの使い方",
+    "section": "",
+    "text": "TAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。\n\nmle &lt;- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta\nwle &lt;- TAM::tam.wle(mod, progress = FALSE)$theta\neap &lt;- mod$person$EAP\n\n真の能力値（theta）と推定された能力の関係を描画してみます。\n\nplot(theta, mle) # thetaとMLE",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "irt_tam.html#footnotes",
+    "href": "irt_tam.html#footnotes",
+    "title": "TAMの使い方",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nIRT parameterization↩︎",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "ict_index.html",
+    "href": "ict_index.html",
+    "title": "情報機器に関するメモ",
+    "section": "",
+    "text": "Windows, Linux等に関するメモ\n\n\n\nMicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法: すぐ忘れるのでメモ。",
+    "crumbs": [
+      "Home",
+      "情報機器"
+    ]
+  },
+  {
+    "objectID": "ict_index.html#memo",
+    "href": "ict_index.html#memo",
+    "title": "情報機器に関するメモ",
+    "section": "",
+    "text": "MicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法: すぐ忘れるのでメモ。",
+    "crumbs": [
+      "Home",
+      "情報機器"
+    ]
+  },
+  {
+    "objectID": "irt_measurement_error.html",
+    "href": "irt_measurement_error.html",
+    "title": "測定の誤差",
+    "section": "",
+    "text": "普通はテストは一回しか受検しませんが， 仮に何回も受検したとしたら，その成績はどう変わるのでしょうか。 ここでは，テストが2PLに従うと仮定して， 能力値0の受験生が1000回テストを受けた場面を想定してみましょう。 項目数は15題，識別力はすべて0.9， 困難度は-3から1の範囲で等間隔に分布しているとします。\n\n# パラメータ設定\nset.seed(123)\nitem_n &lt;- 15 # 問題数\nn_simulations &lt;- 1000 # テストの受験回数\ntheta &lt;- 0 # 学力（真の能力）\na_para &lt;- rep(0.9, item_n) # 識別力（全項目で固定）\nb_para &lt;- seq(-3, 1, length.out = item_n) # 難易度（均等に分布）\n\n# 2PLモデルの確率計算\nprob_2pl &lt;- function(theta, a, b) {\n  1 / (1 + exp(-1.7 * a * (theta - b)))\n}\n\n# スコアシミュレーション\nresp &lt;- t(sapply(1:n_simulations, function(x) {\n  # 各項目の正答確率\n  prob &lt;- prob_2pl(theta, a_para, b_para)\n  # 正誤データの生成\n  resp &lt;- rbinom(item_n, size = 1, prob = prob)\n}))\n\nscore &lt;- apply(resp, 1, sum)\n\nhist(score, main = \"\", xlab = \"正答数\", ylab = \"頻度\")\n\n\n\n\n\n\n\n\nほぼ満点に近い（15題中14問の正答）場合も，半分もできない（15題中6問の正答）場合もありえるということです。\n\nc(\n  lower = mean(score) - 2 * sd(score),\n  upper = mean(score) + 2 * sd(score)\n)\n\n    lower     upper \n 7.804034 13.397966 \n\n\n正答数の分布が正規分布に従うと仮定して， ±2標準偏差の範囲を計算してみると， だいたい8問から13問くらいのあいだで正答数がバラつくということになります。 正答数を問題数（15題）で割って正答率に変換すると，およそ5割から9割の範囲で正答率はバラつきます。 先ほどのヒストグラムからも明らかですが， 半分しかできないというケースから9割正解まで考えられるということです。\n「ヤマが当たった」という言葉があることからも， テストを受けたときにたまたまできた／できなかったという ことが起こることはよく知られています。 ただ，実際に数値化してみると「思ったよりバラつきが大きいぞ」と 感じる人もいるかもしれません。 何にせよ，これだけ結果がバラつくとなると， 1回のテストの正答率を学力の指標にすることは だいぶ危ういことのように思われます。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "測定の誤差"
+    ]
+  },
+  {
+    "objectID": "irt_measurement_error.html#何回もテストを受検すると成績はどうなるのか",
+    "href": "irt_measurement_error.html#何回もテストを受検すると成績はどうなるのか",
+    "title": "測定の誤差",
+    "section": "",
+    "text": "普通はテストは一回しか受検しませんが， 仮に何回も受検したとしたら，その成績はどう変わるのでしょうか。 ここでは，テストが2PLに従うと仮定して， 能力値0の受験生が1000回テストを受けた場面を想定してみましょう。 項目数は15題，識別力はすべて0.9， 困難度は-3から1の範囲で等間隔に分布しているとします。\n\n# パラメータ設定\nset.seed(123)\nitem_n &lt;- 15 # 問題数\nn_simulations &lt;- 1000 # テストの受験回数\ntheta &lt;- 0 # 学力（真の能力）\na_para &lt;- rep(0.9, item_n) # 識別力（全項目で固定）\nb_para &lt;- seq(-3, 1, length.out = item_n) # 難易度（均等に分布）\n\n# 2PLモデルの確率計算\nprob_2pl &lt;- function(theta, a, b) {\n  1 / (1 + exp(-1.7 * a * (theta - b)))\n}\n\n# スコアシミュレーション\nresp &lt;- t(sapply(1:n_simulations, function(x) {\n  # 各項目の正答確率\n  prob &lt;- prob_2pl(theta, a_para, b_para)\n  # 正誤データの生成\n  resp &lt;- rbinom(item_n, size = 1, prob = prob)\n}))\n\nscore &lt;- apply(resp, 1, sum)\n\nhist(score, main = \"\", xlab = \"正答数\", ylab = \"頻度\")\n\n\n\n\n\n\n\n\nほぼ満点に近い（15題中14問の正答）場合も，半分もできない（15題中6問の正答）場合もありえるということです。\n\nc(\n  lower = mean(score) - 2 * sd(score),\n  upper = mean(score) + 2 * sd(score)\n)\n\n    lower     upper \n 7.804034 13.397966 \n\n\n正答数の分布が正規分布に従うと仮定して， ±2標準偏差の範囲を計算してみると， だいたい8問から13問くらいのあいだで正答数がバラつくということになります。 正答数を問題数（15題）で割って正答率に変換すると，およそ5割から9割の範囲で正答率はバラつきます。 先ほどのヒストグラムからも明らかですが， 半分しかできないというケースから9割正解まで考えられるということです。\n「ヤマが当たった」という言葉があることからも， テストを受けたときにたまたまできた／できなかったという ことが起こることはよく知られています。 ただ，実際に数値化してみると「思ったよりバラつきが大きいぞ」と 感じる人もいるかもしれません。 何にせよ，これだけ結果がバラつくとなると， 1回のテストの正答率を学力の指標にすることは だいぶ危ういことのように思われます。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "測定の誤差"
+    ]
+  },
+  {
+    "objectID": "survey_index.html",
+    "href": "survey_index.html",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "社会調査関係のメモ\n\n\n\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合\n\n\n\n\n\nThe survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "survey_index.html#記事",
+    "href": "survey_index.html#記事",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "SPSSの「ケースの重み付け」\nベンゼクリの修正割合",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "survey_index.html#memo",
+    "href": "survey_index.html#memo",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "The survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "StudyNotes",
+    "section": "",
+    "text": "勉強したことをまとめています。 現在，テスト中です・・・。",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#このサイトについて",
+    "href": "index.html#このサイトについて",
+    "title": "StudyNotes",
+    "section": "",
+    "text": "勉強したことをまとめています。 現在，テスト中です・・・。",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#扱っているトピック",
+    "href": "index.html#扱っているトピック",
+    "title": "StudyNotes",
+    "section": "扱っているトピック",
+    "text": "扱っているトピック\n\n教育測定: 教育測定に関するメモ（IRT，TAM，mirt）\n社会調査: 社会調査に関するメモ（survey，FactoMineR）\n情報機器: 情報機器に関するメモ（Windows，Linux）",
+    "crumbs": [
+      "Home"
+    ]
+  }
+]
