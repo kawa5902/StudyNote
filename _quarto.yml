@@ -35,6 +35,7 @@ website:
       - section: "情報機器"
         href: ICT/ict_index.qmd
         contents:
+          - ICT/ict_colab_jp.qmd
 
 
 format:
