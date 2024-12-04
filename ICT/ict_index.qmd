@@ -8,4 +8,4 @@ Windows, Linux等に関するメモ
 
 ## memo
 
-- [MicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法](https://ascii.jp/elem/000/004/129/4129038/): すぐ忘れるのでメモ。
+- [MicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法](https://ascii.jp/elem/000/004/129/4129038/)
