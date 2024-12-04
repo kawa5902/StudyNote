@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>survey_weight – StudyNotes</title>
+<title>irt_mirt – StudyNotes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-056d0bb13385f083af2f8f7b9d5c49a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-056d0bb13385f083af2f8f7b9d5c49a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,8 +101,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -112,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">StudyNotes</span>
     </a>
   </div>
@@ -123,19 +152,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./IRT/irt_index.html"> 
+    <a class="nav-link" href="../IRT/irt_index.html"> 
 <span class="menu-text">教育測定</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./survey_index.html"> 
+    <a class="nav-link" href="../SURVEY/survey_index.html"> 
 <span class="menu-text">社会調査</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ICT/ict_index.html"> 
+    <a class="nav-link" href="../ICT/ict_index.html"> 
 <span class="menu-text">情報機器</span></a>
   </li>  
 </ul>
@@ -149,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey_index.html">社会調査</a></li><li class="breadcrumb-item"><a href="./survey_weight.html">SPSSの「ケースの重み付け」</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../IRT/irt_index.html">教育測定</a></li><li class="breadcrumb-item"><a href="../IRT/irt_mirt.html">mirtの使い方</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,13 +200,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./IRT/irt_index.html" class="sidebar-item-text sidebar-link">
+            <a href="../IRT/irt_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">教育測定</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -186,25 +215,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_2pl.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_2pl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2PLの概要</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_mirt.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_mirt.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">mirtの使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_tam.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_tam.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TAMの使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_measurement_error.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_measurement_error.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">測定の誤差</span></a>
   </div>
 </li>
@@ -212,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./survey_index.html" class="sidebar-item-text sidebar-link">
+            <a href="../SURVEY/survey_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">社会調査</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -221,13 +250,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey_weight.html" class="sidebar-item-text sidebar-link active">
+  <a href="../SURVEY/survey_weight.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SPSSの「ケースの重み付け」</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey_benzecris.html" class="sidebar-item-text sidebar-link">
+  <a href="../SURVEY/survey_benzecris.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ベンゼクリの修正割合</span></a>
   </div>
 </li>
@@ -247,101 +276,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#spssのケースの重み付け" id="toc-spssのケースの重み付け" class="nav-link active" data-scroll-target="#spssのケースの重み付け">SPSSの「ケースの重み付け」</a>
+  <li><a href="#mirtの使い方" id="toc-mirtの使い方" class="nav-link active" data-scroll-target="#mirtの使い方">mirtの使い方</a>
   <ul class="collapse">
-  <li><a href="#データセットの作成" id="toc-データセットの作成" class="nav-link" data-scroll-target="#データセットの作成">データセットの作成</a></li>
-  <li><a href="#標本ウェイトを使用した分析" id="toc-標本ウェイトを使用した分析" class="nav-link" data-scroll-target="#標本ウェイトを使用した分析">標本ウェイトを使用した分析</a></li>
-  <li><a href="#spssのケースの重み付け-1" id="toc-spssのケースの重み付け-1" class="nav-link" data-scroll-target="#spssのケースの重み付け-1">SPSSのケースの重み付け</a></li>
+  <li><a href="#ダミーデータの生成" id="toc-ダミーデータの生成" class="nav-link" data-scroll-target="#ダミーデータの生成">ダミーデータの生成</a></li>
+  <li><a href="#mirtによる2pl" id="toc-mirtによる2pl" class="nav-link" data-scroll-target="#mirtによる2pl">mirtによる2PL</a></li>
+  <li><a href="#受検者の能力推定" id="toc-受検者の能力推定" class="nav-link" data-scroll-target="#受検者の能力推定">受検者の能力推定</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey_index.html">社会調査</a></li><li class="breadcrumb-item"><a href="./survey_weight.html">SPSSの「ケースの重み付け」</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../IRT/irt_index.html">教育測定</a></li><li class="breadcrumb-item"><a href="../IRT/irt_mirt.html">mirtの使い方</a></li></ol></nav></header>
 
 
 
 
-<section id="spssのケースの重み付け" class="level1">
-<h1>SPSSの「ケースの重み付け」</h1>
-<p>一部の界隈では有名だと思うのですが， SPSSのケースの重み付けでは標本ウェイトを扱うことはできません。</p>
-<section id="データセットの作成" class="level2">
-<h2 class="anchored" data-anchor-id="データセットの作成">データセットの作成</h2>
-<p>使用するデータセットは以下のRコードで作成します<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。</p>
-<ul>
-<li><code>ans</code>: 回答データ（1～4の値）</li>
-<li><code>gender</code>: 性別（1: 男性, 2: 女性）</li>
-<li><code>w</code>: 標本ウェイト</li>
-</ul>
+<section id="mirtの使い方" class="level1">
+<h1>mirtの使い方</h1>
+<p><a href="https://cran.r-project.org/web/packages/mirt/index.html">mirt: Multidimensional Item Resonse Theory</a> は， 多次元項目反応理論を行うパッケージです。 2PLや3PLといった基本的な項目反応理論はもちろん， 多次元モデルやダミーデータの生成も可能です。</p>
+<hr>
+<section id="ダミーデータの生成" class="level2">
+<h2 class="anchored" data-anchor-id="ダミーデータの生成">ダミーデータの生成</h2>
+<p>mirtの2PLは，下記の式で表現されます。</p>
+<p><span class="math display">\[P(\theta|\alpha, d)=\frac{1}{1+exp(-(\alpha \theta + d))}\]</span></p>
+<p><a href="../IRT/irt_2pl.html">通常のIRT</a>の場合，<span class="math inline">\(exp()\)</span>の中は，定数<span class="math inline">\(D(=1.7)\)</span>，識別力<span class="math inline">\(a\)</span>，困難度<span class="math inline">\(b\)</span>を用いて， <span class="math inline">\(-Da(\theta - b)\)</span>となります。 これは，<span class="math inline">\(-(Da\theta + (-Dab))\)</span>なので，<span class="math inline">\(\alpha = Da\)</span>, <span class="math inline">\(d = -Dab\)</span>です。 mirtを使う場合はこのパラメータに合わせるために， <span class="math inline">\(\alpha\)</span>は識別力<span class="math inline">\(a\)</span>を<span class="math inline">\(D\)</span>倍， <span class="math inline">\(d\)</span>は困難度を<span class="math inline">\(-Da\)</span>倍した値を設定します<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。</p>
+<p>たとえば，mirtによるダミーデータの生成は次のようになります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ans =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">3</span>)),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">5</span> <span class="sc">/</span> <span class="dv">7</span>, <span class="dv">7</span>), <span class="fu">rep</span>(<span class="dv">5</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># サンプルサイズと項目数の設定</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="dv">3000</span> <span class="co"># サンプルサイズ（受検者数）</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>item_n <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># 項目数（テストの問題数）</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 項目パラメータの設定</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>b_para <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="at">length.out =</span> item_n) <span class="co"># 項目困難度</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>a_para <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fl">0.9</span>, item_n) <span class="co"># 項目識別力</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 受検者の能力値を正規分布から生成</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(size, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2PLモデルに基づく応答データの生成</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> mirt<span class="sc">::</span><span class="fu">simdata</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> a_para <span class="sc">*</span> <span class="fl">1.7</span>, <span class="co"># alphaの設定</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> b_para <span class="sc">*</span> <span class="sc">-</span><span class="fl">1.7</span> <span class="sc">*</span> a_para, <span class="co"># dの設定</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">Theta =</span> theta, <span class="co"># 能力値</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">itemtype =</span> <span class="st">"2PL"</span> <span class="co"># モデルタイプ</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="標本ウェイトを使用した分析" class="level2">
-<h2 class="anchored" data-anchor-id="標本ウェイトを使用した分析">標本ウェイトを使用した分析</h2>
-<p>以下のコードで，<code>survey</code>パッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。</p>
+<section id="mirtによる2pl" class="level2">
+<h2 class="anchored" data-anchor-id="mirtによる2pl">mirtによる2PL</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 調査設計オブジェクトの作成</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>des <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">strata =</span> <span class="sc">~</span>gender, <span class="at">weights =</span> <span class="sc">~</span>w, <span class="at">data =</span> d)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## ウェイトの代わりに抽出確率を計算しても可</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># d$prob &lt;- 1 / d$w</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2PLモデルの推定</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># verbose = FALSEで出力を抑制</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> mirt<span class="sc">::</span><span class="fu">mirt</span>(resp, <span class="dv">1</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>ウェイトを考慮して平均を計算し、性別ごとの結果を比較します。</p>
+<p>推定されたパラメータの確認は，<code>coef</code>関数で行います。 引数<code>IRTpars</code>をTRUEにすると， <span class="math inline">\(P(\theta|\alpha, d)=\frac{1}{1+exp(-Da(\theta - b))}\)</span> の形の<span class="math inline">\(a\)</span>と<span class="math inline">\(b\)</span>が出力されます。 ただし<span class="math inline">\(D=1\)</span>で計算されているので， <span class="math inline">\(D=1.7\)</span>の識別力パラメータを得るには1.7で割る必要があります<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 全体の平均</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>ans, des)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mirt_coef <span class="ot">&lt;-</span> mirt<span class="sc">::</span><span class="fu">coef</span>(mod, <span class="at">simplify =</span> <span class="cn">TRUE</span>, <span class="at">IRTpars =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>items</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 識別力</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mirt_coef[, <span class="dv">1</span>] <span class="sc">/</span> <span class="fl">1.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      mean     SE
-ans 2.3571 0.3571</code></pre>
+<pre><code>   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 
+0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 
+   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 
+0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 
+  Item_17   Item_18   Item_19   Item_20 
+0.9790873 0.7899365 0.8532047 0.8196916 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 性別ごとの平均</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svyby</span>(<span class="sc">~</span>ans, <span class="at">by =</span> <span class="sc">~</span>gender, des, survey<span class="sc">::</span>svymean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 困難度</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mirt_coef[, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  gender      ans        se
-1      1 2.714286 0.4205600
-2      2 2.000000 0.5773503</code></pre>
+<pre><code>    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 
+-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 
+    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 
+-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 
+   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 
+ 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306 </code></pre>
 </div>
 </div>
 </section>
-<section id="spssのケースの重み付け-1" class="level2">
-<h2 class="anchored" data-anchor-id="spssのケースの重み付け-1">SPSSのケースの重み付け</h2>
-<p>SPSSの場合，標準誤差はおそらく次のように算出されています。</p>
+<section id="受検者の能力推定" class="level2">
+<h2 class="anchored" data-anchor-id="受検者の能力推定">受検者の能力推定</h2>
+<p>mirtでは，<code>fscores</code>関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（<code>method</code>）を変更することで， MLE，WLE，MAPなども出力できます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 標準誤差</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>weighted.mean2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, w, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (na.rm) {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> w[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  wm <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(x, w)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  wv <span class="ot">&lt;-</span> <span class="fu">sum</span>(w <span class="sc">*</span> (x <span class="sc">-</span> wm)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">sum</span>(w) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  wse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(wv <span class="sc">/</span> <span class="fu">sum</span>(w))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">mean =</span> wm, <span class="at">se =</span> wse)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eap <span class="ot">&lt;-</span> mirt<span class="sc">::</span><span class="fu">fscores</span>(mod, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 計算に時間がかかるので省略</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mle &lt;- mirt::fscores(mod, method = "ML")</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># wle &lt;- mirt::fscores(mod, method = "WLE")</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># map &lt;- mirt::fscores(mod, method = "MAP")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>thetaとeapの関連を<code>plot</code>関数で表示してみます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 重み付き平均</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean2</span>(d<span class="sc">$</span>ans, d<span class="sc">$</span>w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     mean        se 
-2.3571429 0.3319131 </code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(theta, eap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="irt_mirt_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データを性別で分割</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data_by_gender <span class="ot">&lt;-</span> <span class="fu">split</span>(d, d<span class="sc">$</span>gender)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 男女別の平均と分散を計算</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(data_by_gender, <span class="cf">function</span>(subset_data) {</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">weighted.mean2</span>(subset_data<span class="sc">$</span>ans, subset_data<span class="sc">$</span>w)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>             1         2
-mean 2.7142857 2.0000000
-se   0.5150788 0.4082483</code></pre>
 </div>
 </div>
 
@@ -353,7 +385,8 @@ se   0.5150788 0.4082483</code></pre>
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>元ネタは<a href="https://elsur.jpn.org/mt/2013/05/001729.html">読書日記（2013年5月19日）</a> です。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://www.jstage.jst.go.jp/article/jjpsy/86/4/86_86.14213/_article/-char/ja">奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://embracingheterogeneity.github.io/website/01a_LR.html#the-mirt-version">IRT parameterization</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -446,7 +479,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/kawa5902\.github\.io\/StudyNote\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -127,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./irt_index.html"> 
+    <a class="nav-link" href="./IRT/irt_index.html"> 
 <span class="menu-text">教育測定</span></a>
   </li>  
   <li class="nav-item">
@@ -135,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">社会調査</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ict_index.html"> 
+    <a class="nav-link" href="./ICT/ict_index.html"> 
 <span class="menu-text">情報機器</span></a>
   </li>  
 </ul>
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./irt_index.html" class="sidebar-item-text sidebar-link">
+            <a href="./IRT/irt_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">教育測定</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -186,25 +186,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./irt_2pl.html" class="sidebar-item-text sidebar-link">
+  <a href="./IRT/irt_2pl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2PLの概要</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./irt_mirt.html" class="sidebar-item-text sidebar-link">
+  <a href="./IRT/irt_mirt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">mirtの使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./irt_tam.html" class="sidebar-item-text sidebar-link">
+  <a href="./IRT/irt_tam.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TAMの使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./irt_measurement_error.html" class="sidebar-item-text sidebar-link">
+  <a href="./IRT/irt_measurement_error.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">測定の誤差</span></a>
   </div>
 </li>
@@ -418,7 +418,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/kawa5902\.github\.io\/StudyNote\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>survey_weight – StudyNotes</title>
+<title>irt_2pl – StudyNotes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-056d0bb13385f083af2f8f7b9d5c49a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-056d0bb13385f083af2f8f7b9d5c49a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -101,8 +101,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -112,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">StudyNotes</span>
     </a>
   </div>
@@ -123,19 +152,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./IRT/irt_index.html"> 
+    <a class="nav-link" href="../IRT/irt_index.html"> 
 <span class="menu-text">教育測定</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./survey_index.html"> 
+    <a class="nav-link" href="../SURVEY/survey_index.html"> 
 <span class="menu-text">社会調査</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ICT/ict_index.html"> 
+    <a class="nav-link" href="../ICT/ict_index.html"> 
 <span class="menu-text">情報機器</span></a>
   </li>  
 </ul>
@@ -149,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey_index.html">社会調査</a></li><li class="breadcrumb-item"><a href="./survey_weight.html">SPSSの「ケースの重み付け」</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../IRT/irt_index.html">教育測定</a></li><li class="breadcrumb-item"><a href="../IRT/irt_2pl.html">2PLの概要</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,13 +200,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./IRT/irt_index.html" class="sidebar-item-text sidebar-link">
+            <a href="../IRT/irt_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">教育測定</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -186,25 +215,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_2pl.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_2pl.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2PLの概要</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_mirt.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_mirt.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">mirtの使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_tam.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_tam.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TAMの使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./IRT/irt_measurement_error.html" class="sidebar-item-text sidebar-link">
+  <a href="../IRT/irt_measurement_error.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">測定の誤差</span></a>
   </div>
 </li>
@@ -212,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./survey_index.html" class="sidebar-item-text sidebar-link">
+            <a href="../SURVEY/survey_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">社会調査</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -221,13 +250,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey_weight.html" class="sidebar-item-text sidebar-link active">
+  <a href="../SURVEY/survey_weight.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SPSSの「ケースの重み付け」</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./survey_benzecris.html" class="sidebar-item-text sidebar-link">
+  <a href="../SURVEY/survey_benzecris.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ベンゼクリの修正割合</span></a>
   </div>
 </li>
@@ -247,103 +276,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#spssのケースの重み付け" id="toc-spssのケースの重み付け" class="nav-link active" data-scroll-target="#spssのケースの重み付け">SPSSの「ケースの重み付け」</a>
+  <li><a href="#plの概要" id="toc-plの概要" class="nav-link active" data-scroll-target="#plの概要">2PLの概要</a>
   <ul class="collapse">
-  <li><a href="#データセットの作成" id="toc-データセットの作成" class="nav-link" data-scroll-target="#データセットの作成">データセットの作成</a></li>
-  <li><a href="#標本ウェイトを使用した分析" id="toc-標本ウェイトを使用した分析" class="nav-link" data-scroll-target="#標本ウェイトを使用した分析">標本ウェイトを使用した分析</a></li>
-  <li><a href="#spssのケースの重み付け-1" id="toc-spssのケースの重み付け-1" class="nav-link" data-scroll-target="#spssのケースの重み付け-1">SPSSのケースの重み付け</a></li>
+  <li><a href="#cttとirt" id="toc-cttとirt" class="nav-link" data-scroll-target="#cttとirt">CTTとIRT</a></li>
+  <li><a href="#パラメータロジスティックモデル" id="toc-パラメータロジスティックモデル" class="nav-link" data-scroll-target="#パラメータロジスティックモデル">2パラメータ・ロジスティックモデル</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./survey_index.html">社会調査</a></li><li class="breadcrumb-item"><a href="./survey_weight.html">SPSSの「ケースの重み付け」</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../IRT/irt_index.html">教育測定</a></li><li class="breadcrumb-item"><a href="../IRT/irt_2pl.html">2PLの概要</a></li></ol></nav></header>
 
 
 
 
-<section id="spssのケースの重み付け" class="level1">
-<h1>SPSSの「ケースの重み付け」</h1>
-<p>一部の界隈では有名だと思うのですが， SPSSのケースの重み付けでは標本ウェイトを扱うことはできません。</p>
-<section id="データセットの作成" class="level2">
-<h2 class="anchored" data-anchor-id="データセットの作成">データセットの作成</h2>
-<p>使用するデータセットは以下のRコードで作成します<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。</p>
+<section id="plの概要" class="level1">
+<h1>2PLの概要</h1>
+<section id="cttとirt" class="level2">
+<h2 class="anchored" data-anchor-id="cttとirt">CTTとIRT</h2>
+<p>IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。</p>
+<p>ここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。</p>
+</section>
+<section id="パラメータロジスティックモデル" class="level2">
+<h2 class="anchored" data-anchor-id="パラメータロジスティックモデル">2パラメータ・ロジスティックモデル</h2>
+<p>学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。 2PLにおいて，能力<span class="math inline">\(\theta\)</span>の受検者が項目<span class="math inline">\(j\)</span>に正答する確率<span class="math inline">\(P_j(\theta)\)</span>は，以下の式になります。</p>
+<p><span class="math display">\[P_j(\theta) = \frac{1}{1+exp(-Da_j(\theta - b_j))}\]</span></p>
+<p>式中の記号の意味は，次の通り。</p>
 <ul>
-<li><code>ans</code>: 回答データ（1～4の値）</li>
-<li><code>gender</code>: 性別（1: 男性, 2: 女性）</li>
-<li><code>w</code>: 標本ウェイト</li>
+<li>能力: <span class="math inline">\(\theta\)</span></li>
+<li>項目困難度: <span class="math inline">\(b\)</span></li>
+<li>項目識別力: <span class="math inline">\(a\)</span></li>
+<li>尺度因子: <span class="math inline">\(D\)</span>（通常1.7）</li>
 </ul>
+<p>能力値<span class="math inline">\(\theta\)</span>の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">ans =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">7</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">3</span>)),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">5</span> <span class="sc">/</span> <span class="dv">7</span>, <span class="dv">7</span>), <span class="fu">rep</span>(<span class="dv">5</span> <span class="sc">/</span> <span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>icc <span class="ot">&lt;-</span> <span class="cf">function</span>(params, <span class="at">tr =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="at">np =</span> <span class="dv">100</span>) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 引数チェック</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.list</span>(params) <span class="sc">||</span> <span class="sc">!</span><span class="fu">all</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>) <span class="sc">%in%</span> <span class="fu">names</span>(params))) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"`params` must be a list with named elements `a` and `b`."</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(params<span class="sc">$</span>a) <span class="sc">!=</span> <span class="fu">length</span>(params<span class="sc">$</span>b)) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"`params$a` and `params$b` must have the same length."</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 正答確率関数</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  p2pl <span class="ot">&lt;-</span> <span class="cf">function</span>(t, a, b) {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="fl">1.7</span> <span class="sc">*</span> a <span class="sc">*</span> (t <span class="sc">-</span> b)))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 能力範囲を生成</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  t_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(tr[<span class="dv">1</span>], tr[<span class="dv">2</span>], <span class="at">length.out =</span> np)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># プロットの初期化</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="cn">NULL</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> tr, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">type =</span> <span class="st">"n"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"θ"</span>, <span class="at">ylab =</span> <span class="st">"正答確率"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"ICC"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid</span>()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 各項目の特性曲線を描画</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(params<span class="sc">$</span>a)) {</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> params<span class="sc">$</span>a[i]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> params<span class="sc">$</span>b[i]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    p_vals <span class="ot">&lt;-</span> <span class="fu">p2pl</span>(t_vals, a, b)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(t_vals, p_vals, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> i) <span class="co"># 番号を色に対応</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(<span class="at">v =</span> b, <span class="at">col =</span> i, <span class="at">lty =</span> <span class="dv">2</span>) <span class="co"># 困難度のライン</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 凡例を追加</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="st">"bottomright"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend =</span> <span class="fu">paste</span>(<span class="st">"a ="</span>, params<span class="sc">$</span>a, <span class="st">", b ="</span>, params<span class="sc">$</span>b),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">seq_along</span>(params<span class="sc">$</span>a), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">bg =</span> <span class="st">"white"</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>params1 <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="fl">0.5</span>),</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">icc</span>(params1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="irt_2pl_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-</section>
-<section id="標本ウェイトを使用した分析" class="level2">
-<h2 class="anchored" data-anchor-id="標本ウェイトを使用した分析">標本ウェイトを使用した分析</h2>
-<p>以下のコードで，<code>survey</code>パッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。</p>
+</div>
+</div>
+<p>いずれの項目にせよ，受検者の能力<span class="math inline">\(\theta\)</span>について， <span class="math inline">\(\theta=b\)</span>になったところで正答確率が0.5（=50%）になっています。 また，<span class="math inline">\(a\)</span>の値が大きいほど，曲線が急激に立ち上がる （<span class="math inline">\(\theta=b\)</span>の前後で正答確率が大きく上昇する）こともわかります。</p>
+<p>正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，<span class="math inline">\(a\)</span>が0.1と0.8の項目を比べて説明しましょう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 調査設計オブジェクトの作成</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>des <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">strata =</span> <span class="sc">~</span>gender, <span class="at">weights =</span> <span class="sc">~</span>w, <span class="at">data =</span> d)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## ウェイトの代わりに抽出確率を計算しても可</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># d$prob &lt;- 1 / d$w</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>ウェイトを考慮して平均を計算し、性別ごとの結果を比較します。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 全体の平均</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>ans, des)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      mean     SE
-ans 2.3571 0.3571</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 性別ごとの平均</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svyby</span>(<span class="sc">~</span>ans, <span class="at">by =</span> <span class="sc">~</span>gender, des, survey<span class="sc">::</span>svymean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  gender      ans        se
-1      1 2.714286 0.4205600
-2      2 2.000000 0.5773503</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>params2 <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.8</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">icc</span>(params2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="irt_2pl_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-</section>
-<section id="spssのケースの重み付け-1" class="level2">
-<h2 class="anchored" data-anchor-id="spssのケースの重み付け-1">SPSSのケースの重み付け</h2>
-<p>SPSSの場合，標準誤差はおそらく次のように算出されています。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 標準誤差</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>weighted.mean2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, w, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (na.rm) {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> w[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  wm <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(x, w)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  wv <span class="ot">&lt;-</span> <span class="fu">sum</span>(w <span class="sc">*</span> (x <span class="sc">-</span> wm)<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">sum</span>(w) <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  wse <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(wv <span class="sc">/</span> <span class="fu">sum</span>(w))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">mean =</span> wm, <span class="at">se =</span> wse)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 重み付き平均</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean2</span>(d<span class="sc">$</span>ans, d<span class="sc">$</span>w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     mean        se 
-2.3571429 0.3319131 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># データを性別で分割</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>data_by_gender <span class="ot">&lt;-</span> <span class="fu">split</span>(d, d<span class="sc">$</span>gender)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 男女別の平均と分散を計算</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(data_by_gender, <span class="cf">function</span>(subset_data) {</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">weighted.mean2</span>(subset_data<span class="sc">$</span>ans, subset_data<span class="sc">$</span>w)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>             1         2
-mean 2.7142857 2.0000000
-se   0.5150788 0.4082483</code></pre>
-</div>
-</div>
+<p><span class="math inline">\(a\)</span>の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，<span class="math inline">\(a\)</span>の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。</p>
 
 
 </section>
@@ -353,7 +392,8 @@ se   0.5150788 0.4082483</code></pre>
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>元ネタは<a href="https://elsur.jpn.org/mt/2013/05/001729.html">読書日記（2013年5月19日）</a> です。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>この説明，厳密には間違っています。「100点満点のテスト」というとき， おそらく私たちは「受検者の能力を測る」ことを意識していません。 他方で，IRTにせよCTTにせよ，教育測定の前提には「能力を測る」という問題意識があります。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>経年変化調査については， <a href="https://www.nier.go.jp/21chousakekkahoukoku/kannren_chousa/keinen_chousa.htm">国立教育政策研究所のウェブサイト</a> を参照してください。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -446,7 +486,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/kawa5902\.github\.io\/StudyNote\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
