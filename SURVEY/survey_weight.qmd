@@ -78,6 +78,3 @@ sapply(data_by_gender, function(subset_data) {
   weighted.mean2(subset_data$ans, subset_data$w)
 })
 ```
-
-
-
