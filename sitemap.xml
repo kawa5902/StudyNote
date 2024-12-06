@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kawa5902.github.io/StudyNote/index.html</loc>
-    <lastmod>2024-12-03T12:09:49.598Z</lastmod>
+    <lastmod>2024-12-04T13:24:42.783Z</lastmod>
   </url>
   <url>
     <loc>https://kawa5902.github.io/StudyNote/SURVEY/survey_index.html</loc>
@@ -21,8 +21,12 @@
     <lastmod>2024-12-03T12:09:49.598Z</lastmod>
   </url>
   <url>
+    <loc>https://kawa5902.github.io/StudyNote/ICT/ict_colab_jp.html</loc>
+    <lastmod>2024-12-05T12:57:20.488Z</lastmod>
+  </url>
+  <url>
     <loc>https://kawa5902.github.io/StudyNote/ICT/ict_index.html</loc>
-    <lastmod>2024-12-03T12:09:49.598Z</lastmod>
+    <lastmod>2024-12-04T13:25:44.267Z</lastmod>
   </url>
   <url>
     <loc>https://kawa5902.github.io/StudyNote/IRT/irt_mirt.html</loc>
@@ -30,11 +34,11 @@
   </url>
   <url>
     <loc>https://kawa5902.github.io/StudyNote/IRT/irt_measurement_error.html</loc>
-    <lastmod>2024-12-03T12:09:49.598Z</lastmod>
+    <lastmod>2024-12-06T01:32:58.571Z</lastmod>
   </url>
   <url>
     <loc>https://kawa5902.github.io/StudyNote/SURVEY/survey_weight.html</loc>
-    <lastmod>2024-12-03T12:09:49.598Z</lastmod>
+    <lastmod>2024-12-05T05:31:37.968Z</lastmod>
   </url>
   <url>
     <loc>https://kawa5902.github.io/StudyNote/SURVEY/survey_benzecris.html</loc>

@@ -234,8 +234,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">情報機器</span></span>
+      <div class="sidebar-item-container"> 
+            <a href="../ICT/ict_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">情報機器</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ICT/ict_colab_jp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R on Google Colab</span></a>
+  </div>
+</li>
+      </ul>
   </li>
     </ul>
     </div>
@@ -298,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>ほぼ満点に近い（15題中14問の正答）場合も，半分もできない（15題中6問の正答）場合もありえるということです。</p>
+<p>ほぼ満点に近い（15題中14問の正答）場合も， 半分もできない（15題中6問の正答）場合もありえるということです。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> <span class="fu">mean</span>(score) <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sd</span>(score),</span>

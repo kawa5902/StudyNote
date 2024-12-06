@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ict_index – StudyNotes</title>
+<title>ict_colab_jp – StudyNotes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -115,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ICT/ict_index.html">情報機器</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ICT/ict_index.html">情報機器</a></li><li class="breadcrumb-item"><a href="../ICT/ict_colab_jp.html">R on Google Colab</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../ICT/ict_index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../ICT/ict_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">情報機器</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -210,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ICT/ict_colab_jp.html" class="sidebar-item-text sidebar-link">
+  <a href="../ICT/ict_colab_jp.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">R on Google Colab</span></a>
   </div>
 </li>
@@ -226,34 +260,40 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#情報機器に関するメモ" id="toc-情報機器に関するメモ" class="nav-link active" data-scroll-target="#情報機器に関するメモ">情報機器に関するメモ</a>
+  <li><a href="#r-on-google-colab" id="toc-r-on-google-colab" class="nav-link active" data-scroll-target="#r-on-google-colab">R on Google Colab</a>
   <ul class="collapse">
-  <li><a href="#記事" id="toc-記事" class="nav-link" data-scroll-target="#記事">記事</a></li>
-  <li><a href="#memo" id="toc-memo" class="nav-link" data-scroll-target="#memo">memo</a></li>
+  <li><a href="#colabでrを動かす方法" id="toc-colabでrを動かす方法" class="nav-link" data-scroll-target="#colabでrを動かす方法">colabでRを動かす方法</a></li>
+  <li><a href="#図を作成すると文字化けする" id="toc-図を作成すると文字化けする" class="nav-link" data-scroll-target="#図を作成すると文字化けする">図を作成すると文字化けする</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ICT/ict_index.html">情報機器</a></li><li class="breadcrumb-item"><a href="../ICT/ict_colab_jp.html">R on Google Colab</a></li></ol></nav></header>
 
 
 
 
-<section id="情報機器に関するメモ" class="level1">
-<h1>情報機器に関するメモ</h1>
-<p>Windows, Linux等に関するメモ</p>
-<section id="記事" class="level2">
-<h2 class="anchored" data-anchor-id="記事">記事</h2>
-<ul>
-<li><a href="../ICT/ict_colab_jp.html">R on Google Colabで日本語を使う</a></li>
-</ul>
+<section id="r-on-google-colab" class="level1">
+<h1>R on Google Colab</h1>
+<p><a href="https://colab.research.google.com/">colab</a>で簡単にRを動かせたので， 授業ではcolabを試してみようと思っています。</p>
+<section id="colabでrを動かす方法" class="level2">
+<h2 class="anchored" data-anchor-id="colabでrを動かす方法">colabでRを動かす方法</h2>
+<p>最初に「ランタイム」から「ランタイムの変更」を選択します。 <img src="../image/ict_colab1.png" class="img-fluid" alt="ランタイムの変更"></p>
+<p>続いて，「ランタイムのタイプ」をpython 3からRに変更するだけでok。 <img src="../image/ict_colab2.png" class="img-fluid" alt="ランタイムのタイプ"></p>
 </section>
-<section id="memo" class="level2">
-<h2 class="anchored" data-anchor-id="memo">memo</h2>
-<ul>
-<li><a href="https://ascii.jp/elem/000/004/129/4129038/">MicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法</a></li>
-</ul>
+<section id="図を作成すると文字化けする" class="level2">
+<h2 class="anchored" data-anchor-id="図を作成すると文字化けする">図を作成すると文字化けする</h2>
+<p>このままだと，図に日本語を利用できません。 少し調べてみたところ， 「<a href="https://qiita.com/siraasagi/items/d72f60c25b30269d89e4">Google Colabでまたまた日本語表示が豆腐不可避な方に</a>」 の方法が有効なようでした。</p>
+<p>下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 日本語フォントを導入</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"apt-get -y install fonts-ipafont-gothic"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># キャッシュを削除（2024年12月時点）</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"rm /root/.cache/matplotlib/fontlist-*.json"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 日本語が表示可能</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">sin</span>(x), <span class="sc">-</span>pi, pi, <span class="at">main =</span> <span class="st">"サインカーブ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>

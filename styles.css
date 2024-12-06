@@ -1,1 +1,9 @@
 /* css styles */
+
+/* Select all <img> elements */
+img {
+    /* Add a 20-pixel margin around the image */
+    margin: 20px;
+    /* Apply a 2-pixel solid black border to the image */
+    border: 2px solid black;
+}
