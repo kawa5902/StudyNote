@@ -3,6 +3,7 @@
 社会調査関係のメモ
 
 ## 記事
+- [Complex Survey](survey_survey.qmd)
 - [SPSSの「ケースの重み付け」](survey_weight.qmd)
 - [ベンゼクリの修正割合](survey_benzecris.qmd)
 
