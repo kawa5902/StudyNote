@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>survey_survey – StudyNotes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-056d0bb13385f083af2f8f7b9d5c49a0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">StudyNotes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../IRT/irt_index.html"> 
+<span class="menu-text">教育測定</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../SURVEY/survey_index.html"> 
+<span class="menu-text">社会調査</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ICT/ict_index.html"> 
+<span class="menu-text">情報機器</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../SURVEY/survey_index.html">社会調査</a></li><li class="breadcrumb-item"><a href="../SURVEY/survey_survey.html">Complex Survey</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../IRT/irt_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">教育測定</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../IRT/irt_2pl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2PLの概要</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../IRT/irt_mirt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">mirtの使い方</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../IRT/irt_tam.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TAMの使い方</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../IRT/irt_measurement_error.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">測定の誤差</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../SURVEY/survey_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">社会調査</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../SURVEY/survey_survey.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Complex Survey</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../SURVEY/survey_weight.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SPSSの「ケースの重み付け」</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../SURVEY/survey_benzecris.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ベンゼクリの修正割合</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../ICT/ict_index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">情報機器</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ICT/ict_colab_jp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R on Google Colab</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#complex-survey" id="toc-complex-survey" class="nav-link active" data-scroll-target="#complex-survey">Complex Survey</a>
+  <ul class="collapse">
+  <li><a href="#母集団と標本の作成" id="toc-母集団と標本の作成" class="nav-link" data-scroll-target="#母集団と標本の作成">母集団と標本の作成</a></li>
+  <li><a href="#ウェイトと調査デザインの重要性" id="toc-ウェイトと調査デザインの重要性" class="nav-link" data-scroll-target="#ウェイトと調査デザインの重要性">ウェイトと調査デザインの重要性</a>
+  <ul class="collapse">
+  <li><a href="#標本平均とウェイト" id="toc-標本平均とウェイト" class="nav-link" data-scroll-target="#標本平均とウェイト">標本平均とウェイト</a></li>
+  <li><a href="#調査デザインと標準誤差の推定" id="toc-調査デザインと標準誤差の推定" class="nav-link" data-scroll-target="#調査デザインと標準誤差の推定">調査デザインと標準誤差の推定</a></li>
+  </ul></li>
+  <li><a href="#事後層化" id="toc-事後層化" class="nav-link" data-scroll-target="#事後層化">事後層化</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../SURVEY/survey_index.html">社会調査</a></li><li class="breadcrumb-item"><a href="../SURVEY/survey_survey.html">Complex Survey</a></li></ol></nav></header>
+
+
+
+
+<section id="complex-survey" class="level1">
+<h1>Complex Survey</h1>
+<p>一般に大規模な学力調査は，単純な無作為抽出ではなく， 最初に学校を抽出し，その後に生徒を抽出するといった 多段抽出であることが多いです。 こうした複雑な抽出法（Complex Survey）に関するメモです。</p>
+<section id="母集団と標本の作成" class="level2">
+<h2 class="anchored" data-anchor-id="母集団と標本の作成">母集団と標本の作成</h2>
+<p>最初に母集団と標本を作成します。 ちょっと長くなるのでコードは畳んで，標本だけ表示します。</p>
+<p>設定としては，以下のような感じ。</p>
+<ul>
+<li>母集団の学校数は10校。</li>
+<li>学校は3つの層（strata）に分かれており，それぞれで平均学力，生徒数が異なる。</li>
+<li>スコアは学校ごとに平均値が異なる。</li>
+<li>各学校の生徒には性別（MとF）を設定する。割当は無作為。</li>
+<li>性別によってスコアが異なる。Mの方が10ポイント高い。</li>
+<li>標本は，各層から2校ずつ学校を選び，さらに選ばれた学校から10人ずつを選ぶとする。</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>) <span class="co"># scipenを大きな値に設定</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 学校層のデータを生成</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sch_str <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="co"># 学校ID</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">str =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">3</span>, <span class="dv">2</span>)), <span class="co"># 各層に2〜4校</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">m_scr =</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">75</span>, <span class="dv">55</span>, <span class="dv">60</span>, <span class="dv">50</span>, <span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">30</span>), <span class="co"># 学校ごとの平均スコア</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pop_sz =</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">90</span>, <span class="dv">80</span>, <span class="dv">70</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="dv">30</span>, <span class="dv">20</span>, <span class="dv">15</span>, <span class="dv">10</span>) <span class="co"># 生徒数</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 母集団データを生成</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>gen_pop <span class="ot">&lt;-</span> <span class="cf">function</span>(str_data) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(str_data), <span class="cf">function</span>(i) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">sch =</span> <span class="fu">rep</span>(str_data<span class="sc">$</span>sch[i], str_data<span class="sc">$</span>pop_sz[i]),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">str =</span> <span class="fu">rep</span>(str_data<span class="sc">$</span>str[i], str_data<span class="sc">$</span>pop_sz[i]),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">sid =</span> <span class="fu">seq_len</span>(str_data<span class="sc">$</span>pop_sz[i]),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">scr =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(str_data<span class="sc">$</span>pop_sz[i], <span class="at">mean =</span> str_data<span class="sc">$</span>m_scr[i], <span class="at">sd =</span> <span class="dv">5</span>) <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">5</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">gen =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>), str_data<span class="sc">$</span>pop_sz[i], <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">gen_pop</span>(sch_str)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 層別に学校をサンプリング</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>samp_sch <span class="ot">&lt;-</span> <span class="cf">function</span>(pop, str_data, <span class="at">n_sch =</span> <span class="dv">2</span>) {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  sel_sch <span class="ot">&lt;-</span> <span class="fu">do.call</span>(c, <span class="fu">lapply</span>(<span class="fu">unique</span>(pop<span class="sc">$</span>str), <span class="cf">function</span>(s) {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    str_sch <span class="ot">&lt;-</span> <span class="fu">unique</span>(pop<span class="sc">$</span>sch[pop<span class="sc">$</span>str <span class="sc">==</span> s])</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(str_sch, <span class="at">size =</span> n_sch)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(pop, sch <span class="sc">%in%</span> sel_sch)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>samp1 <span class="ot">&lt;-</span> <span class="fu">samp_sch</span>(pop, sch_str)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># 各学校から生徒をランダムサンプリング</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>samp_stu <span class="ot">&lt;-</span> <span class="cf">function</span>(samp1, <span class="at">n_stu =</span> <span class="dv">10</span>) {</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">unique</span>(samp1<span class="sc">$</span>sch), <span class="cf">function</span>(s) {</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    sch_data <span class="ot">&lt;-</span> <span class="fu">subset</span>(samp1, sch <span class="sc">==</span> s)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    sch_data[<span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(sch_data)), <span class="at">size =</span> n_stu), ]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">samp_stu</span>(samp1)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># 抽出確率とウェイトの計算</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>calc_wt <span class="ot">&lt;-</span> <span class="cf">function</span>(samp, str_data) {</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  str_cnt <span class="ot">&lt;-</span> <span class="fu">table</span>(str_data<span class="sc">$</span>str) <span class="co"># 層内の学校数</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  samp<span class="sc">$</span>p_sch <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">/</span> str_cnt[<span class="fu">as.character</span>(samp<span class="sc">$</span>str)] <span class="co"># 学校の抽出確率</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  samp<span class="sc">$</span>p_stu <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">/</span> str_data<span class="sc">$</span>pop_sz[<span class="fu">match</span>(samp<span class="sc">$</span>sch, str_data<span class="sc">$</span>sch)] <span class="co"># 生徒の抽出確率</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  samp<span class="sc">$</span>p_tot <span class="ot">&lt;-</span> samp<span class="sc">$</span>p_sch <span class="sc">*</span> samp<span class="sc">$</span>p_stu <span class="co"># 総抽出確率</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  samp<span class="sc">$</span>wt <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> samp<span class="sc">$</span>p_tot <span class="co"># ウェイト</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fpc設定</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  samp<span class="sc">$</span>fpc1 <span class="ot">&lt;-</span> str_cnt[<span class="fu">as.character</span>(samp<span class="sc">$</span>str)] <span class="co"># 層内の学校数</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  samp<span class="sc">$</span>fpc2 <span class="ot">&lt;-</span> str_data<span class="sc">$</span>pop_sz[<span class="fu">match</span>(samp<span class="sc">$</span>sch, str_data<span class="sc">$</span>sch)] <span class="co"># 学校内の生徒数</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  samp</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">calc_wt</span>(samp, sch_str)</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co"># スコア補正（女性の場合に+10）</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>adj_scr <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  data<span class="sc">$</span>scr <span class="ot">&lt;-</span> data<span class="sc">$</span>scr <span class="sc">+</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>gen <span class="sc">==</span> <span class="st">"F"</span>, <span class="dv">10</span>, <span class="dv">0</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  data</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>pop <span class="ot">&lt;-</span> <span class="fu">adj_scr</span>(pop)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">adj_scr</span>(samp)</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co"># 結果を確認</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>samp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sch str sid scr gen p_sch      p_stu      p_tot   wt fpc1 fpc2
+49    1   1  49  85   F   0.5 0.09090909 0.04545455 22.0    4  110
+72    1   1  72  70   F   0.5 0.09090909 0.04545455 22.0    4  110
+51    1   1  51  70   M   0.5 0.09090909 0.04545455 22.0    4  110
+18    1   1  18  60   M   0.5 0.09090909 0.04545455 22.0    4  110
+26    1   1  26  60   M   0.5 0.09090909 0.04545455 22.0    4  110
+30    1   1  30  75   M   0.5 0.09090909 0.04545455 22.0    4  110
+83    1   1  83  70   M   0.5 0.09090909 0.04545455 22.0    4  110
+69    1   1  69  85   F   0.5 0.09090909 0.04545455 22.0    4  110
+93    1   1  93  70   M   0.5 0.09090909 0.04545455 22.0    4  110
+102   1   1 102  80   F   0.5 0.09090909 0.04545455 22.0    4  110
+246   3   1  46  70   M   0.5 0.12500000 0.06250000 16.0    4   80
+212   3   1  12  85   M   0.5 0.12500000 0.06250000 16.0    4   80
+256   3   1  56  90   F   0.5 0.12500000 0.06250000 16.0    4   80
+201   3   1   1  75   M   0.5 0.12500000 0.06250000 16.0    4   80
+248   3   1  48  85   F   0.5 0.12500000 0.06250000 16.0    4   80
+252   3   1  52  70   M   0.5 0.12500000 0.06250000 16.0    4   80
+207   3   1   7  80   F   0.5 0.12500000 0.06250000 16.0    4   80
+269   3   1  69  95   F   0.5 0.12500000 0.06250000 16.0    4   80
+210   3   1  10  90   M   0.5 0.12500000 0.06250000 16.0    4   80
+236   3   1  36  80   F   0.5 0.12500000 0.06250000 16.0    4   80
+398   6   2   8  75   F   0.5 0.25000000 0.12500000  8.0    4   40
+421   6   2  31  55   F   0.5 0.25000000 0.12500000  8.0    4   40
+395   6   2   5  65   F   0.5 0.25000000 0.12500000  8.0    4   40
+412   6   2  22  55   M   0.5 0.25000000 0.12500000  8.0    4   40
+402   6   2  12  60   M   0.5 0.25000000 0.12500000  8.0    4   40
+400   6   2  10  65   M   0.5 0.25000000 0.12500000  8.0    4   40
+419   6   2  29  70   F   0.5 0.25000000 0.12500000  8.0    4   40
+420   6   2  30  75   F   0.5 0.25000000 0.12500000  8.0    4   40
+418   6   2  28  70   M   0.5 0.25000000 0.12500000  8.0    4   40
+391   6   2   1  60   M   0.5 0.25000000 0.12500000  8.0    4   40
+475   8   2  15  50   F   0.5 0.50000000 0.25000000  4.0    4   20
+474   8   2  14  45   M   0.5 0.50000000 0.25000000  4.0    4   20
+467   8   2   7  55   F   0.5 0.50000000 0.25000000  4.0    4   20
+462   8   2   2  50   M   0.5 0.50000000 0.25000000  4.0    4   20
+470   8   2  10  45   F   0.5 0.50000000 0.25000000  4.0    4   20
+479   8   2  19  45   M   0.5 0.50000000 0.25000000  4.0    4   20
+465   8   2   5  45   F   0.5 0.50000000 0.25000000  4.0    4   20
+473   8   2  13  40   M   0.5 0.50000000 0.25000000  4.0    4   20
+463   8   2   3  60   F   0.5 0.50000000 0.25000000  4.0    4   20
+477   8   2  17  45   M   0.5 0.50000000 0.25000000  4.0    4   20
+494   9   3  14  40   M   1.0 0.66666667 0.66666667  1.5    2   15
+486   9   3   6  35   M   1.0 0.66666667 0.66666667  1.5    2   15
+482   9   3   2  35   F   1.0 0.66666667 0.66666667  1.5    2   15
+483   9   3   3  40   M   1.0 0.66666667 0.66666667  1.5    2   15
+492   9   3  12  50   F   1.0 0.66666667 0.66666667  1.5    2   15
+484   9   3   4  35   F   1.0 0.66666667 0.66666667  1.5    2   15
+489   9   3   9  30   M   1.0 0.66666667 0.66666667  1.5    2   15
+485   9   3   5  45   F   1.0 0.66666667 0.66666667  1.5    2   15
+495   9   3  15  35   M   1.0 0.66666667 0.66666667  1.5    2   15
+493   9   3  13  25   M   1.0 0.66666667 0.66666667  1.5    2   15
+504  10   3   9  50   F   1.0 1.00000000 1.00000000  1.0    2   10
+496  10   3   1  20   M   1.0 1.00000000 1.00000000  1.0    2   10
+502  10   3   7  25   M   1.0 1.00000000 1.00000000  1.0    2   10
+503  10   3   8  30   M   1.0 1.00000000 1.00000000  1.0    2   10
+505  10   3  10  35   F   1.0 1.00000000 1.00000000  1.0    2   10
+500  10   3   5  35   M   1.0 1.00000000 1.00000000  1.0    2   10
+501  10   3   6  45   F   1.0 1.00000000 1.00000000  1.0    2   10
+497  10   3   2  30   M   1.0 1.00000000 1.00000000  1.0    2   10
+498  10   3   3  45   F   1.0 1.00000000 1.00000000  1.0    2   10
+499  10   3   4  30   F   1.0 1.00000000 1.00000000  1.0    2   10</code></pre>
+</div>
+</div>
+</section>
+<section id="ウェイトと調査デザインの重要性" class="level2">
+<h2 class="anchored" data-anchor-id="ウェイトと調査デザインの重要性">ウェイトと調査デザインの重要性</h2>
+<section id="標本平均とウェイト" class="level3">
+<h3 class="anchored" data-anchor-id="標本平均とウェイト">標本平均とウェイト</h3>
+<p>最初に，標本の平均を確認しておきます。 かなり無茶な設定<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>なので，当然ですが標本平均と母集団の平均は乖離します。 この乖離を防ぐには，<code>weighted.mean</code>関数でウェイトを利用する必要があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pop<span class="sc">$</span>scr) <span class="co"># 母集団の平均</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 72.33663</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(samp<span class="sc">$</span>scr) <span class="co"># 標本の平均</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 56.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">weighted.mean</span>(samp<span class="sc">$</span>scr, samp<span class="sc">$</span>wt) <span class="co"># 重みづけた平均</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 70.64762</code></pre>
+</div>
+</div>
+<p>ウェイトを使うことで，母集団の平均値は推定できます。 問題は標準誤差（Standard Error: SE）です。 SEを算出するには，ウェイトだけでは不十分で， 調査デザインを考慮する必要があります。</p>
+</section>
+<section id="調査デザインと標準誤差の推定" class="level3">
+<h3 class="anchored" data-anchor-id="調査デザインと標準誤差の推定">調査デザインと標準誤差の推定</h3>
+<p>Rでは，<a href="https://cran.r-project.org/web/packages/survey/index.html">survey</a>を使うことで， Complex Surveyの推定を行うことができます。 surveyでは，最初に<code>svydesign</code>関数で調査デザインを指定した後に， <code>svymean</code>や<code>svyby</code>といった関数で推定を行うことができます。</p>
+<p>ここでは，いくつかの調査デザインを設定し， それぞれでSEがどのように変化するか検討してみます。</p>
+<section id="無作為抽出" class="level4">
+<h4 class="anchored" data-anchor-id="無作為抽出">無作為抽出</h4>
+<p>無作為抽出の場合，<code>ids = ~1</code>（あるいは，<code>ids = ~0</code>）を指定します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 無作為抽出</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>des0 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> samp, <span class="at">weights =</span> <span class="sc">~</span>wt)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mean    SE
+scr 70.648 1.959</code></pre>
+</div>
+</div>
+<p>一応推定は可能ですが，今回の調査デザインは無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。</p>
+</section>
+<section id="クラスターサンプリング" class="level4">
+<h4 class="anchored" data-anchor-id="クラスターサンプリング">クラスターサンプリング</h4>
+<p>続いて，学校を無作為に選び，選ばれた学校のすべての生徒を調査した状態 （クラスターサンプリング）を考えます。 これは<code>ids</code>にクラスターとなる変数を設定することで表現できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># クラスターサンプリング</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>des1 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>sch, <span class="at">data =</span> samp, <span class="at">weights =</span> <span class="sc">~</span>wt)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mean     SE
+scr 70.648 4.6072</code></pre>
+</div>
+</div>
+<p>推定値は同じですが，SEは大きくなっています。</p>
+</section>
+<section id="層化クラスターサンプリング" class="level4">
+<h4 class="anchored" data-anchor-id="層化クラスターサンプリング">層化クラスターサンプリング</h4>
+<p>ただ，クラスターサンプリングは今回の抽出法ではありません。 今回は，個々の学校が層（strata）に属しています。 個々の層で学校の平均点・生徒数がかなり異なるので， 個々の学校を無作為に抽出するより， 各層から学校を2校ずつ抽出したほうが，より正確に母集団の実態を反映できる （≒SEが小さくなる）ことが期待できます。 <code>svydesign</code>では，<code>strata</code>に層となる変数を設定することで， 層化抽出であることを表現できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 層化クラスターサンプリング</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>des2 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span>sch, <span class="at">strata =</span> <span class="sc">~</span>str, <span class="at">data =</span> samp, <span class="at">weights =</span> <span class="sc">~</span>wt)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mean     SE
+scr 70.648 2.8327</code></pre>
+</div>
+</div>
+<p>理論通り，SEが小さくなっています。</p>
+</section>
+<section id="fpc有限母集団補正を考慮する" class="level4">
+<h4 class="anchored" data-anchor-id="fpc有限母集団補正を考慮する">fpc（有限母集団補正）を考慮する</h4>
+<p>統計の入門書では，母集団の人数は無限であることが想定されていますが， 一般の社会調査では母集団は有限です （さらに言えば，同じ調査対象は再び調査しません）。 極端な話，母集団が10人しかいなければ， 10人全員に調査をするとSEは0になるのです。 今回の場合，学校は各層に4校，4校，2校ですから，この点を考慮する必要があります。 この点は，<code>fpc</code>に各層の学校数を指定することで表現できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 層化クラスターサンプリング with fpc1</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>des3 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> <span class="sc">~</span>sch, <span class="at">strata =</span> <span class="sc">~</span>str, <span class="at">data =</span> samp,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>wt, <span class="at">fpc =</span> <span class="sc">~</span>fpc1</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mean     SE
+scr 70.648 1.9937</code></pre>
+</div>
+</div>
+<p>SEが更に小さくなりました。 ただ，<code>des3</code>は個々の学校から生徒が無作為に10人抽出されていることを考慮していません。 クラスターサンプリングなので，すべての生徒が調査されているという前提になっています。 実際，<code>des3</code>について個々の学校の平均値を算出すると，そのSEはすべて0になります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svyby</span>(<span class="sc">~</span>scr, <span class="sc">~</span>sch, des3, survey<span class="sc">::</span>svymean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   sch  scr se
+1    1 72.5  0
+3    3 82.0  0
+6    6 65.0  0
+8    8 48.0  0
+9    9 37.0  0
+10  10 34.5  0</code></pre>
+</div>
+</div>
+</section>
+<section id="層化多段抽出" class="level4">
+<h4 class="anchored" data-anchor-id="層化多段抽出">層化多段抽出</h4>
+<p>個々の学校から生徒を10人ずつ抽出したことを表現するには， <code>ids</code>で学校に加えて生徒を抽出単位に指定する必要があります。 さらに<code>fpc</code>も，層だけでなく，個々の学校の生徒数を指定する必要があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 層化多段抽出</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>des4 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ids =</span> <span class="sc">~</span> sch <span class="sc">+</span> sid, <span class="at">strata =</span> <span class="sc">~</span>str, <span class="at">data =</span> samp,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>wt, <span class="at">fpc =</span> <span class="sc">~</span> fpc1 <span class="sc">+</span> fpc2</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mean    SE
+scr 70.648 2.227</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svyby</span>(<span class="sc">~</span>scr, <span class="sc">~</span>sch, des4, survey<span class="sc">::</span>svymean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   sch  scr        se
+1    1 72.5 1.8969673
+3    3 82.0 1.7911821
+6    6 65.0 1.4433757
+8    8 48.0 0.9279607
+9    9 37.0 1.3052600
+10  10 34.5 0.0000000</code></pre>
+</div>
+</div>
+<p>個々の学校から生徒が無作為に抽出されているので， <code>des3</code>に比べてSEが少し大きくなります。 また，学校ごとに平均値を算出すると，学校の規模に応じてSEが算出されます。 なお10番の学校は生徒数が10なので全員が抽出されていることになり，SEは0になっています。</p>
+</section>
+</section>
+</section>
+<section id="事後層化" class="level2">
+<h2 class="anchored" data-anchor-id="事後層化">事後層化</h2>
+<p>実際に抽出してみたら，母集団と標本で男女の割合が違った！ということは よくあります。 今回の標本でも，母集団と男女の比率（と全体の合計）が少しずれています。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svytable</span>(<span class="sc">~</span>gen, des4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gen
+  F   M 
+239 286 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pop<span class="sc">$</span>gen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  F   M 
+252 253 </code></pre>
+</div>
+</div>
+<p>女子の方が成績が高いので，こうしたズレは推定に影響を及ぼすかもしれません。 Complex Surveyでは，母集団の情報を使って，事後的にウェイトを調整することができます。 ここでは大げさ<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>ですが，<code>calibrate</code>関数を使って調整を行います。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 母集団の既知のgender分布を計算</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>pop_g <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">gen =</span> pop<span class="sc">$</span>gen)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="fu">sum</span>(pop_g)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>genm <span class="ot">&lt;-</span> pop_g[[<span class="dv">2</span>]]</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibrationの実施（genderに基づくキャリブレーション）</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="ot">=</span> intercept,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">genM =</span> genm</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>des5 <span class="ot">&lt;-</span> calib_des <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">calibrate</span>(</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  des4, <span class="co"># サンプリングデザイン</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> <span class="sc">~</span>gen, <span class="co"># キャリブレーションの変数</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">population =</span> population</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svytable</span>(<span class="sc">~</span>gen, des5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gen
+  F   M 
+252 253 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean    SE
+scr 71.06 1.894</code></pre>
+</div>
+</div>
+<p><code>des4</code>はMの割合が多いので，調整したことで推定値が少し高くなりました。また，SEも小さくなっています。</p>
+<p>なお，事後層化であれば<code>postStratify</code>関数で同じことができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>des6 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">postStratify</span>(des4, <span class="sc">~</span>gen, pop_g)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svytable</span>(<span class="sc">~</span>gen, des6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>gen
+  F   M 
+252 253 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     mean    SE
+scr 71.06 1.894</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>そもそも母集団が小さいですし，この方法では 規模の大きい学校の生徒ほど選ばれにくいという問題もあります。 実際，標本では規模の大きい学校で，明らかに<code>wt</code>が大きくなっています。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><code>calibrate</code>関数は事後層化より複雑なキャリブレーションを行うことができるのですが， ここでは練習のために事後層化に使っています。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/kawa5902\.github\.io\/StudyNote\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
