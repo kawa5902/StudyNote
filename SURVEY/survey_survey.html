@@ -468,11 +468,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="調査デザインと標準誤差の推定">調査デザインと標準誤差の推定</h3>
 <p>Rでは，<a href="https://cran.r-project.org/web/packages/survey/index.html">survey</a>を使うことで， Complex Surveyの推定を行うことができます。 surveyでは，最初に<code>svydesign</code>関数で調査デザインを指定した後に， <code>svymean</code>や<code>svyby</code>といった関数で推定を行うことができます。</p>
 <p>ここでは，いくつかの調査デザインを設定し， それぞれでSEがどのように変化するか検討してみます。</p>
-<section id="無作為抽出" class="level4">
-<h4 class="anchored" data-anchor-id="無作為抽出">無作為抽出</h4>
-<p>無作為抽出の場合，<code>ids = ~1</code>（あるいは，<code>ids = ~0</code>）を指定します。</p>
+<section id="単純な無作為抽出" class="level4">
+<h4 class="anchored" data-anchor-id="単純な無作為抽出">単純な無作為抽出</h4>
+<p>単純な無作為抽出の場合，<code>ids = ~1</code>（あるいは，<code>ids = ~0</code>）を指定します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 無作為抽出</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 単純な無作為抽出</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>des0 <span class="ot">&lt;-</span> survey<span class="sc">::</span><span class="fu">svydesign</span>(<span class="at">ids =</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">data =</span> samp, <span class="at">weights =</span> <span class="sc">~</span>wt)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>survey<span class="sc">::</span><span class="fu">svymean</span>(<span class="sc">~</span>scr, des0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 scr 70.648 1.959</code></pre>
 </div>
 </div>
-<p>一応推定は可能ですが，今回の調査デザインは無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。</p>
+<p>一応推定は可能ですが，今回の調査デザインは単純な無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 単純な無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため単純な無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。</p>
 </section>
 <section id="クラスターサンプリング" class="level4">
 <h4 class="anchored" data-anchor-id="クラスターサンプリング">クラスターサンプリング</h4>
