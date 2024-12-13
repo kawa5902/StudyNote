@@ -8,6 +8,15 @@
 - [ベンゼクリの修正割合](survey_benzecris.qmd)
 
 
+## 大規模学力調査を分析できるRパッケージ一覧
+見つけたら追記していくつもり・・・。
+
+- [intsvy](https://cran.r-project.org/web/packages/intsvy/index.html): たぶん老舗
+- [EdSurvey](https://cran.r-project.org/web/packages/EdSurvey/index.html): アメリカのNCES制作。NAEPがメインか？[WeMix](https://cran.r-project.org/web/packages/WeMix/index.html)でマルチレベルに対応
+- [BIFIEsurvey](https://cran.r-project.org/web/packages/BIFIEsurvey/index.html): オーストリアのBIFIE制作。これもマルチレベル対応
+- [Rrepest](https://cran.r-project.org/web/packages/Rrepest/index.html): OECD作
+
+
 ## memo
 - [The survey Package for R, 15 Years on](https://isi-iass.org/home/wp-content/uploads/Survey_Statistician_2023_July_N88_019.pdf)
 - [Survey Data Analsysis with R](https://stats.oarc.ucla.edu/r/seminars/survey-data-analysis-with-r/)
