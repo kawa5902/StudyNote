@@ -34,7 +34,7 @@
     "href": "SURVEY/survey_index.html",
     "title": "社会調査に関するメモ",
     "section": "",
-    "text": "社会調査関係のメモ\n\n\n\nComplex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合\n\n\n\n\n\nThe survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "text": "社会調査関係のメモ\n\n\n\nComplex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合\n\n\n\n\n見つけたら追記していくつもり・・・。\n\nintsvy: たぶん老舗\nEdSurvey: アメリカのNCES制作。NAEPがメインか？WeMixでマルチレベルに対応\nBIFIEsurvey: オーストリアのBIFIE制作。これもマルチレベル対応\nRrepest: OECD作\n\n\n\n\n\nThe survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
     "crumbs": [
       "Home",
       "社会調査"
@@ -46,6 +46,17 @@
     "title": "社会調査に関するメモ",
     "section": "",
     "text": "Complex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_index.html#大規模学力調査を分析できるrパッケージ一覧",
+    "href": "SURVEY/survey_index.html#大規模学力調査を分析できるrパッケージ一覧",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "見つけたら追記していくつもり・・・。\n\nintsvy: たぶん老舗\nEdSurvey: アメリカのNCES制作。NAEPがメインか？WeMixでマルチレベルに対応\nBIFIEsurvey: オーストリアのBIFIE制作。これもマルチレベル対応\nRrepest: OECD作",
     "crumbs": [
       "Home",
       "社会調査"
