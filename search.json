@@ -30,6 +30,78 @@
     ]
   },
   {
+    "objectID": "IRT/irt_measurement_error.html",
+    "href": "IRT/irt_measurement_error.html",
+    "title": "測定の誤差",
+    "section": "",
+    "text": "普通はテストは一回しか受検しませんが， 仮に何回も受検したとしたら，その成績はどう変わるのでしょうか。 ここでは，テストが2PLに従うと仮定して， 能力値0の受験生が1000回テストを受けた場面を想定してみましょう。 項目数は15題，識別力はすべて0.9， 困難度は-3から1の範囲で等間隔に分布しているとします。\n\n# パラメータ設定\nset.seed(123)\nitem_n &lt;- 15 # 問題数\nn_simulations &lt;- 1000 # テストの受験回数\ntheta &lt;- 0 # 学力（真の能力）\na_para &lt;- rep(0.9, item_n) # 識別力（全項目で固定）\nb_para &lt;- seq(-3, 1, length.out = item_n) # 難易度（均等に分布）\n\n# 2PLモデルの確率計算\nprob_2pl &lt;- function(theta, a, b) {\n  1 / (1 + exp(-1.7 * a * (theta - b)))\n}\n\n# スコアシミュレーション\nresp &lt;- t(sapply(1:n_simulations, function(x) {\n  # 各項目の正答確率\n  prob &lt;- prob_2pl(theta, a_para, b_para)\n  # 正誤データの生成\n  resp &lt;- rbinom(item_n, size = 1, prob = prob)\n}))\n\nscore &lt;- apply(resp, 1, sum)\n\nhist(score, main = \"\", xlab = \"正答数\", ylab = \"頻度\")\n\n\n\n\n\n\n\n\nほぼ満点に近い（15題中14問の正答）場合も， 半分もできない（15題中6問の正答）場合もありえるということです。\n\nc(\n  lower = mean(score) - 2 * sd(score),\n  upper = mean(score) + 2 * sd(score)\n)\n\n    lower     upper \n 7.804034 13.397966 \n\n\n正答数の分布が正規分布に従うと仮定して， ±2標準偏差の範囲を計算してみると， だいたい8問から13問くらいのあいだで正答数がバラつくということになります。 正答数を問題数（15題）で割って正答率に変換すると，およそ5割から9割の範囲で正答率はバラつきます。 先ほどのヒストグラムからも明らかですが， 半分しかできないというケースから9割正解まで考えられるということです。\n「ヤマが当たった」という言葉があることからも， テストを受けたときにたまたまできた／できなかったという ことが起こることはよく知られています。 ただ，実際に数値化してみると「思ったよりバラつきが大きいぞ」と 感じる人もいるかもしれません。 何にせよ，これだけ結果がバラつくとなると， 1回のテストの正答率を学力の指標にすることは だいぶ危ういことのように思われます。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "測定の誤差"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_measurement_error.html#何回もテストを受検すると成績はどうなるのか",
+    "href": "IRT/irt_measurement_error.html#何回もテストを受検すると成績はどうなるのか",
+    "title": "測定の誤差",
+    "section": "",
+    "text": "普通はテストは一回しか受検しませんが， 仮に何回も受検したとしたら，その成績はどう変わるのでしょうか。 ここでは，テストが2PLに従うと仮定して， 能力値0の受験生が1000回テストを受けた場面を想定してみましょう。 項目数は15題，識別力はすべて0.9， 困難度は-3から1の範囲で等間隔に分布しているとします。\n\n# パラメータ設定\nset.seed(123)\nitem_n &lt;- 15 # 問題数\nn_simulations &lt;- 1000 # テストの受験回数\ntheta &lt;- 0 # 学力（真の能力）\na_para &lt;- rep(0.9, item_n) # 識別力（全項目で固定）\nb_para &lt;- seq(-3, 1, length.out = item_n) # 難易度（均等に分布）\n\n# 2PLモデルの確率計算\nprob_2pl &lt;- function(theta, a, b) {\n  1 / (1 + exp(-1.7 * a * (theta - b)))\n}\n\n# スコアシミュレーション\nresp &lt;- t(sapply(1:n_simulations, function(x) {\n  # 各項目の正答確率\n  prob &lt;- prob_2pl(theta, a_para, b_para)\n  # 正誤データの生成\n  resp &lt;- rbinom(item_n, size = 1, prob = prob)\n}))\n\nscore &lt;- apply(resp, 1, sum)\n\nhist(score, main = \"\", xlab = \"正答数\", ylab = \"頻度\")\n\n\n\n\n\n\n\n\nほぼ満点に近い（15題中14問の正答）場合も， 半分もできない（15題中6問の正答）場合もありえるということです。\n\nc(\n  lower = mean(score) - 2 * sd(score),\n  upper = mean(score) + 2 * sd(score)\n)\n\n    lower     upper \n 7.804034 13.397966 \n\n\n正答数の分布が正規分布に従うと仮定して， ±2標準偏差の範囲を計算してみると， だいたい8問から13問くらいのあいだで正答数がバラつくということになります。 正答数を問題数（15題）で割って正答率に変換すると，およそ5割から9割の範囲で正答率はバラつきます。 先ほどのヒストグラムからも明らかですが， 半分しかできないというケースから9割正解まで考えられるということです。\n「ヤマが当たった」という言葉があることからも， テストを受けたときにたまたまできた／できなかったという ことが起こることはよく知られています。 ただ，実際に数値化してみると「思ったよりバラつきが大きいぞ」と 感じる人もいるかもしれません。 何にせよ，これだけ結果がバラつくとなると， 1回のテストの正答率を学力の指標にすることは だいぶ危ういことのように思われます。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "測定の誤差"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_2pl.html",
+    "href": "IRT/irt_2pl.html",
+    "title": "2PLの概要",
+    "section": "",
+    "text": "IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう1。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。\nここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。\n\n\n\n学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています2。 2PLにおいて，能力\\(\\theta\\)の受検者が項目\\(j\\)に正答する確率\\(P_j(\\theta)\\)は，以下の式になります。\n\\[P_j(\\theta) = \\frac{1}{1+exp(-Da_j(\\theta - b_j))}\\]\n式中の記号の意味は，次の通り。\n\n能力: \\(\\theta\\)\n項目困難度: \\(b\\)\n項目識別力: \\(a\\)\n尺度因子: \\(D\\)（通常1.7）\n\n能力値\\(\\theta\\)の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。\n\nicc &lt;- function(params, tr = c(-4, 4), np = 100) {\n  # 引数チェック\n  if (!is.list(params) || !all(c(\"a\", \"b\") %in% names(params))) {\n    stop(\"`params` must be a list with named elements `a` and `b`.\")\n  }\n  if (length(params$a) != length(params$b)) {\n    stop(\"`params$a` and `params$b` must have the same length.\")\n  }\n\n  # 正答確率関数\n  p2pl &lt;- function(t, a, b) {\n    1 / (1 + exp(-1.7 * a * (t - b)))\n  }\n\n  # 能力範囲を生成\n  t_vals &lt;- seq(tr[1], tr[2], length.out = np)\n\n  # プロットの初期化\n  plot(NULL,\n    xlim = tr, ylim = c(0, 1), type = \"n\",\n    xlab = \"θ\", ylab = \"正答確率\",\n    main = \"ICC\"\n  )\n  grid()\n\n  # 各項目の特性曲線を描画\n  for (i in seq_along(params$a)) {\n    a &lt;- params$a[i]\n    b &lt;- params$b[i]\n    p_vals &lt;- p2pl(t_vals, a, b)\n    lines(t_vals, p_vals, lwd = 2, col = i) # 番号を色に対応\n    abline(v = b, col = i, lty = 2) # 困難度のライン\n  }\n\n  # 凡例を追加\n  legend(\"bottomright\",\n    legend = paste(\"a =\", params$a, \", b =\", params$b),\n    col = seq_along(params$a), lwd = 2, bg = \"white\"\n  )\n}\n\nparams1 &lt;- list(\n  a = c(0.7, 0.9, 0.5),\n  b = c(-1, 0, 1)\n)\n\nicc(params1)\n\n\n\n\n\n\n\n\nいずれの項目にせよ，受検者の能力\\(\\theta\\)について， \\(\\theta=b\\)になったところで正答確率が0.5（=50%）になっています。 また，\\(a\\)の値が大きいほど，曲線が急激に立ち上がる （\\(\\theta=b\\)の前後で正答確率が大きく上昇する）こともわかります。\n正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，\\(a\\)が0.1と0.8の項目を比べて説明しましょう。\n\nparams2 &lt;- list(\n  a = c(0.1, 0.8),\n  b = c(0, 0)\n)\n\nicc(params2)\n\n\n\n\n\n\n\n\n\\(a\\)の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，\\(a\\)の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_2pl.html#cttとirt",
+    "href": "IRT/irt_2pl.html#cttとirt",
+    "title": "2PLの概要",
+    "section": "",
+    "text": "IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう1。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。\nここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_2pl.html#パラメータロジスティックモデル",
+    "href": "IRT/irt_2pl.html#パラメータロジスティックモデル",
+    "title": "2PLの概要",
+    "section": "",
+    "text": "学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています2。 2PLにおいて，能力\\(\\theta\\)の受検者が項目\\(j\\)に正答する確率\\(P_j(\\theta)\\)は，以下の式になります。\n\\[P_j(\\theta) = \\frac{1}{1+exp(-Da_j(\\theta - b_j))}\\]\n式中の記号の意味は，次の通り。\n\n能力: \\(\\theta\\)\n項目困難度: \\(b\\)\n項目識別力: \\(a\\)\n尺度因子: \\(D\\)（通常1.7）\n\n能力値\\(\\theta\\)の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。\n\nicc &lt;- function(params, tr = c(-4, 4), np = 100) {\n  # 引数チェック\n  if (!is.list(params) || !all(c(\"a\", \"b\") %in% names(params))) {\n    stop(\"`params` must be a list with named elements `a` and `b`.\")\n  }\n  if (length(params$a) != length(params$b)) {\n    stop(\"`params$a` and `params$b` must have the same length.\")\n  }\n\n  # 正答確率関数\n  p2pl &lt;- function(t, a, b) {\n    1 / (1 + exp(-1.7 * a * (t - b)))\n  }\n\n  # 能力範囲を生成\n  t_vals &lt;- seq(tr[1], tr[2], length.out = np)\n\n  # プロットの初期化\n  plot(NULL,\n    xlim = tr, ylim = c(0, 1), type = \"n\",\n    xlab = \"θ\", ylab = \"正答確率\",\n    main = \"ICC\"\n  )\n  grid()\n\n  # 各項目の特性曲線を描画\n  for (i in seq_along(params$a)) {\n    a &lt;- params$a[i]\n    b &lt;- params$b[i]\n    p_vals &lt;- p2pl(t_vals, a, b)\n    lines(t_vals, p_vals, lwd = 2, col = i) # 番号を色に対応\n    abline(v = b, col = i, lty = 2) # 困難度のライン\n  }\n\n  # 凡例を追加\n  legend(\"bottomright\",\n    legend = paste(\"a =\", params$a, \", b =\", params$b),\n    col = seq_along(params$a), lwd = 2, bg = \"white\"\n  )\n}\n\nparams1 &lt;- list(\n  a = c(0.7, 0.9, 0.5),\n  b = c(-1, 0, 1)\n)\n\nicc(params1)\n\n\n\n\n\n\n\n\nいずれの項目にせよ，受検者の能力\\(\\theta\\)について， \\(\\theta=b\\)になったところで正答確率が0.5（=50%）になっています。 また，\\(a\\)の値が大きいほど，曲線が急激に立ち上がる （\\(\\theta=b\\)の前後で正答確率が大きく上昇する）こともわかります。\n正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，\\(a\\)が0.1と0.8の項目を比べて説明しましょう。\n\nparams2 &lt;- list(\n  a = c(0.1, 0.8),\n  b = c(0, 0)\n)\n\nicc(params2)\n\n\n\n\n\n\n\n\n\\(a\\)の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，\\(a\\)の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_2pl.html#footnotes",
+    "href": "IRT/irt_2pl.html#footnotes",
+    "title": "2PLの概要",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nこの説明，厳密には間違っています。「100点満点のテスト」というとき， おそらく私たちは「受検者の能力を測る」ことを意識していません。 他方で，IRTにせよCTTにせよ，教育測定の前提には「能力を測る」という問題意識があります。↩︎\n経年変化調査については， 国立教育政策研究所のウェブサイト を参照してください。↩︎",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "2PLの概要"
+    ]
+  },
+  {
     "objectID": "SURVEY/survey_index.html",
     "href": "SURVEY/survey_index.html",
     "title": "社会調査に関するメモ",
@@ -74,147 +146,63 @@
     ]
   },
   {
-    "objectID": "SURVEY/survey_survey.html",
-    "href": "SURVEY/survey_survey.html",
-    "title": "Complex Survey",
+    "objectID": "SURVEY/survey_weight.html",
+    "href": "SURVEY/survey_weight.html",
+    "title": "SPSSの「ケースの重み付け」",
     "section": "",
-    "text": "一般に大規模な学力調査は，単純な無作為抽出ではなく， 最初に学校を抽出し，その後に生徒を抽出するといった 多段抽出であることが多いです。 こうした複雑な抽出法（Complex Survey）に関するメモです。\n\n\n最初に母集団と標本を作成します。 ちょっと長くなるのでコードは畳んで，標本だけ表示します。\n設定としては，以下のような感じ。\n\n母集団の学校数は10校。\n学校は3つの層（strata）に分かれており，それぞれで平均学力，生徒数が異なる。\nスコアは学校ごとに平均値が異なる。\n各学校の生徒には性別（MとF）を設定する。割当は無作為。\n性別によってスコアが異なる。Mの方が10ポイント高い。\n標本は，各層から2校ずつ学校を選び，さらに選ばれた学校から10人ずつを選ぶとする。\n\n\n\nCode\nset.seed(123)\noptions(scipen = 999) # scipenを大きな値に設定\n\n# 学校層のデータを生成\nsch_str &lt;- data.frame(\n  sch = 1:10, # 学校ID\n  str = c(rep(1, 4), rep(2, 4), rep(3, 2)), # 各層に2〜4校\n  m_scr = c(70, 75, 80, 75, 55, 60, 50, 45, 35, 30), # 学校ごとの平均スコア\n  pop_sz = c(110, 90, 80, 70, 40, 40, 30, 20, 15, 10) # 生徒数\n)\n\n# 母集団データを生成\ngen_pop &lt;- function(str_data) {\n  do.call(rbind, lapply(1:nrow(str_data), function(i) {\n    data.frame(\n      sch = rep(str_data$sch[i], str_data$pop_sz[i]),\n      str = rep(str_data$str[i], str_data$pop_sz[i]),\n      sid = seq_len(str_data$pop_sz[i]),\n      scr = round(rnorm(str_data$pop_sz[i], mean = str_data$m_scr[i], sd = 5) / 5) * 5,\n      gen = sample(c(\"M\", \"F\"), str_data$pop_sz[i], replace = TRUE, prob = c(0.5, 0.5))\n    )\n  }))\n}\n\npop &lt;- gen_pop(sch_str)\n\n# 層別に学校をサンプリング\nsamp_sch &lt;- function(pop, str_data, n_sch = 2) {\n  sel_sch &lt;- do.call(c, lapply(unique(pop$str), function(s) {\n    str_sch &lt;- unique(pop$sch[pop$str == s])\n    sample(str_sch, size = n_sch)\n  }))\n  subset(pop, sch %in% sel_sch)\n}\n\nsamp1 &lt;- samp_sch(pop, sch_str)\n\n# 各学校から生徒をランダムサンプリング\nsamp_stu &lt;- function(samp1, n_stu = 10) {\n  do.call(rbind, lapply(unique(samp1$sch), function(s) {\n    sch_data &lt;- subset(samp1, sch == s)\n    sch_data[sample(seq_len(nrow(sch_data)), size = n_stu), ]\n  }))\n}\n\nsamp &lt;- samp_stu(samp1)\n\n# 抽出確率とウェイトの計算\ncalc_wt &lt;- function(samp, str_data) {\n  str_cnt &lt;- table(str_data$str) # 層内の学校数\n  samp$p_sch &lt;- 2 / str_cnt[as.character(samp$str)] # 学校の抽出確率\n  samp$p_stu &lt;- 10 / str_data$pop_sz[match(samp$sch, str_data$sch)] # 生徒の抽出確率\n  samp$p_tot &lt;- samp$p_sch * samp$p_stu # 総抽出確率\n  samp$wt &lt;- 1 / samp$p_tot # ウェイト\n\n  # fpc設定\n  samp$fpc1 &lt;- str_cnt[as.character(samp$str)] # 層内の学校数\n  samp$fpc2 &lt;- str_data$pop_sz[match(samp$sch, str_data$sch)] # 学校内の生徒数\n  samp\n}\n\nsamp &lt;- calc_wt(samp, sch_str)\n\n# スコア補正（女性の場合に+10）\nadj_scr &lt;- function(data) {\n  data$scr &lt;- data$scr + ifelse(data$gen == \"F\", 10, 0)\n  data\n}\n\npop &lt;- adj_scr(pop)\nsamp &lt;- adj_scr(samp)\n\n# 結果を確認\nsamp\n\n\n    sch str sid scr gen p_sch      p_stu      p_tot   wt fpc1 fpc2\n49    1   1  49  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n72    1   1  72  70   F   0.5 0.09090909 0.04545455 22.0    4  110\n51    1   1  51  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n18    1   1  18  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n26    1   1  26  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n30    1   1  30  75   M   0.5 0.09090909 0.04545455 22.0    4  110\n83    1   1  83  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n69    1   1  69  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n93    1   1  93  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n102   1   1 102  80   F   0.5 0.09090909 0.04545455 22.0    4  110\n246   3   1  46  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n212   3   1  12  85   M   0.5 0.12500000 0.06250000 16.0    4   80\n256   3   1  56  90   F   0.5 0.12500000 0.06250000 16.0    4   80\n201   3   1   1  75   M   0.5 0.12500000 0.06250000 16.0    4   80\n248   3   1  48  85   F   0.5 0.12500000 0.06250000 16.0    4   80\n252   3   1  52  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n207   3   1   7  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n269   3   1  69  95   F   0.5 0.12500000 0.06250000 16.0    4   80\n210   3   1  10  90   M   0.5 0.12500000 0.06250000 16.0    4   80\n236   3   1  36  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n398   6   2   8  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n421   6   2  31  55   F   0.5 0.25000000 0.12500000  8.0    4   40\n395   6   2   5  65   F   0.5 0.25000000 0.12500000  8.0    4   40\n412   6   2  22  55   M   0.5 0.25000000 0.12500000  8.0    4   40\n402   6   2  12  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n400   6   2  10  65   M   0.5 0.25000000 0.12500000  8.0    4   40\n419   6   2  29  70   F   0.5 0.25000000 0.12500000  8.0    4   40\n420   6   2  30  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n418   6   2  28  70   M   0.5 0.25000000 0.12500000  8.0    4   40\n391   6   2   1  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n475   8   2  15  50   F   0.5 0.50000000 0.25000000  4.0    4   20\n474   8   2  14  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n467   8   2   7  55   F   0.5 0.50000000 0.25000000  4.0    4   20\n462   8   2   2  50   M   0.5 0.50000000 0.25000000  4.0    4   20\n470   8   2  10  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n479   8   2  19  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n465   8   2   5  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n473   8   2  13  40   M   0.5 0.50000000 0.25000000  4.0    4   20\n463   8   2   3  60   F   0.5 0.50000000 0.25000000  4.0    4   20\n477   8   2  17  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n494   9   3  14  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n486   9   3   6  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n482   9   3   2  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n483   9   3   3  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n492   9   3  12  50   F   1.0 0.66666667 0.66666667  1.5    2   15\n484   9   3   4  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n489   9   3   9  30   M   1.0 0.66666667 0.66666667  1.5    2   15\n485   9   3   5  45   F   1.0 0.66666667 0.66666667  1.5    2   15\n495   9   3  15  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n493   9   3  13  25   M   1.0 0.66666667 0.66666667  1.5    2   15\n504  10   3   9  50   F   1.0 1.00000000 1.00000000  1.0    2   10\n496  10   3   1  20   M   1.0 1.00000000 1.00000000  1.0    2   10\n502  10   3   7  25   M   1.0 1.00000000 1.00000000  1.0    2   10\n503  10   3   8  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n505  10   3  10  35   F   1.0 1.00000000 1.00000000  1.0    2   10\n500  10   3   5  35   M   1.0 1.00000000 1.00000000  1.0    2   10\n501  10   3   6  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n497  10   3   2  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n498  10   3   3  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n499  10   3   4  30   F   1.0 1.00000000 1.00000000  1.0    2   10\n\n\n\n\n\n\n\n最初に，標本の平均を確認しておきます。 かなり無茶な設定1なので，当然ですが標本平均と母集団の平均は乖離します。 この乖離を防ぐには，weighted.mean関数でウェイトを利用する必要があります。\n\nmean(pop$scr) # 母集団の平均\n\n[1] 72.33663\n\nmean(samp$scr) # 標本の平均\n\n[1] 56.5\n\nweighted.mean(samp$scr, samp$wt) # 重みづけた平均\n\n[1] 70.64762\n\n\nウェイトを使うことで，母集団の平均値は推定できます。 問題は標準誤差（Standard Error: SE）です。 SEを算出するには，ウェイトだけでは不十分で， 調査デザインを考慮する必要があります。\n\n\n\nRでは，surveyを使うことで， Complex Surveyの推定を行うことができます。 surveyでは，最初にsvydesign関数で調査デザインを指定した後に， svymeanやsvybyといった関数で推定を行うことができます。\nここでは，いくつかの調査デザインを設定し， それぞれでSEがどのように変化するか検討してみます。\n\n\n単純な無作為抽出の場合，ids = ~1（あるいは，ids = ~0）を指定します。\n\n# 単純な無作為抽出\ndes0 &lt;- survey::svydesign(ids = ~1, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des0)\n\n      mean    SE\nscr 70.648 1.959\n\n\n一応推定は可能ですが，今回の調査デザインは単純な無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 単純な無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため単純な無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。\n\n\n\n続いて，学校を無作為に選び，選ばれた学校のすべての生徒を調査した状態 （クラスターサンプリング）を考えます。 これはidsにクラスターとなる変数を設定することで表現できます。\n\n# クラスターサンプリング\ndes1 &lt;- survey::svydesign(ids = ~sch, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des1)\n\n      mean     SE\nscr 70.648 4.6072\n\n\n推定値は同じですが，SEは大きくなっています。\n\n\n\nただ，クラスターサンプリングは今回の抽出法ではありません。 今回は，個々の学校が層（strata）に属しています。 個々の層で学校の平均点・生徒数がかなり異なるので， 個々の学校を無作為に抽出するより， 各層から学校を2校ずつ抽出したほうが，より正確に母集団の実態を反映できる （≒SEが小さくなる）ことが期待できます。 svydesignでは，strataに層となる変数を設定することで， 層化抽出であることを表現できます。\n\n# 層化クラスターサンプリング\ndes2 &lt;- survey::svydesign(ids = ~sch, strata = ~str, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des2)\n\n      mean     SE\nscr 70.648 2.8327\n\n\n理論通り，SEが小さくなっています。\n\n\n\n統計の入門書では，母集団の人数は無限であることが想定されていますが， 一般の社会調査では母集団は有限です （さらに言えば，同じ調査対象は再び調査しません）。 極端な話，母集団が10人しかいなければ， 10人全員に調査をするとSEは0になるのです。 今回の場合，学校は各層に4校，4校，2校ですから，この点を考慮する必要があります。 この点は，fpcに各層の学校数を指定することで表現できます。\n\n# 層化クラスターサンプリング with fpc1\ndes3 &lt;- survey::svydesign(\n  ids = ~sch, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~fpc1\n)\nsurvey::svymean(~scr, des3)\n\n      mean     SE\nscr 70.648 1.9937\n\n\nSEが更に小さくなりました。 ただ，des3は個々の学校から生徒が無作為に10人抽出されていることを考慮していません。 クラスターサンプリングなので，すべての生徒が調査されているという前提になっています。 実際，des3について個々の学校の平均値を算出すると，そのSEはすべて0になります。\n\nsurvey::svyby(~scr, ~sch, des3, survey::svymean)\n\n   sch  scr se\n1    1 72.5  0\n3    3 82.0  0\n6    6 65.0  0\n8    8 48.0  0\n9    9 37.0  0\n10  10 34.5  0\n\n\n\n\n\n個々の学校から生徒を10人ずつ抽出したことを表現するには， idsで学校に加えて生徒を抽出単位に指定する必要があります。 さらにfpcも，層だけでなく，個々の学校の生徒数を指定する必要があります。\n\n# 層化多段抽出\ndes4 &lt;- survey::svydesign(\n  ids = ~ sch + sid, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~ fpc1 + fpc2\n)\nsurvey::svymean(~scr, des4)\n\n      mean    SE\nscr 70.648 2.227\n\nsurvey::svyby(~scr, ~sch, des4, survey::svymean)\n\n   sch  scr        se\n1    1 72.5 1.8969673\n3    3 82.0 1.7911821\n6    6 65.0 1.4433757\n8    8 48.0 0.9279607\n9    9 37.0 1.3052600\n10  10 34.5 0.0000000\n\n\n個々の学校から生徒が無作為に抽出されているので， des3に比べてSEが少し大きくなります。 また，学校ごとに平均値を算出すると，学校の規模に応じてSEが算出されます。 なお10番の学校は生徒数が10なので全員が抽出されていることになり，SEは0になっています。\n\n\n\n\n\n実際に抽出してみたら，母集団と標本で男女の割合が違った！ということは よくあります。 今回の標本でも，母集団と男女の比率（と全体の合計）が少しずれています。\n\nsurvey::svytable(~gen, des4)\n\ngen\n  F   M \n239 286 \n\ntable(pop$gen)\n\n\n  F   M \n252 253 \n\n\n女子の方が成績が高いので，こうしたズレは推定に影響を及ぼすかもしれません。 Complex Surveyでは，母集団の情報を使って，事後的にウェイトを調整することができます。 ここでは大げさ2ですが，calibrate関数を使って調整を行います。\n\n# 母集団の既知のgender分布を計算\npop_g &lt;- table(gen = pop$gen)\nintercept &lt;- sum(pop_g)\ngenm &lt;- pop_g[[2]]\n# Calibrationの実施（genderに基づくキャリブレーション）\npopulation &lt;- c(\n  `(Intercept)` = intercept,\n  genM = genm\n)\ndes5 &lt;- calib_des &lt;- survey::calibrate(\n  des4, # サンプリングデザイン\n  formula = ~gen, # キャリブレーションの変数\n  population = population\n)\nsurvey::svytable(~gen, des5)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des5)\n\n     mean    SE\nscr 71.06 1.894\n\n\ndes4はMの割合が多いので，調整したことで推定値が少し高くなりました。また，SEも小さくなっています。\nなお，事後層化であればpostStratify関数で同じことができます。\n\ndes6 &lt;- survey::postStratify(des4, ~gen, pop_g)\nsurvey::svytable(~gen, des6)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des6)\n\n     mean    SE\nscr 71.06 1.894",
+    "text": "一部の界隈では有名だと思うのですが， SPSSのケースの重み付けでは標本ウェイトを扱うことはできません。\n\n\n使用するデータセットは以下のRコードで作成します1。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。\n\nans: 回答データ（1～4の値）\ngender: 性別（1: 男性, 2: 女性）\nw: 標本ウェイト\n\n\nd &lt;- data.frame(\n  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),\n  gender = c(rep(1, 7), rep(2, 3)),\n  w = c(rep(5 / 7, 7), rep(5 / 3, 3))\n)\n\n\n\n\n以下のコードで，surveyパッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。\n\n# 調査設計オブジェクトの作成\ndes &lt;- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)\n## ウェイトの代わりに抽出確率を計算しても可\n# d$prob &lt;- 1 / d$w\n# des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)\n\nウェイトを考慮して平均を計算し、性別ごとの結果を比較します。\n\n# 全体の平均\nsurvey::svymean(~ans, des)\n\n      mean     SE\nans 2.3571 0.3571\n\n# 性別ごとの平均\nsurvey::svyby(~ans, by = ~gender, des, survey::svymean)\n\n  gender      ans        se\n1      1 2.714286 0.4205600\n2      2 2.000000 0.5773503\n\n\n\n\n\nSPSSの場合，標準誤差はおそらく次のように算出されています。\n\n# 標準誤差\nweighted.mean2 &lt;- function(x, w, na.rm = FALSE) {\n  if (na.rm) {\n    w &lt;- w[!is.na(x)]\n    x &lt;- x[!is.na(x)]\n  }\n  wm &lt;- weighted.mean(x, w)\n  wv &lt;- sum(w * (x - wm)^2) / (sum(w) - 1)\n  wse &lt;- sqrt(wv / sum(w))\n  c(mean = wm, se = wse)\n}\n\n\n# 重み付き平均\nweighted.mean2(d$ans, d$w)\n\n     mean        se \n2.3571429 0.3319131 \n\n# データを性別で分割\ndata_by_gender &lt;- split(d, d$gender)\n\n# 男女別の平均と分散を計算\nsapply(data_by_gender, function(subset_data) {\n  weighted.mean2(subset_data$ans, subset_data$w)\n})\n\n             1         2\nmean 2.7142857 2.0000000\nse   0.5150788 0.4082483",
     "crumbs": [
       "Home",
       "社会調査",
-      "Complex Survey"
+      "SPSSの「ケースの重み付け」"
     ]
   },
   {
-    "objectID": "SURVEY/survey_survey.html#母集団と標本の作成",
-    "href": "SURVEY/survey_survey.html#母集団と標本の作成",
-    "title": "Complex Survey",
+    "objectID": "SURVEY/survey_weight.html#データセットの作成",
+    "href": "SURVEY/survey_weight.html#データセットの作成",
+    "title": "SPSSの「ケースの重み付け」",
     "section": "",
-    "text": "最初に母集団と標本を作成します。 ちょっと長くなるのでコードは畳んで，標本だけ表示します。\n設定としては，以下のような感じ。\n\n母集団の学校数は10校。\n学校は3つの層（strata）に分かれており，それぞれで平均学力，生徒数が異なる。\nスコアは学校ごとに平均値が異なる。\n各学校の生徒には性別（MとF）を設定する。割当は無作為。\n性別によってスコアが異なる。Mの方が10ポイント高い。\n標本は，各層から2校ずつ学校を選び，さらに選ばれた学校から10人ずつを選ぶとする。\n\n\n\nCode\nset.seed(123)\noptions(scipen = 999) # scipenを大きな値に設定\n\n# 学校層のデータを生成\nsch_str &lt;- data.frame(\n  sch = 1:10, # 学校ID\n  str = c(rep(1, 4), rep(2, 4), rep(3, 2)), # 各層に2〜4校\n  m_scr = c(70, 75, 80, 75, 55, 60, 50, 45, 35, 30), # 学校ごとの平均スコア\n  pop_sz = c(110, 90, 80, 70, 40, 40, 30, 20, 15, 10) # 生徒数\n)\n\n# 母集団データを生成\ngen_pop &lt;- function(str_data) {\n  do.call(rbind, lapply(1:nrow(str_data), function(i) {\n    data.frame(\n      sch = rep(str_data$sch[i], str_data$pop_sz[i]),\n      str = rep(str_data$str[i], str_data$pop_sz[i]),\n      sid = seq_len(str_data$pop_sz[i]),\n      scr = round(rnorm(str_data$pop_sz[i], mean = str_data$m_scr[i], sd = 5) / 5) * 5,\n      gen = sample(c(\"M\", \"F\"), str_data$pop_sz[i], replace = TRUE, prob = c(0.5, 0.5))\n    )\n  }))\n}\n\npop &lt;- gen_pop(sch_str)\n\n# 層別に学校をサンプリング\nsamp_sch &lt;- function(pop, str_data, n_sch = 2) {\n  sel_sch &lt;- do.call(c, lapply(unique(pop$str), function(s) {\n    str_sch &lt;- unique(pop$sch[pop$str == s])\n    sample(str_sch, size = n_sch)\n  }))\n  subset(pop, sch %in% sel_sch)\n}\n\nsamp1 &lt;- samp_sch(pop, sch_str)\n\n# 各学校から生徒をランダムサンプリング\nsamp_stu &lt;- function(samp1, n_stu = 10) {\n  do.call(rbind, lapply(unique(samp1$sch), function(s) {\n    sch_data &lt;- subset(samp1, sch == s)\n    sch_data[sample(seq_len(nrow(sch_data)), size = n_stu), ]\n  }))\n}\n\nsamp &lt;- samp_stu(samp1)\n\n# 抽出確率とウェイトの計算\ncalc_wt &lt;- function(samp, str_data) {\n  str_cnt &lt;- table(str_data$str) # 層内の学校数\n  samp$p_sch &lt;- 2 / str_cnt[as.character(samp$str)] # 学校の抽出確率\n  samp$p_stu &lt;- 10 / str_data$pop_sz[match(samp$sch, str_data$sch)] # 生徒の抽出確率\n  samp$p_tot &lt;- samp$p_sch * samp$p_stu # 総抽出確率\n  samp$wt &lt;- 1 / samp$p_tot # ウェイト\n\n  # fpc設定\n  samp$fpc1 &lt;- str_cnt[as.character(samp$str)] # 層内の学校数\n  samp$fpc2 &lt;- str_data$pop_sz[match(samp$sch, str_data$sch)] # 学校内の生徒数\n  samp\n}\n\nsamp &lt;- calc_wt(samp, sch_str)\n\n# スコア補正（女性の場合に+10）\nadj_scr &lt;- function(data) {\n  data$scr &lt;- data$scr + ifelse(data$gen == \"F\", 10, 0)\n  data\n}\n\npop &lt;- adj_scr(pop)\nsamp &lt;- adj_scr(samp)\n\n# 結果を確認\nsamp\n\n\n    sch str sid scr gen p_sch      p_stu      p_tot   wt fpc1 fpc2\n49    1   1  49  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n72    1   1  72  70   F   0.5 0.09090909 0.04545455 22.0    4  110\n51    1   1  51  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n18    1   1  18  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n26    1   1  26  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n30    1   1  30  75   M   0.5 0.09090909 0.04545455 22.0    4  110\n83    1   1  83  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n69    1   1  69  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n93    1   1  93  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n102   1   1 102  80   F   0.5 0.09090909 0.04545455 22.0    4  110\n246   3   1  46  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n212   3   1  12  85   M   0.5 0.12500000 0.06250000 16.0    4   80\n256   3   1  56  90   F   0.5 0.12500000 0.06250000 16.0    4   80\n201   3   1   1  75   M   0.5 0.12500000 0.06250000 16.0    4   80\n248   3   1  48  85   F   0.5 0.12500000 0.06250000 16.0    4   80\n252   3   1  52  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n207   3   1   7  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n269   3   1  69  95   F   0.5 0.12500000 0.06250000 16.0    4   80\n210   3   1  10  90   M   0.5 0.12500000 0.06250000 16.0    4   80\n236   3   1  36  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n398   6   2   8  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n421   6   2  31  55   F   0.5 0.25000000 0.12500000  8.0    4   40\n395   6   2   5  65   F   0.5 0.25000000 0.12500000  8.0    4   40\n412   6   2  22  55   M   0.5 0.25000000 0.12500000  8.0    4   40\n402   6   2  12  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n400   6   2  10  65   M   0.5 0.25000000 0.12500000  8.0    4   40\n419   6   2  29  70   F   0.5 0.25000000 0.12500000  8.0    4   40\n420   6   2  30  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n418   6   2  28  70   M   0.5 0.25000000 0.12500000  8.0    4   40\n391   6   2   1  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n475   8   2  15  50   F   0.5 0.50000000 0.25000000  4.0    4   20\n474   8   2  14  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n467   8   2   7  55   F   0.5 0.50000000 0.25000000  4.0    4   20\n462   8   2   2  50   M   0.5 0.50000000 0.25000000  4.0    4   20\n470   8   2  10  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n479   8   2  19  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n465   8   2   5  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n473   8   2  13  40   M   0.5 0.50000000 0.25000000  4.0    4   20\n463   8   2   3  60   F   0.5 0.50000000 0.25000000  4.0    4   20\n477   8   2  17  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n494   9   3  14  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n486   9   3   6  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n482   9   3   2  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n483   9   3   3  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n492   9   3  12  50   F   1.0 0.66666667 0.66666667  1.5    2   15\n484   9   3   4  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n489   9   3   9  30   M   1.0 0.66666667 0.66666667  1.5    2   15\n485   9   3   5  45   F   1.0 0.66666667 0.66666667  1.5    2   15\n495   9   3  15  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n493   9   3  13  25   M   1.0 0.66666667 0.66666667  1.5    2   15\n504  10   3   9  50   F   1.0 1.00000000 1.00000000  1.0    2   10\n496  10   3   1  20   M   1.0 1.00000000 1.00000000  1.0    2   10\n502  10   3   7  25   M   1.0 1.00000000 1.00000000  1.0    2   10\n503  10   3   8  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n505  10   3  10  35   F   1.0 1.00000000 1.00000000  1.0    2   10\n500  10   3   5  35   M   1.0 1.00000000 1.00000000  1.0    2   10\n501  10   3   6  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n497  10   3   2  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n498  10   3   3  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n499  10   3   4  30   F   1.0 1.00000000 1.00000000  1.0    2   10",
+    "text": "使用するデータセットは以下のRコードで作成します1。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。\n\nans: 回答データ（1～4の値）\ngender: 性別（1: 男性, 2: 女性）\nw: 標本ウェイト\n\n\nd &lt;- data.frame(\n  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),\n  gender = c(rep(1, 7), rep(2, 3)),\n  w = c(rep(5 / 7, 7), rep(5 / 3, 3))\n)",
     "crumbs": [
       "Home",
       "社会調査",
-      "Complex Survey"
+      "SPSSの「ケースの重み付け」"
     ]
   },
   {
-    "objectID": "SURVEY/survey_survey.html#ウェイトと調査デザインの重要性",
-    "href": "SURVEY/survey_survey.html#ウェイトと調査デザインの重要性",
-    "title": "Complex Survey",
+    "objectID": "SURVEY/survey_weight.html#標本ウェイトを使用した分析",
+    "href": "SURVEY/survey_weight.html#標本ウェイトを使用した分析",
+    "title": "SPSSの「ケースの重み付け」",
     "section": "",
-    "text": "最初に，標本の平均を確認しておきます。 かなり無茶な設定1なので，当然ですが標本平均と母集団の平均は乖離します。 この乖離を防ぐには，weighted.mean関数でウェイトを利用する必要があります。\n\nmean(pop$scr) # 母集団の平均\n\n[1] 72.33663\n\nmean(samp$scr) # 標本の平均\n\n[1] 56.5\n\nweighted.mean(samp$scr, samp$wt) # 重みづけた平均\n\n[1] 70.64762\n\n\nウェイトを使うことで，母集団の平均値は推定できます。 問題は標準誤差（Standard Error: SE）です。 SEを算出するには，ウェイトだけでは不十分で， 調査デザインを考慮する必要があります。\n\n\n\nRでは，surveyを使うことで， Complex Surveyの推定を行うことができます。 surveyでは，最初にsvydesign関数で調査デザインを指定した後に， svymeanやsvybyといった関数で推定を行うことができます。\nここでは，いくつかの調査デザインを設定し， それぞれでSEがどのように変化するか検討してみます。\n\n\n単純な無作為抽出の場合，ids = ~1（あるいは，ids = ~0）を指定します。\n\n# 単純な無作為抽出\ndes0 &lt;- survey::svydesign(ids = ~1, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des0)\n\n      mean    SE\nscr 70.648 1.959\n\n\n一応推定は可能ですが，今回の調査デザインは単純な無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 単純な無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため単純な無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。\n\n\n\n続いて，学校を無作為に選び，選ばれた学校のすべての生徒を調査した状態 （クラスターサンプリング）を考えます。 これはidsにクラスターとなる変数を設定することで表現できます。\n\n# クラスターサンプリング\ndes1 &lt;- survey::svydesign(ids = ~sch, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des1)\n\n      mean     SE\nscr 70.648 4.6072\n\n\n推定値は同じですが，SEは大きくなっています。\n\n\n\nただ，クラスターサンプリングは今回の抽出法ではありません。 今回は，個々の学校が層（strata）に属しています。 個々の層で学校の平均点・生徒数がかなり異なるので， 個々の学校を無作為に抽出するより， 各層から学校を2校ずつ抽出したほうが，より正確に母集団の実態を反映できる （≒SEが小さくなる）ことが期待できます。 svydesignでは，strataに層となる変数を設定することで， 層化抽出であることを表現できます。\n\n# 層化クラスターサンプリング\ndes2 &lt;- survey::svydesign(ids = ~sch, strata = ~str, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des2)\n\n      mean     SE\nscr 70.648 2.8327\n\n\n理論通り，SEが小さくなっています。\n\n\n\n統計の入門書では，母集団の人数は無限であることが想定されていますが， 一般の社会調査では母集団は有限です （さらに言えば，同じ調査対象は再び調査しません）。 極端な話，母集団が10人しかいなければ， 10人全員に調査をするとSEは0になるのです。 今回の場合，学校は各層に4校，4校，2校ですから，この点を考慮する必要があります。 この点は，fpcに各層の学校数を指定することで表現できます。\n\n# 層化クラスターサンプリング with fpc1\ndes3 &lt;- survey::svydesign(\n  ids = ~sch, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~fpc1\n)\nsurvey::svymean(~scr, des3)\n\n      mean     SE\nscr 70.648 1.9937\n\n\nSEが更に小さくなりました。 ただ，des3は個々の学校から生徒が無作為に10人抽出されていることを考慮していません。 クラスターサンプリングなので，すべての生徒が調査されているという前提になっています。 実際，des3について個々の学校の平均値を算出すると，そのSEはすべて0になります。\n\nsurvey::svyby(~scr, ~sch, des3, survey::svymean)\n\n   sch  scr se\n1    1 72.5  0\n3    3 82.0  0\n6    6 65.0  0\n8    8 48.0  0\n9    9 37.0  0\n10  10 34.5  0\n\n\n\n\n\n個々の学校から生徒を10人ずつ抽出したことを表現するには， idsで学校に加えて生徒を抽出単位に指定する必要があります。 さらにfpcも，層だけでなく，個々の学校の生徒数を指定する必要があります。\n\n# 層化多段抽出\ndes4 &lt;- survey::svydesign(\n  ids = ~ sch + sid, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~ fpc1 + fpc2\n)\nsurvey::svymean(~scr, des4)\n\n      mean    SE\nscr 70.648 2.227\n\nsurvey::svyby(~scr, ~sch, des4, survey::svymean)\n\n   sch  scr        se\n1    1 72.5 1.8969673\n3    3 82.0 1.7911821\n6    6 65.0 1.4433757\n8    8 48.0 0.9279607\n9    9 37.0 1.3052600\n10  10 34.5 0.0000000\n\n\n個々の学校から生徒が無作為に抽出されているので， des3に比べてSEが少し大きくなります。 また，学校ごとに平均値を算出すると，学校の規模に応じてSEが算出されます。 なお10番の学校は生徒数が10なので全員が抽出されていることになり，SEは0になっています。",
+    "text": "以下のコードで，surveyパッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。\n\n# 調査設計オブジェクトの作成\ndes &lt;- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)\n## ウェイトの代わりに抽出確率を計算しても可\n# d$prob &lt;- 1 / d$w\n# des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)\n\nウェイトを考慮して平均を計算し、性別ごとの結果を比較します。\n\n# 全体の平均\nsurvey::svymean(~ans, des)\n\n      mean     SE\nans 2.3571 0.3571\n\n# 性別ごとの平均\nsurvey::svyby(~ans, by = ~gender, des, survey::svymean)\n\n  gender      ans        se\n1      1 2.714286 0.4205600\n2      2 2.000000 0.5773503",
     "crumbs": [
       "Home",
       "社会調査",
-      "Complex Survey"
+      "SPSSの「ケースの重み付け」"
     ]
   },
   {
-    "objectID": "SURVEY/survey_survey.html#事後層化",
-    "href": "SURVEY/survey_survey.html#事後層化",
-    "title": "Complex Survey",
+    "objectID": "SURVEY/survey_weight.html#spssのケースの重み付け-1",
+    "href": "SURVEY/survey_weight.html#spssのケースの重み付け-1",
+    "title": "SPSSの「ケースの重み付け」",
     "section": "",
-    "text": "実際に抽出してみたら，母集団と標本で男女の割合が違った！ということは よくあります。 今回の標本でも，母集団と男女の比率（と全体の合計）が少しずれています。\n\nsurvey::svytable(~gen, des4)\n\ngen\n  F   M \n239 286 \n\ntable(pop$gen)\n\n\n  F   M \n252 253 \n\n\n女子の方が成績が高いので，こうしたズレは推定に影響を及ぼすかもしれません。 Complex Surveyでは，母集団の情報を使って，事後的にウェイトを調整することができます。 ここでは大げさ2ですが，calibrate関数を使って調整を行います。\n\n# 母集団の既知のgender分布を計算\npop_g &lt;- table(gen = pop$gen)\nintercept &lt;- sum(pop_g)\ngenm &lt;- pop_g[[2]]\n# Calibrationの実施（genderに基づくキャリブレーション）\npopulation &lt;- c(\n  `(Intercept)` = intercept,\n  genM = genm\n)\ndes5 &lt;- calib_des &lt;- survey::calibrate(\n  des4, # サンプリングデザイン\n  formula = ~gen, # キャリブレーションの変数\n  population = population\n)\nsurvey::svytable(~gen, des5)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des5)\n\n     mean    SE\nscr 71.06 1.894\n\n\ndes4はMの割合が多いので，調整したことで推定値が少し高くなりました。また，SEも小さくなっています。\nなお，事後層化であればpostStratify関数で同じことができます。\n\ndes6 &lt;- survey::postStratify(des4, ~gen, pop_g)\nsurvey::svytable(~gen, des6)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des6)\n\n     mean    SE\nscr 71.06 1.894",
+    "text": "SPSSの場合，標準誤差はおそらく次のように算出されています。\n\n# 標準誤差\nweighted.mean2 &lt;- function(x, w, na.rm = FALSE) {\n  if (na.rm) {\n    w &lt;- w[!is.na(x)]\n    x &lt;- x[!is.na(x)]\n  }\n  wm &lt;- weighted.mean(x, w)\n  wv &lt;- sum(w * (x - wm)^2) / (sum(w) - 1)\n  wse &lt;- sqrt(wv / sum(w))\n  c(mean = wm, se = wse)\n}\n\n\n# 重み付き平均\nweighted.mean2(d$ans, d$w)\n\n     mean        se \n2.3571429 0.3319131 \n\n# データを性別で分割\ndata_by_gender &lt;- split(d, d$gender)\n\n# 男女別の平均と分散を計算\nsapply(data_by_gender, function(subset_data) {\n  weighted.mean2(subset_data$ans, subset_data$w)\n})\n\n             1         2\nmean 2.7142857 2.0000000\nse   0.5150788 0.4082483",
     "crumbs": [
       "Home",
       "社会調査",
-      "Complex Survey"
+      "SPSSの「ケースの重み付け」"
     ]
   },
   {
-    "objectID": "SURVEY/survey_survey.html#footnotes",
-    "href": "SURVEY/survey_survey.html#footnotes",
-    "title": "Complex Survey",
+    "objectID": "SURVEY/survey_weight.html#footnotes",
+    "href": "SURVEY/survey_weight.html#footnotes",
+    "title": "SPSSの「ケースの重み付け」",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nそもそも母集団が小さいですし，この方法では 規模の大きい学校の生徒ほど選ばれにくいという問題もあります。 実際，標本では規模の大きい学校で，明らかにwtが大きくなっています。↩︎\ncalibrate関数は事後層化より複雑なキャリブレーションを行うことができるのですが， ここでは練習のために事後層化に使っています。↩︎",
+    "text": "Footnotes\n\n\n元ネタは読書日記（2013年5月19日） です。↩︎",
     "crumbs": [
       "Home",
       "社会調査",
-      "Complex Survey"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_measurement_error.html",
-    "href": "IRT/irt_measurement_error.html",
-    "title": "測定の誤差",
-    "section": "",
-    "text": "普通はテストは一回しか受検しませんが， 仮に何回も受検したとしたら，その成績はどう変わるのでしょうか。 ここでは，テストが2PLに従うと仮定して， 能力値0の受験生が1000回テストを受けた場面を想定してみましょう。 項目数は15題，識別力はすべて0.9， 困難度は-3から1の範囲で等間隔に分布しているとします。\n\n# パラメータ設定\nset.seed(123)\nitem_n &lt;- 15 # 問題数\nn_simulations &lt;- 1000 # テストの受験回数\ntheta &lt;- 0 # 学力（真の能力）\na_para &lt;- rep(0.9, item_n) # 識別力（全項目で固定）\nb_para &lt;- seq(-3, 1, length.out = item_n) # 難易度（均等に分布）\n\n# 2PLモデルの確率計算\nprob_2pl &lt;- function(theta, a, b) {\n  1 / (1 + exp(-1.7 * a * (theta - b)))\n}\n\n# スコアシミュレーション\nresp &lt;- t(sapply(1:n_simulations, function(x) {\n  # 各項目の正答確率\n  prob &lt;- prob_2pl(theta, a_para, b_para)\n  # 正誤データの生成\n  resp &lt;- rbinom(item_n, size = 1, prob = prob)\n}))\n\nscore &lt;- apply(resp, 1, sum)\n\nhist(score, main = \"\", xlab = \"正答数\", ylab = \"頻度\")\n\n\n\n\n\n\n\n\nほぼ満点に近い（15題中14問の正答）場合も， 半分もできない（15題中6問の正答）場合もありえるということです。\n\nc(\n  lower = mean(score) - 2 * sd(score),\n  upper = mean(score) + 2 * sd(score)\n)\n\n    lower     upper \n 7.804034 13.397966 \n\n\n正答数の分布が正規分布に従うと仮定して， ±2標準偏差の範囲を計算してみると， だいたい8問から13問くらいのあいだで正答数がバラつくということになります。 正答数を問題数（15題）で割って正答率に変換すると，およそ5割から9割の範囲で正答率はバラつきます。 先ほどのヒストグラムからも明らかですが， 半分しかできないというケースから9割正解まで考えられるということです。\n「ヤマが当たった」という言葉があることからも， テストを受けたときにたまたまできた／できなかったという ことが起こることはよく知られています。 ただ，実際に数値化してみると「思ったよりバラつきが大きいぞ」と 感じる人もいるかもしれません。 何にせよ，これだけ結果がバラつくとなると， 1回のテストの正答率を学力の指標にすることは だいぶ危ういことのように思われます。",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "測定の誤差"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_measurement_error.html#何回もテストを受検すると成績はどうなるのか",
-    "href": "IRT/irt_measurement_error.html#何回もテストを受検すると成績はどうなるのか",
-    "title": "測定の誤差",
-    "section": "",
-    "text": "普通はテストは一回しか受検しませんが， 仮に何回も受検したとしたら，その成績はどう変わるのでしょうか。 ここでは，テストが2PLに従うと仮定して， 能力値0の受験生が1000回テストを受けた場面を想定してみましょう。 項目数は15題，識別力はすべて0.9， 困難度は-3から1の範囲で等間隔に分布しているとします。\n\n# パラメータ設定\nset.seed(123)\nitem_n &lt;- 15 # 問題数\nn_simulations &lt;- 1000 # テストの受験回数\ntheta &lt;- 0 # 学力（真の能力）\na_para &lt;- rep(0.9, item_n) # 識別力（全項目で固定）\nb_para &lt;- seq(-3, 1, length.out = item_n) # 難易度（均等に分布）\n\n# 2PLモデルの確率計算\nprob_2pl &lt;- function(theta, a, b) {\n  1 / (1 + exp(-1.7 * a * (theta - b)))\n}\n\n# スコアシミュレーション\nresp &lt;- t(sapply(1:n_simulations, function(x) {\n  # 各項目の正答確率\n  prob &lt;- prob_2pl(theta, a_para, b_para)\n  # 正誤データの生成\n  resp &lt;- rbinom(item_n, size = 1, prob = prob)\n}))\n\nscore &lt;- apply(resp, 1, sum)\n\nhist(score, main = \"\", xlab = \"正答数\", ylab = \"頻度\")\n\n\n\n\n\n\n\n\nほぼ満点に近い（15題中14問の正答）場合も， 半分もできない（15題中6問の正答）場合もありえるということです。\n\nc(\n  lower = mean(score) - 2 * sd(score),\n  upper = mean(score) + 2 * sd(score)\n)\n\n    lower     upper \n 7.804034 13.397966 \n\n\n正答数の分布が正規分布に従うと仮定して， ±2標準偏差の範囲を計算してみると， だいたい8問から13問くらいのあいだで正答数がバラつくということになります。 正答数を問題数（15題）で割って正答率に変換すると，およそ5割から9割の範囲で正答率はバラつきます。 先ほどのヒストグラムからも明らかですが， 半分しかできないというケースから9割正解まで考えられるということです。\n「ヤマが当たった」という言葉があることからも， テストを受けたときにたまたまできた／できなかったという ことが起こることはよく知られています。 ただ，実際に数値化してみると「思ったよりバラつきが大きいぞ」と 感じる人もいるかもしれません。 何にせよ，これだけ結果がバラつくとなると， 1回のテストの正答率を学力の指標にすることは だいぶ危ういことのように思われます。",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "測定の誤差"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html",
-    "href": "IRT/irt_mirt.html",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "mirt: Multidimensional Item Resonse Theory は， 多次元項目反応理論を行うパッケージです。 2PLや3PLといった基本的な項目反応理論はもちろん， 多次元モデルやダミーデータの生成も可能です。\n\n\n\nmirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)\n\n\n\n\n\n# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306 \n\n\n\n\n\nmirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#ダミーデータの生成",
-    "href": "IRT/irt_mirt.html#ダミーデータの生成",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "mirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#mirtによる2pl",
-    "href": "IRT/irt_mirt.html#mirtによる2pl",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#受検者の能力推定",
-    "href": "IRT/irt_mirt.html#受検者の能力推定",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "mirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#footnotes",
-    "href": "IRT/irt_mirt.html#footnotes",
-    "title": "mirtの使い方",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\n奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．↩︎\nIRT parameterization↩︎",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
+      "SPSSの「ケースの重み付け」"
     ]
   },
   {
@@ -284,6 +272,102 @@
       "Home",
       "情報機器",
       "R on Google Colab"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_benzecris.html",
+    "href": "SURVEY/survey_benzecris.html",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "ベンゼクリの修正割合を計算できるmodif.rate関数 （GDAtools）が FactoMineR のMCA関数に使えなかったのでMCA用に修正してみました。\n\n\n\nmodif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}\n\n\n\n\n\ndata(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_benzecris.html#factominerで使える関数",
+    "href": "SURVEY/survey_benzecris.html#factominerで使える関数",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "modif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_benzecris.html#使用例",
+    "href": "SURVEY/survey_benzecris.html#使用例",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "data(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_survey.html",
+    "href": "SURVEY/survey_survey.html",
+    "title": "Complex Survey",
+    "section": "",
+    "text": "一般に大規模な学力調査は，単純な無作為抽出ではなく， 最初に学校を抽出し，その後に生徒を抽出するといった 多段抽出であることが多いです。 こうした複雑な抽出法（Complex Survey）に関するメモです。\n\n\n最初に母集団と標本を作成します。 ちょっと長くなるのでコードは畳んで，標本だけ表示します。\n設定としては，以下のような感じ。\n\n母集団の学校数は10校。\n学校は3つの層（strata）に分かれており，それぞれで平均学力，生徒数が異なる。\nスコアは学校ごとに平均値が異なる。\n各学校の生徒には性別（MとF）を設定する。割当は無作為。\n性別によってスコアが異なる。Mの方が10ポイント高い。\n標本は，各層から2校ずつ学校を選び，さらに選ばれた学校から10人ずつを選ぶとする。\n\n\n\nCode\nset.seed(123)\noptions(scipen = 999) # scipenを大きな値に設定\n\n# 学校層のデータを生成\nsch_str &lt;- data.frame(\n  sch = 1:10, # 学校ID\n  str = c(rep(1, 4), rep(2, 4), rep(3, 2)), # 各層に2〜4校\n  m_scr = c(70, 75, 80, 75, 55, 60, 50, 45, 35, 30), # 学校ごとの平均スコア\n  pop_sz = c(110, 90, 80, 70, 40, 40, 30, 20, 15, 10) # 生徒数\n)\n\n# 母集団データを生成\ngen_pop &lt;- function(str_data) {\n  do.call(rbind, lapply(1:nrow(str_data), function(i) {\n    data.frame(\n      sch = rep(str_data$sch[i], str_data$pop_sz[i]),\n      str = rep(str_data$str[i], str_data$pop_sz[i]),\n      sid = seq_len(str_data$pop_sz[i]),\n      scr = round(rnorm(str_data$pop_sz[i], mean = str_data$m_scr[i], sd = 5) / 5) * 5,\n      gen = sample(c(\"M\", \"F\"), str_data$pop_sz[i], replace = TRUE, prob = c(0.5, 0.5))\n    )\n  }))\n}\n\npop &lt;- gen_pop(sch_str)\n\n# 層別に学校をサンプリング\nsamp_sch &lt;- function(pop, str_data, n_sch = 2) {\n  sel_sch &lt;- do.call(c, lapply(unique(pop$str), function(s) {\n    str_sch &lt;- unique(pop$sch[pop$str == s])\n    sample(str_sch, size = n_sch)\n  }))\n  subset(pop, sch %in% sel_sch)\n}\n\nsamp1 &lt;- samp_sch(pop, sch_str)\n\n# 各学校から生徒をランダムサンプリング\nsamp_stu &lt;- function(samp1, n_stu = 10) {\n  do.call(rbind, lapply(unique(samp1$sch), function(s) {\n    sch_data &lt;- subset(samp1, sch == s)\n    sch_data[sample(seq_len(nrow(sch_data)), size = n_stu), ]\n  }))\n}\n\nsamp &lt;- samp_stu(samp1)\n\n# 抽出確率とウェイトの計算\ncalc_wt &lt;- function(samp, str_data) {\n  str_cnt &lt;- table(str_data$str) # 層内の学校数\n  samp$p_sch &lt;- 2 / str_cnt[as.character(samp$str)] # 学校の抽出確率\n  samp$p_stu &lt;- 10 / str_data$pop_sz[match(samp$sch, str_data$sch)] # 生徒の抽出確率\n  samp$p_tot &lt;- samp$p_sch * samp$p_stu # 総抽出確率\n  samp$wt &lt;- 1 / samp$p_tot # ウェイト\n\n  # fpc設定\n  samp$fpc1 &lt;- str_cnt[as.character(samp$str)] # 層内の学校数\n  samp$fpc2 &lt;- str_data$pop_sz[match(samp$sch, str_data$sch)] # 学校内の生徒数\n  samp\n}\n\nsamp &lt;- calc_wt(samp, sch_str)\n\n# スコア補正（女性の場合に+10）\nadj_scr &lt;- function(data) {\n  data$scr &lt;- data$scr + ifelse(data$gen == \"F\", 10, 0)\n  data\n}\n\npop &lt;- adj_scr(pop)\nsamp &lt;- adj_scr(samp)\n\n# 結果を確認\nsamp\n\n\n    sch str sid scr gen p_sch      p_stu      p_tot   wt fpc1 fpc2\n49    1   1  49  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n72    1   1  72  70   F   0.5 0.09090909 0.04545455 22.0    4  110\n51    1   1  51  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n18    1   1  18  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n26    1   1  26  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n30    1   1  30  75   M   0.5 0.09090909 0.04545455 22.0    4  110\n83    1   1  83  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n69    1   1  69  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n93    1   1  93  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n102   1   1 102  80   F   0.5 0.09090909 0.04545455 22.0    4  110\n246   3   1  46  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n212   3   1  12  85   M   0.5 0.12500000 0.06250000 16.0    4   80\n256   3   1  56  90   F   0.5 0.12500000 0.06250000 16.0    4   80\n201   3   1   1  75   M   0.5 0.12500000 0.06250000 16.0    4   80\n248   3   1  48  85   F   0.5 0.12500000 0.06250000 16.0    4   80\n252   3   1  52  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n207   3   1   7  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n269   3   1  69  95   F   0.5 0.12500000 0.06250000 16.0    4   80\n210   3   1  10  90   M   0.5 0.12500000 0.06250000 16.0    4   80\n236   3   1  36  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n398   6   2   8  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n421   6   2  31  55   F   0.5 0.25000000 0.12500000  8.0    4   40\n395   6   2   5  65   F   0.5 0.25000000 0.12500000  8.0    4   40\n412   6   2  22  55   M   0.5 0.25000000 0.12500000  8.0    4   40\n402   6   2  12  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n400   6   2  10  65   M   0.5 0.25000000 0.12500000  8.0    4   40\n419   6   2  29  70   F   0.5 0.25000000 0.12500000  8.0    4   40\n420   6   2  30  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n418   6   2  28  70   M   0.5 0.25000000 0.12500000  8.0    4   40\n391   6   2   1  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n475   8   2  15  50   F   0.5 0.50000000 0.25000000  4.0    4   20\n474   8   2  14  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n467   8   2   7  55   F   0.5 0.50000000 0.25000000  4.0    4   20\n462   8   2   2  50   M   0.5 0.50000000 0.25000000  4.0    4   20\n470   8   2  10  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n479   8   2  19  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n465   8   2   5  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n473   8   2  13  40   M   0.5 0.50000000 0.25000000  4.0    4   20\n463   8   2   3  60   F   0.5 0.50000000 0.25000000  4.0    4   20\n477   8   2  17  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n494   9   3  14  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n486   9   3   6  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n482   9   3   2  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n483   9   3   3  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n492   9   3  12  50   F   1.0 0.66666667 0.66666667  1.5    2   15\n484   9   3   4  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n489   9   3   9  30   M   1.0 0.66666667 0.66666667  1.5    2   15\n485   9   3   5  45   F   1.0 0.66666667 0.66666667  1.5    2   15\n495   9   3  15  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n493   9   3  13  25   M   1.0 0.66666667 0.66666667  1.5    2   15\n504  10   3   9  50   F   1.0 1.00000000 1.00000000  1.0    2   10\n496  10   3   1  20   M   1.0 1.00000000 1.00000000  1.0    2   10\n502  10   3   7  25   M   1.0 1.00000000 1.00000000  1.0    2   10\n503  10   3   8  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n505  10   3  10  35   F   1.0 1.00000000 1.00000000  1.0    2   10\n500  10   3   5  35   M   1.0 1.00000000 1.00000000  1.0    2   10\n501  10   3   6  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n497  10   3   2  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n498  10   3   3  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n499  10   3   4  30   F   1.0 1.00000000 1.00000000  1.0    2   10\n\n\n\n\n\n\n\n最初に，標本の平均を確認しておきます。 かなり無茶な設定1なので，当然ですが標本平均と母集団の平均は乖離します。 この乖離を防ぐには，weighted.mean関数でウェイトを利用する必要があります。\n\nmean(pop$scr) # 母集団の平均\n\n[1] 72.33663\n\nmean(samp$scr) # 標本の平均\n\n[1] 56.5\n\nweighted.mean(samp$scr, samp$wt) # 重みづけた平均\n\n[1] 70.64762\n\n\nウェイトを使うことで，母集団の平均値は推定できます。 問題は標準誤差（Standard Error: SE）です。 SEを算出するには，ウェイトだけでは不十分で， 調査デザインを考慮する必要があります。\n\n\n\nRでは，surveyを使うことで， Complex Surveyの推定を行うことができます。 surveyでは，最初にsvydesign関数で調査デザインを指定した後に， svymeanやsvybyといった関数で推定を行うことができます。\nここでは，いくつかの調査デザインを設定し， それぞれでSEがどのように変化するか検討してみます。\n\n\n単純な無作為抽出の場合，ids = ~1（あるいは，ids = ~0）を指定します。\n\n# 単純な無作為抽出\ndes0 &lt;- survey::svydesign(ids = ~1, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des0)\n\n      mean    SE\nscr 70.648 1.959\n\n\n一応推定は可能ですが，今回の調査デザインは単純な無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 単純な無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため単純な無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。\n\n\n\n続いて，学校を無作為に選び，選ばれた学校のすべての生徒を調査した状態 （クラスターサンプリング）を考えます。 これはidsにクラスターとなる変数を設定することで表現できます。\n\n# クラスターサンプリング\ndes1 &lt;- survey::svydesign(ids = ~sch, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des1)\n\n      mean     SE\nscr 70.648 4.6072\n\n\n推定値は同じですが，SEは大きくなっています。\n\n\n\nただ，クラスターサンプリングは今回の抽出法ではありません。 今回は，個々の学校が層（strata）に属しています。 個々の層で学校の平均点・生徒数がかなり異なるので， 個々の学校を無作為に抽出するより， 各層から学校を2校ずつ抽出したほうが，より正確に母集団の実態を反映できる （≒SEが小さくなる）ことが期待できます。 svydesignでは，strataに層となる変数を設定することで， 層化抽出であることを表現できます。\n\n# 層化クラスターサンプリング\ndes2 &lt;- survey::svydesign(ids = ~sch, strata = ~str, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des2)\n\n      mean     SE\nscr 70.648 2.8327\n\n\n理論通り，SEが小さくなっています。\n\n\n\n統計の入門書では，母集団の人数は無限であることが想定されていますが， 一般の社会調査では母集団は有限です （さらに言えば，同じ調査対象は再び調査しません）。 極端な話，母集団が10人しかいなければ， 10人全員に調査をするとSEは0になるのです。 今回の場合，学校は各層に4校，4校，2校ですから，この点を考慮する必要があります。 この点は，fpcに各層の学校数を指定することで表現できます。\n\n# 層化クラスターサンプリング with fpc1\ndes3 &lt;- survey::svydesign(\n  ids = ~sch, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~fpc1\n)\nsurvey::svymean(~scr, des3)\n\n      mean     SE\nscr 70.648 1.9937\n\n\nSEが更に小さくなりました。 ただ，des3は個々の学校から生徒が無作為に10人抽出されていることを考慮していません。 クラスターサンプリングなので，すべての生徒が調査されているという前提になっています。 実際，des3について個々の学校の平均値を算出すると，そのSEはすべて0になります。\n\nsurvey::svyby(~scr, ~sch, des3, survey::svymean)\n\n   sch  scr se\n1    1 72.5  0\n3    3 82.0  0\n6    6 65.0  0\n8    8 48.0  0\n9    9 37.0  0\n10  10 34.5  0\n\n\n\n\n\n個々の学校から生徒を10人ずつ抽出したことを表現するには， idsで学校に加えて生徒を抽出単位に指定する必要があります。 さらにfpcも，層だけでなく，個々の学校の生徒数を指定する必要があります。\n\n# 層化多段抽出\ndes4 &lt;- survey::svydesign(\n  ids = ~ sch + sid, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~ fpc1 + fpc2\n)\nsurvey::svymean(~scr, des4)\n\n      mean    SE\nscr 70.648 2.227\n\nsurvey::svyby(~scr, ~sch, des4, survey::svymean)\n\n   sch  scr        se\n1    1 72.5 1.8969673\n3    3 82.0 1.7911821\n6    6 65.0 1.4433757\n8    8 48.0 0.9279607\n9    9 37.0 1.3052600\n10  10 34.5 0.0000000\n\n\n個々の学校から生徒が無作為に抽出されているので， des3に比べてSEが少し大きくなります。 また，学校ごとに平均値を算出すると，学校の規模に応じてSEが算出されます。 なお10番の学校は生徒数が10なので全員が抽出されていることになり，SEは0になっています。\n\n\n\n\n\n実際に抽出してみたら，母集団と標本で男女の割合が違った！ということは よくあります。 今回の標本でも，母集団と男女の比率（と全体の合計）が少しずれています。\n\nsurvey::svytable(~gen, des4)\n\ngen\n  F   M \n239 286 \n\ntable(pop$gen)\n\n\n  F   M \n252 253 \n\n\n女子の方が成績が高いので，こうしたズレは推定に影響を及ぼすかもしれません。 Complex Surveyでは，母集団の情報を使って，事後的にウェイトを調整することができます。 ここでは大げさ2ですが，calibrate関数を使って調整を行います。\n\n# 母集団の既知のgender分布を計算\npop_g &lt;- table(gen = pop$gen)\nintercept &lt;- sum(pop_g)\ngenm &lt;- pop_g[[2]]\n# Calibrationの実施（genderに基づくキャリブレーション）\npopulation &lt;- c(\n  `(Intercept)` = intercept,\n  genM = genm\n)\ndes5 &lt;- calib_des &lt;- survey::calibrate(\n  des4, # サンプリングデザイン\n  formula = ~gen, # キャリブレーションの変数\n  population = population\n)\nsurvey::svytable(~gen, des5)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des5)\n\n     mean    SE\nscr 71.06 1.894\n\n\ndes4はMの割合が多いので，調整したことで推定値が少し高くなりました。また，SEも小さくなっています。\nなお，事後層化であればpostStratify関数で同じことができます。\n\ndes6 &lt;- survey::postStratify(des4, ~gen, pop_g)\nsurvey::svytable(~gen, des6)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des6)\n\n     mean    SE\nscr 71.06 1.894",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "Complex Survey"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_survey.html#母集団と標本の作成",
+    "href": "SURVEY/survey_survey.html#母集団と標本の作成",
+    "title": "Complex Survey",
+    "section": "",
+    "text": "最初に母集団と標本を作成します。 ちょっと長くなるのでコードは畳んで，標本だけ表示します。\n設定としては，以下のような感じ。\n\n母集団の学校数は10校。\n学校は3つの層（strata）に分かれており，それぞれで平均学力，生徒数が異なる。\nスコアは学校ごとに平均値が異なる。\n各学校の生徒には性別（MとF）を設定する。割当は無作為。\n性別によってスコアが異なる。Mの方が10ポイント高い。\n標本は，各層から2校ずつ学校を選び，さらに選ばれた学校から10人ずつを選ぶとする。\n\n\n\nCode\nset.seed(123)\noptions(scipen = 999) # scipenを大きな値に設定\n\n# 学校層のデータを生成\nsch_str &lt;- data.frame(\n  sch = 1:10, # 学校ID\n  str = c(rep(1, 4), rep(2, 4), rep(3, 2)), # 各層に2〜4校\n  m_scr = c(70, 75, 80, 75, 55, 60, 50, 45, 35, 30), # 学校ごとの平均スコア\n  pop_sz = c(110, 90, 80, 70, 40, 40, 30, 20, 15, 10) # 生徒数\n)\n\n# 母集団データを生成\ngen_pop &lt;- function(str_data) {\n  do.call(rbind, lapply(1:nrow(str_data), function(i) {\n    data.frame(\n      sch = rep(str_data$sch[i], str_data$pop_sz[i]),\n      str = rep(str_data$str[i], str_data$pop_sz[i]),\n      sid = seq_len(str_data$pop_sz[i]),\n      scr = round(rnorm(str_data$pop_sz[i], mean = str_data$m_scr[i], sd = 5) / 5) * 5,\n      gen = sample(c(\"M\", \"F\"), str_data$pop_sz[i], replace = TRUE, prob = c(0.5, 0.5))\n    )\n  }))\n}\n\npop &lt;- gen_pop(sch_str)\n\n# 層別に学校をサンプリング\nsamp_sch &lt;- function(pop, str_data, n_sch = 2) {\n  sel_sch &lt;- do.call(c, lapply(unique(pop$str), function(s) {\n    str_sch &lt;- unique(pop$sch[pop$str == s])\n    sample(str_sch, size = n_sch)\n  }))\n  subset(pop, sch %in% sel_sch)\n}\n\nsamp1 &lt;- samp_sch(pop, sch_str)\n\n# 各学校から生徒をランダムサンプリング\nsamp_stu &lt;- function(samp1, n_stu = 10) {\n  do.call(rbind, lapply(unique(samp1$sch), function(s) {\n    sch_data &lt;- subset(samp1, sch == s)\n    sch_data[sample(seq_len(nrow(sch_data)), size = n_stu), ]\n  }))\n}\n\nsamp &lt;- samp_stu(samp1)\n\n# 抽出確率とウェイトの計算\ncalc_wt &lt;- function(samp, str_data) {\n  str_cnt &lt;- table(str_data$str) # 層内の学校数\n  samp$p_sch &lt;- 2 / str_cnt[as.character(samp$str)] # 学校の抽出確率\n  samp$p_stu &lt;- 10 / str_data$pop_sz[match(samp$sch, str_data$sch)] # 生徒の抽出確率\n  samp$p_tot &lt;- samp$p_sch * samp$p_stu # 総抽出確率\n  samp$wt &lt;- 1 / samp$p_tot # ウェイト\n\n  # fpc設定\n  samp$fpc1 &lt;- str_cnt[as.character(samp$str)] # 層内の学校数\n  samp$fpc2 &lt;- str_data$pop_sz[match(samp$sch, str_data$sch)] # 学校内の生徒数\n  samp\n}\n\nsamp &lt;- calc_wt(samp, sch_str)\n\n# スコア補正（女性の場合に+10）\nadj_scr &lt;- function(data) {\n  data$scr &lt;- data$scr + ifelse(data$gen == \"F\", 10, 0)\n  data\n}\n\npop &lt;- adj_scr(pop)\nsamp &lt;- adj_scr(samp)\n\n# 結果を確認\nsamp\n\n\n    sch str sid scr gen p_sch      p_stu      p_tot   wt fpc1 fpc2\n49    1   1  49  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n72    1   1  72  70   F   0.5 0.09090909 0.04545455 22.0    4  110\n51    1   1  51  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n18    1   1  18  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n26    1   1  26  60   M   0.5 0.09090909 0.04545455 22.0    4  110\n30    1   1  30  75   M   0.5 0.09090909 0.04545455 22.0    4  110\n83    1   1  83  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n69    1   1  69  85   F   0.5 0.09090909 0.04545455 22.0    4  110\n93    1   1  93  70   M   0.5 0.09090909 0.04545455 22.0    4  110\n102   1   1 102  80   F   0.5 0.09090909 0.04545455 22.0    4  110\n246   3   1  46  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n212   3   1  12  85   M   0.5 0.12500000 0.06250000 16.0    4   80\n256   3   1  56  90   F   0.5 0.12500000 0.06250000 16.0    4   80\n201   3   1   1  75   M   0.5 0.12500000 0.06250000 16.0    4   80\n248   3   1  48  85   F   0.5 0.12500000 0.06250000 16.0    4   80\n252   3   1  52  70   M   0.5 0.12500000 0.06250000 16.0    4   80\n207   3   1   7  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n269   3   1  69  95   F   0.5 0.12500000 0.06250000 16.0    4   80\n210   3   1  10  90   M   0.5 0.12500000 0.06250000 16.0    4   80\n236   3   1  36  80   F   0.5 0.12500000 0.06250000 16.0    4   80\n398   6   2   8  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n421   6   2  31  55   F   0.5 0.25000000 0.12500000  8.0    4   40\n395   6   2   5  65   F   0.5 0.25000000 0.12500000  8.0    4   40\n412   6   2  22  55   M   0.5 0.25000000 0.12500000  8.0    4   40\n402   6   2  12  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n400   6   2  10  65   M   0.5 0.25000000 0.12500000  8.0    4   40\n419   6   2  29  70   F   0.5 0.25000000 0.12500000  8.0    4   40\n420   6   2  30  75   F   0.5 0.25000000 0.12500000  8.0    4   40\n418   6   2  28  70   M   0.5 0.25000000 0.12500000  8.0    4   40\n391   6   2   1  60   M   0.5 0.25000000 0.12500000  8.0    4   40\n475   8   2  15  50   F   0.5 0.50000000 0.25000000  4.0    4   20\n474   8   2  14  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n467   8   2   7  55   F   0.5 0.50000000 0.25000000  4.0    4   20\n462   8   2   2  50   M   0.5 0.50000000 0.25000000  4.0    4   20\n470   8   2  10  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n479   8   2  19  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n465   8   2   5  45   F   0.5 0.50000000 0.25000000  4.0    4   20\n473   8   2  13  40   M   0.5 0.50000000 0.25000000  4.0    4   20\n463   8   2   3  60   F   0.5 0.50000000 0.25000000  4.0    4   20\n477   8   2  17  45   M   0.5 0.50000000 0.25000000  4.0    4   20\n494   9   3  14  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n486   9   3   6  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n482   9   3   2  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n483   9   3   3  40   M   1.0 0.66666667 0.66666667  1.5    2   15\n492   9   3  12  50   F   1.0 0.66666667 0.66666667  1.5    2   15\n484   9   3   4  35   F   1.0 0.66666667 0.66666667  1.5    2   15\n489   9   3   9  30   M   1.0 0.66666667 0.66666667  1.5    2   15\n485   9   3   5  45   F   1.0 0.66666667 0.66666667  1.5    2   15\n495   9   3  15  35   M   1.0 0.66666667 0.66666667  1.5    2   15\n493   9   3  13  25   M   1.0 0.66666667 0.66666667  1.5    2   15\n504  10   3   9  50   F   1.0 1.00000000 1.00000000  1.0    2   10\n496  10   3   1  20   M   1.0 1.00000000 1.00000000  1.0    2   10\n502  10   3   7  25   M   1.0 1.00000000 1.00000000  1.0    2   10\n503  10   3   8  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n505  10   3  10  35   F   1.0 1.00000000 1.00000000  1.0    2   10\n500  10   3   5  35   M   1.0 1.00000000 1.00000000  1.0    2   10\n501  10   3   6  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n497  10   3   2  30   M   1.0 1.00000000 1.00000000  1.0    2   10\n498  10   3   3  45   F   1.0 1.00000000 1.00000000  1.0    2   10\n499  10   3   4  30   F   1.0 1.00000000 1.00000000  1.0    2   10",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "Complex Survey"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_survey.html#ウェイトと調査デザインの重要性",
+    "href": "SURVEY/survey_survey.html#ウェイトと調査デザインの重要性",
+    "title": "Complex Survey",
+    "section": "",
+    "text": "最初に，標本の平均を確認しておきます。 かなり無茶な設定1なので，当然ですが標本平均と母集団の平均は乖離します。 この乖離を防ぐには，weighted.mean関数でウェイトを利用する必要があります。\n\nmean(pop$scr) # 母集団の平均\n\n[1] 72.33663\n\nmean(samp$scr) # 標本の平均\n\n[1] 56.5\n\nweighted.mean(samp$scr, samp$wt) # 重みづけた平均\n\n[1] 70.64762\n\n\nウェイトを使うことで，母集団の平均値は推定できます。 問題は標準誤差（Standard Error: SE）です。 SEを算出するには，ウェイトだけでは不十分で， 調査デザインを考慮する必要があります。\n\n\n\nRでは，surveyを使うことで， Complex Surveyの推定を行うことができます。 surveyでは，最初にsvydesign関数で調査デザインを指定した後に， svymeanやsvybyといった関数で推定を行うことができます。\nここでは，いくつかの調査デザインを設定し， それぞれでSEがどのように変化するか検討してみます。\n\n\n単純な無作為抽出の場合，ids = ~1（あるいは，ids = ~0）を指定します。\n\n# 単純な無作為抽出\ndes0 &lt;- survey::svydesign(ids = ~1, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des0)\n\n      mean    SE\nscr 70.648 1.959\n\n\n一応推定は可能ですが，今回の調査デザインは単純な無作為抽出ではありません。 一般に，同じ学校の生徒は似通っていると考えられます。 単純な無作為抽出では，個々の生徒はそれぞれ独立（≒まったく違う特徴を持つ） ことが前提とされていますが，学校を単位とした抽出では その前提が破られています。 そのため単純な無作為抽出を前提とした推定では，SEが過小評価されていると考えられます。\n\n\n\n続いて，学校を無作為に選び，選ばれた学校のすべての生徒を調査した状態 （クラスターサンプリング）を考えます。 これはidsにクラスターとなる変数を設定することで表現できます。\n\n# クラスターサンプリング\ndes1 &lt;- survey::svydesign(ids = ~sch, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des1)\n\n      mean     SE\nscr 70.648 4.6072\n\n\n推定値は同じですが，SEは大きくなっています。\n\n\n\nただ，クラスターサンプリングは今回の抽出法ではありません。 今回は，個々の学校が層（strata）に属しています。 個々の層で学校の平均点・生徒数がかなり異なるので， 個々の学校を無作為に抽出するより， 各層から学校を2校ずつ抽出したほうが，より正確に母集団の実態を反映できる （≒SEが小さくなる）ことが期待できます。 svydesignでは，strataに層となる変数を設定することで， 層化抽出であることを表現できます。\n\n# 層化クラスターサンプリング\ndes2 &lt;- survey::svydesign(ids = ~sch, strata = ~str, data = samp, weights = ~wt)\nsurvey::svymean(~scr, des2)\n\n      mean     SE\nscr 70.648 2.8327\n\n\n理論通り，SEが小さくなっています。\n\n\n\n統計の入門書では，母集団の人数は無限であることが想定されていますが， 一般の社会調査では母集団は有限です （さらに言えば，同じ調査対象は再び調査しません）。 極端な話，母集団が10人しかいなければ， 10人全員に調査をするとSEは0になるのです。 今回の場合，学校は各層に4校，4校，2校ですから，この点を考慮する必要があります。 この点は，fpcに各層の学校数を指定することで表現できます。\n\n# 層化クラスターサンプリング with fpc1\ndes3 &lt;- survey::svydesign(\n  ids = ~sch, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~fpc1\n)\nsurvey::svymean(~scr, des3)\n\n      mean     SE\nscr 70.648 1.9937\n\n\nSEが更に小さくなりました。 ただ，des3は個々の学校から生徒が無作為に10人抽出されていることを考慮していません。 クラスターサンプリングなので，すべての生徒が調査されているという前提になっています。 実際，des3について個々の学校の平均値を算出すると，そのSEはすべて0になります。\n\nsurvey::svyby(~scr, ~sch, des3, survey::svymean)\n\n   sch  scr se\n1    1 72.5  0\n3    3 82.0  0\n6    6 65.0  0\n8    8 48.0  0\n9    9 37.0  0\n10  10 34.5  0\n\n\n\n\n\n個々の学校から生徒を10人ずつ抽出したことを表現するには， idsで学校に加えて生徒を抽出単位に指定する必要があります。 さらにfpcも，層だけでなく，個々の学校の生徒数を指定する必要があります。\n\n# 層化多段抽出\ndes4 &lt;- survey::svydesign(\n  ids = ~ sch + sid, strata = ~str, data = samp,\n  weights = ~wt, fpc = ~ fpc1 + fpc2\n)\nsurvey::svymean(~scr, des4)\n\n      mean    SE\nscr 70.648 2.227\n\nsurvey::svyby(~scr, ~sch, des4, survey::svymean)\n\n   sch  scr        se\n1    1 72.5 1.8969673\n3    3 82.0 1.7911821\n6    6 65.0 1.4433757\n8    8 48.0 0.9279607\n9    9 37.0 1.3052600\n10  10 34.5 0.0000000\n\n\n個々の学校から生徒が無作為に抽出されているので， des3に比べてSEが少し大きくなります。 また，学校ごとに平均値を算出すると，学校の規模に応じてSEが算出されます。 なお10番の学校は生徒数が10なので全員が抽出されていることになり，SEは0になっています。",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "Complex Survey"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_survey.html#事後層化",
+    "href": "SURVEY/survey_survey.html#事後層化",
+    "title": "Complex Survey",
+    "section": "",
+    "text": "実際に抽出してみたら，母集団と標本で男女の割合が違った！ということは よくあります。 今回の標本でも，母集団と男女の比率（と全体の合計）が少しずれています。\n\nsurvey::svytable(~gen, des4)\n\ngen\n  F   M \n239 286 \n\ntable(pop$gen)\n\n\n  F   M \n252 253 \n\n\n女子の方が成績が高いので，こうしたズレは推定に影響を及ぼすかもしれません。 Complex Surveyでは，母集団の情報を使って，事後的にウェイトを調整することができます。 ここでは大げさ2ですが，calibrate関数を使って調整を行います。\n\n# 母集団の既知のgender分布を計算\npop_g &lt;- table(gen = pop$gen)\nintercept &lt;- sum(pop_g)\ngenm &lt;- pop_g[[2]]\n# Calibrationの実施（genderに基づくキャリブレーション）\npopulation &lt;- c(\n  `(Intercept)` = intercept,\n  genM = genm\n)\ndes5 &lt;- calib_des &lt;- survey::calibrate(\n  des4, # サンプリングデザイン\n  formula = ~gen, # キャリブレーションの変数\n  population = population\n)\nsurvey::svytable(~gen, des5)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des5)\n\n     mean    SE\nscr 71.06 1.894\n\n\ndes4はMの割合が多いので，調整したことで推定値が少し高くなりました。また，SEも小さくなっています。\nなお，事後層化であればpostStratify関数で同じことができます。\n\ndes6 &lt;- survey::postStratify(des4, ~gen, pop_g)\nsurvey::svytable(~gen, des6)\n\ngen\n  F   M \n252 253 \n\nsurvey::svymean(~scr, des6)\n\n     mean    SE\nscr 71.06 1.894",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "Complex Survey"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_survey.html#footnotes",
+    "href": "SURVEY/survey_survey.html#footnotes",
+    "title": "Complex Survey",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nそもそも母集団が小さいですし，この方法では 規模の大きい学校の生徒ほど選ばれにくいという問題もあります。 実際，標本では規模の大きい学校で，明らかにwtが大きくなっています。↩︎\ncalibrate関数は事後層化より複雑なキャリブレーションを行うことができるのですが， ここでは練習のために事後層化に使っています。↩︎",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "Complex Survey"
     ]
   },
   {
@@ -368,147 +452,63 @@
     ]
   },
   {
-    "objectID": "IRT/irt_2pl.html",
-    "href": "IRT/irt_2pl.html",
-    "title": "2PLの概要",
+    "objectID": "IRT/irt_mirt.html",
+    "href": "IRT/irt_mirt.html",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう1。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。\nここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。\n\n\n\n学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています2。 2PLにおいて，能力\\(\\theta\\)の受検者が項目\\(j\\)に正答する確率\\(P_j(\\theta)\\)は，以下の式になります。\n\\[P_j(\\theta) = \\frac{1}{1+exp(-Da_j(\\theta - b_j))}\\]\n式中の記号の意味は，次の通り。\n\n能力: \\(\\theta\\)\n項目困難度: \\(b\\)\n項目識別力: \\(a\\)\n尺度因子: \\(D\\)（通常1.7）\n\n能力値\\(\\theta\\)の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。\n\nicc &lt;- function(params, tr = c(-4, 4), np = 100) {\n  # 引数チェック\n  if (!is.list(params) || !all(c(\"a\", \"b\") %in% names(params))) {\n    stop(\"`params` must be a list with named elements `a` and `b`.\")\n  }\n  if (length(params$a) != length(params$b)) {\n    stop(\"`params$a` and `params$b` must have the same length.\")\n  }\n\n  # 正答確率関数\n  p2pl &lt;- function(t, a, b) {\n    1 / (1 + exp(-1.7 * a * (t - b)))\n  }\n\n  # 能力範囲を生成\n  t_vals &lt;- seq(tr[1], tr[2], length.out = np)\n\n  # プロットの初期化\n  plot(NULL,\n    xlim = tr, ylim = c(0, 1), type = \"n\",\n    xlab = \"θ\", ylab = \"正答確率\",\n    main = \"ICC\"\n  )\n  grid()\n\n  # 各項目の特性曲線を描画\n  for (i in seq_along(params$a)) {\n    a &lt;- params$a[i]\n    b &lt;- params$b[i]\n    p_vals &lt;- p2pl(t_vals, a, b)\n    lines(t_vals, p_vals, lwd = 2, col = i) # 番号を色に対応\n    abline(v = b, col = i, lty = 2) # 困難度のライン\n  }\n\n  # 凡例を追加\n  legend(\"bottomright\",\n    legend = paste(\"a =\", params$a, \", b =\", params$b),\n    col = seq_along(params$a), lwd = 2, bg = \"white\"\n  )\n}\n\nparams1 &lt;- list(\n  a = c(0.7, 0.9, 0.5),\n  b = c(-1, 0, 1)\n)\n\nicc(params1)\n\n\n\n\n\n\n\n\nいずれの項目にせよ，受検者の能力\\(\\theta\\)について， \\(\\theta=b\\)になったところで正答確率が0.5（=50%）になっています。 また，\\(a\\)の値が大きいほど，曲線が急激に立ち上がる （\\(\\theta=b\\)の前後で正答確率が大きく上昇する）こともわかります。\n正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，\\(a\\)が0.1と0.8の項目を比べて説明しましょう。\n\nparams2 &lt;- list(\n  a = c(0.1, 0.8),\n  b = c(0, 0)\n)\n\nicc(params2)\n\n\n\n\n\n\n\n\n\\(a\\)の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，\\(a\\)の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。",
+    "text": "mirt: Multidimensional Item Resonse Theory は， 多次元項目反応理論を行うパッケージです。 2PLや3PLといった基本的な項目反応理論はもちろん， 多次元モデルやダミーデータの生成も可能です。\n\n\n\nmirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)\n\n\n\n\n\n# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306 \n\n\n\n\n\nmirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
     "crumbs": [
       "Home",
       "教育測定",
-      "2PLの概要"
+      "mirtの使い方"
     ]
   },
   {
-    "objectID": "IRT/irt_2pl.html#cttとirt",
-    "href": "IRT/irt_2pl.html#cttとirt",
-    "title": "2PLの概要",
+    "objectID": "IRT/irt_mirt.html#ダミーデータの生成",
+    "href": "IRT/irt_mirt.html#ダミーデータの生成",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "IRTの特徴は，古典的テスト理論（Clasical Test Theory: CTT）との対比で説明されることが多いようです。 CTTは，いわゆる100点満点のテストのことだと思えばいいでしょう1。 CTTの課題の一つは，テストの得点が向上したとき， それが「受検者の能力が向上したのか，それともテストの難易度が低下したのか区別することが難しい」 というものです。 ある年度で70点，次の年に80点だったとき， 学力が向上したと言えるのかどうかわからない，という意味です。\nここで登場するのがIRTです。 IRTでは，受検者の能力とテストの設問（以下，項目と呼びます）の難易度を区別します。 単純にいうと，「難しい問題」「簡単な問題」というものを定義できるということです。 仮に個々の項目の難易度を数値化できるなら， 同じ難易度の項目は入れ替え可能ということになります。 こうすれば，まったく異なる項目から構成されたテストであっても， 難易度を揃えることが可能になります。 結果として，異なるテストであっても受検者の能力を比較できるようになります。",
+    "text": "mirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)",
     "crumbs": [
       "Home",
       "教育測定",
-      "2PLの概要"
+      "mirtの使い方"
     ]
   },
   {
-    "objectID": "IRT/irt_2pl.html#パラメータロジスティックモデル",
-    "href": "IRT/irt_2pl.html#パラメータロジスティックモデル",
-    "title": "2PLの概要",
+    "objectID": "IRT/irt_mirt.html#mirtによる2pl",
+    "href": "IRT/irt_mirt.html#mirtによる2pl",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "学力調査にIRTを適用するときに，利用しやすいのが2パラメータ・ロジスティックモデル （2PL）と呼ばれるモデルです。 このモデルは，全国学力・学習状況調査の経年変化・分析調査でも利用されています2。 2PLにおいて，能力\\(\\theta\\)の受検者が項目\\(j\\)に正答する確率\\(P_j(\\theta)\\)は，以下の式になります。\n\\[P_j(\\theta) = \\frac{1}{1+exp(-Da_j(\\theta - b_j))}\\]\n式中の記号の意味は，次の通り。\n\n能力: \\(\\theta\\)\n項目困難度: \\(b\\)\n項目識別力: \\(a\\)\n尺度因子: \\(D\\)（通常1.7）\n\n能力値\\(\\theta\\)の受検者が，ある項目に正答する確率を図示したもの（Item Characteristic Curve: ICC）を 描画するスクリプトは以下のようになります。\n\nicc &lt;- function(params, tr = c(-4, 4), np = 100) {\n  # 引数チェック\n  if (!is.list(params) || !all(c(\"a\", \"b\") %in% names(params))) {\n    stop(\"`params` must be a list with named elements `a` and `b`.\")\n  }\n  if (length(params$a) != length(params$b)) {\n    stop(\"`params$a` and `params$b` must have the same length.\")\n  }\n\n  # 正答確率関数\n  p2pl &lt;- function(t, a, b) {\n    1 / (1 + exp(-1.7 * a * (t - b)))\n  }\n\n  # 能力範囲を生成\n  t_vals &lt;- seq(tr[1], tr[2], length.out = np)\n\n  # プロットの初期化\n  plot(NULL,\n    xlim = tr, ylim = c(0, 1), type = \"n\",\n    xlab = \"θ\", ylab = \"正答確率\",\n    main = \"ICC\"\n  )\n  grid()\n\n  # 各項目の特性曲線を描画\n  for (i in seq_along(params$a)) {\n    a &lt;- params$a[i]\n    b &lt;- params$b[i]\n    p_vals &lt;- p2pl(t_vals, a, b)\n    lines(t_vals, p_vals, lwd = 2, col = i) # 番号を色に対応\n    abline(v = b, col = i, lty = 2) # 困難度のライン\n  }\n\n  # 凡例を追加\n  legend(\"bottomright\",\n    legend = paste(\"a =\", params$a, \", b =\", params$b),\n    col = seq_along(params$a), lwd = 2, bg = \"white\"\n  )\n}\n\nparams1 &lt;- list(\n  a = c(0.7, 0.9, 0.5),\n  b = c(-1, 0, 1)\n)\n\nicc(params1)\n\n\n\n\n\n\n\n\nいずれの項目にせよ，受検者の能力\\(\\theta\\)について， \\(\\theta=b\\)になったところで正答確率が0.5（=50%）になっています。 また，\\(a\\)の値が大きいほど，曲線が急激に立ち上がる （\\(\\theta=b\\)の前後で正答確率が大きく上昇する）こともわかります。\n正答確率が大きく上昇するということは，受検者の能力をよく区別できるということです。 この意味を，\\(a\\)が0.1と0.8の項目を比べて説明しましょう。\n\nparams2 &lt;- list(\n  a = c(0.1, 0.8),\n  b = c(0, 0)\n)\n\nicc(params2)\n\n\n\n\n\n\n\n\n\\(a\\)の値が0.8と高い設問は，受検者の能力が低い（-2くらい）のあいだは正答しませんが， 能力が2くらいになると9割程度の確率で正答します。 他方，\\(a\\)の値が0.1と低い項目は，受検者の能力が変化しても正答確率があまり変わりません。 後者の設問は，受検者の能力を測るには適していないということです。",
+    "text": "# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306",
     "crumbs": [
       "Home",
       "教育測定",
-      "2PLの概要"
+      "mirtの使い方"
     ]
   },
   {
-    "objectID": "IRT/irt_2pl.html#footnotes",
-    "href": "IRT/irt_2pl.html#footnotes",
-    "title": "2PLの概要",
+    "objectID": "IRT/irt_mirt.html#受検者の能力推定",
+    "href": "IRT/irt_mirt.html#受検者の能力推定",
+    "title": "mirtの使い方",
+    "section": "",
+    "text": "mirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_mirt.html#footnotes",
+    "href": "IRT/irt_mirt.html#footnotes",
+    "title": "mirtの使い方",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nこの説明，厳密には間違っています。「100点満点のテスト」というとき， おそらく私たちは「受検者の能力を測る」ことを意識していません。 他方で，IRTにせよCTTにせよ，教育測定の前提には「能力を測る」という問題意識があります。↩︎\n経年変化調査については， 国立教育政策研究所のウェブサイト を参照してください。↩︎",
+    "text": "Footnotes\n\n\n奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．↩︎\nIRT parameterization↩︎",
     "crumbs": [
       "Home",
       "教育測定",
-      "2PLの概要"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_weight.html",
-    "href": "SURVEY/survey_weight.html",
-    "title": "SPSSの「ケースの重み付け」",
-    "section": "",
-    "text": "一部の界隈では有名だと思うのですが， SPSSのケースの重み付けでは標本ウェイトを扱うことはできません。\n\n\n使用するデータセットは以下のRコードで作成します1。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。\n\nans: 回答データ（1～4の値）\ngender: 性別（1: 男性, 2: 女性）\nw: 標本ウェイト\n\n\nd &lt;- data.frame(\n  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),\n  gender = c(rep(1, 7), rep(2, 3)),\n  w = c(rep(5 / 7, 7), rep(5 / 3, 3))\n)\n\n\n\n\n以下のコードで，surveyパッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。\n\n# 調査設計オブジェクトの作成\ndes &lt;- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)\n## ウェイトの代わりに抽出確率を計算しても可\n# d$prob &lt;- 1 / d$w\n# des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)\n\nウェイトを考慮して平均を計算し、性別ごとの結果を比較します。\n\n# 全体の平均\nsurvey::svymean(~ans, des)\n\n      mean     SE\nans 2.3571 0.3571\n\n# 性別ごとの平均\nsurvey::svyby(~ans, by = ~gender, des, survey::svymean)\n\n  gender      ans        se\n1      1 2.714286 0.4205600\n2      2 2.000000 0.5773503\n\n\n\n\n\nSPSSの場合，標準誤差はおそらく次のように算出されています。\n\n# 標準誤差\nweighted.mean2 &lt;- function(x, w, na.rm = FALSE) {\n  if (na.rm) {\n    w &lt;- w[!is.na(x)]\n    x &lt;- x[!is.na(x)]\n  }\n  wm &lt;- weighted.mean(x, w)\n  wv &lt;- sum(w * (x - wm)^2) / (sum(w) - 1)\n  wse &lt;- sqrt(wv / sum(w))\n  c(mean = wm, se = wse)\n}\n\n\n# 重み付き平均\nweighted.mean2(d$ans, d$w)\n\n     mean        se \n2.3571429 0.3319131 \n\n# データを性別で分割\ndata_by_gender &lt;- split(d, d$gender)\n\n# 男女別の平均と分散を計算\nsapply(data_by_gender, function(subset_data) {\n  weighted.mean2(subset_data$ans, subset_data$w)\n})\n\n             1         2\nmean 2.7142857 2.0000000\nse   0.5150788 0.4082483",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "SPSSの「ケースの重み付け」"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_weight.html#データセットの作成",
-    "href": "SURVEY/survey_weight.html#データセットの作成",
-    "title": "SPSSの「ケースの重み付け」",
-    "section": "",
-    "text": "使用するデータセットは以下のRコードで作成します1。 この事例では，母集団における男女比は5:5。 事情が合って，標本における男女比が7:3になったとのことです。\n\nans: 回答データ（1～4の値）\ngender: 性別（1: 男性, 2: 女性）\nw: 標本ウェイト\n\n\nd &lt;- data.frame(\n  ans = c(1, 2, 2, 3, 3, 4, 4, 1, 2, 3),\n  gender = c(rep(1, 7), rep(2, 3)),\n  w = c(rep(5 / 7, 7), rep(5 / 3, 3))\n)",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "SPSSの「ケースの重み付け」"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_weight.html#標本ウェイトを使用した分析",
-    "href": "SURVEY/survey_weight.html#標本ウェイトを使用した分析",
-    "title": "SPSSの「ケースの重み付け」",
-    "section": "",
-    "text": "以下のコードで，surveyパッケージを使用して調査設計を定義します。 この事例では，男女別に標本抽出が行われていますので， 男女が層（strata）になります。\n\n# 調査設計オブジェクトの作成\ndes &lt;- survey::svydesign(ids = ~1, strata = ~gender, weights = ~w, data = d)\n## ウェイトの代わりに抽出確率を計算しても可\n# d$prob &lt;- 1 / d$w\n# des &lt;- survey::svydesign(ids = ~1, strata = ~gender, prob = ~prob, data = d)\n\nウェイトを考慮して平均を計算し、性別ごとの結果を比較します。\n\n# 全体の平均\nsurvey::svymean(~ans, des)\n\n      mean     SE\nans 2.3571 0.3571\n\n# 性別ごとの平均\nsurvey::svyby(~ans, by = ~gender, des, survey::svymean)\n\n  gender      ans        se\n1      1 2.714286 0.4205600\n2      2 2.000000 0.5773503",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "SPSSの「ケースの重み付け」"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_weight.html#spssのケースの重み付け-1",
-    "href": "SURVEY/survey_weight.html#spssのケースの重み付け-1",
-    "title": "SPSSの「ケースの重み付け」",
-    "section": "",
-    "text": "SPSSの場合，標準誤差はおそらく次のように算出されています。\n\n# 標準誤差\nweighted.mean2 &lt;- function(x, w, na.rm = FALSE) {\n  if (na.rm) {\n    w &lt;- w[!is.na(x)]\n    x &lt;- x[!is.na(x)]\n  }\n  wm &lt;- weighted.mean(x, w)\n  wv &lt;- sum(w * (x - wm)^2) / (sum(w) - 1)\n  wse &lt;- sqrt(wv / sum(w))\n  c(mean = wm, se = wse)\n}\n\n\n# 重み付き平均\nweighted.mean2(d$ans, d$w)\n\n     mean        se \n2.3571429 0.3319131 \n\n# データを性別で分割\ndata_by_gender &lt;- split(d, d$gender)\n\n# 男女別の平均と分散を計算\nsapply(data_by_gender, function(subset_data) {\n  weighted.mean2(subset_data$ans, subset_data$w)\n})\n\n             1         2\nmean 2.7142857 2.0000000\nse   0.5150788 0.4082483",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "SPSSの「ケースの重み付け」"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_weight.html#footnotes",
-    "href": "SURVEY/survey_weight.html#footnotes",
-    "title": "SPSSの「ケースの重み付け」",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\n元ネタは読書日記（2013年5月19日） です。↩︎",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "SPSSの「ケースの重み付け」"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_benzecris.html",
-    "href": "SURVEY/survey_benzecris.html",
-    "title": "ベンゼクリの修正割合",
-    "section": "",
-    "text": "ベンゼクリの修正割合を計算できるmodif.rate関数 （GDAtools）が FactoMineR のMCA関数に使えなかったのでMCA用に修正してみました。\n\n\n\nmodif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}\n\n\n\n\n\ndata(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "ベンゼクリの修正割合"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_benzecris.html#factominerで使える関数",
-    "href": "SURVEY/survey_benzecris.html#factominerで使える関数",
-    "title": "ベンゼクリの修正割合",
-    "section": "",
-    "text": "modif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "ベンゼクリの修正割合"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_benzecris.html#使用例",
-    "href": "SURVEY/survey_benzecris.html#使用例",
-    "title": "ベンゼクリの修正割合",
-    "section": "",
-    "text": "data(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "ベンゼクリの修正割合"
+      "mirtの使い方"
     ]
   }
 ]
