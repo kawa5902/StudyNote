@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.7.6">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,10 +70,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d0a7e7a53d514fa3e52e1127d02845da.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7bf63939671cb87592176322adf40960.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -308,12 +308,12 @@ gtag('config', 'G-BDJN77QH1T', { 'anonymize_ip': true});
 <section id="図を作成すると文字化けする" class="level2">
 <h2 class="anchored" data-anchor-id="図を作成すると文字化けする">図を作成すると文字化けする</h2>
 <p>このままだと，図に日本語を利用できません。 少し調べてみたところ， 「<a href="https://qiita.com/siraasagi/items/d72f60c25b30269d89e4">Google Colabでまたまた日本語表示が豆腐不可避な方に</a>」 の方法が有効なようでした。</p>
-<p>下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています。</p>
+<p>下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 日本語フォントを導入</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"apt-get -y install fonts-ipafont-gothic"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># キャッシュを削除（2024年12月時点）</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"rm /root/.cache/matplotlib/fontlist-*.json"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## キャッシュを削除（2024年12月時点。2025年2月時点では不要）</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#system("rm /root/.cache/matplotlib/fontlist-*.json")</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 日本語が表示可能</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">sin</span>(x), <span class="sc">-</span>pi, pi, <span class="at">main =</span> <span class="st">"サインカーブ"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -322,7 +322,13 @@ gtag('config', 'G-BDJN77QH1T', { 'anonymize_ip': true});
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>2025年2月時点で試してみたところ，キャッシュ削除は不要になっているようです。 記録としてコメントアウトしています。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

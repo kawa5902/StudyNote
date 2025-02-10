@@ -1,5 +1,38 @@
 [
   {
+    "objectID": "ICT/ict_index.html",
+    "href": "ICT/ict_index.html",
+    "title": "情報機器に関するメモ",
+    "section": "",
+    "text": "Windows, Linux等に関するメモ\n\n\n\nR on Google Colabで日本語を使う\n\n\n\n\n\nMicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法",
+    "crumbs": [
+      "Home",
+      "情報機器"
+    ]
+  },
+  {
+    "objectID": "ICT/ict_index.html#記事",
+    "href": "ICT/ict_index.html#記事",
+    "title": "情報機器に関するメモ",
+    "section": "",
+    "text": "R on Google Colabで日本語を使う",
+    "crumbs": [
+      "Home",
+      "情報機器"
+    ]
+  },
+  {
+    "objectID": "ICT/ict_index.html#memo",
+    "href": "ICT/ict_index.html#memo",
+    "title": "情報機器に関するメモ",
+    "section": "",
+    "text": "MicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法",
+    "crumbs": [
+      "Home",
+      "情報機器"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "StudyNotes",
@@ -27,6 +60,134 @@
     "text": "扱っているトピック\n\n教育測定: 教育測定に関するメモ（IRT，TAM，mirt）\n社会調査: 社会調査に関するメモ（survey，FactoMineR）\n情報機器: 情報機器に関するメモ（Windows，Linux）",
     "crumbs": [
       "Home"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_index.html",
+    "href": "SURVEY/survey_index.html",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "社会調査関係のメモ\n\n\n\nComplex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合\n\n\n\n\n見つけたら追記していくつもり・・・。\n\nintsvy: たぶん老舗\nEdSurvey: アメリカのNCES制作。NAEPがメインか？WeMixでマルチレベルに対応\nBIFIEsurvey: オーストリアのBIFIE制作。これもマルチレベル対応\nRrepest: OECD作\n\n\n\n\n\nThe survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_index.html#記事",
+    "href": "SURVEY/survey_index.html#記事",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "Complex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_index.html#大規模学力調査を分析できるrパッケージ一覧",
+    "href": "SURVEY/survey_index.html#大規模学力調査を分析できるrパッケージ一覧",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "見つけたら追記していくつもり・・・。\n\nintsvy: たぶん老舗\nEdSurvey: アメリカのNCES制作。NAEPがメインか？WeMixでマルチレベルに対応\nBIFIEsurvey: オーストリアのBIFIE制作。これもマルチレベル対応\nRrepest: OECD作",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_index.html#memo",
+    "href": "SURVEY/survey_index.html#memo",
+    "title": "社会調査に関するメモ",
+    "section": "",
+    "text": "The survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "crumbs": [
+      "Home",
+      "社会調査"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_benzecris.html",
+    "href": "SURVEY/survey_benzecris.html",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "ベンゼクリの修正割合を計算できるmodif.rate関数 （GDAtools）が FactoMineR のMCA関数に使えなかったのでMCA用に修正してみました。\n\n\n\nmodif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}\n\n\n\n\n\ndata(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_benzecris.html#factominerで使える関数",
+    "href": "SURVEY/survey_benzecris.html#factominerで使える関数",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "modif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "SURVEY/survey_benzecris.html#使用例",
+    "href": "SURVEY/survey_benzecris.html#使用例",
+    "title": "ベンゼクリの修正割合",
+    "section": "",
+    "text": "data(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
+    "crumbs": [
+      "Home",
+      "社会調査",
+      "ベンゼクリの修正割合"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_tam.html",
+    "href": "IRT/irt_tam.html",
+    "title": "TAMの使い方",
+    "section": "",
+    "text": "TAM（Test Analysis Modules） は，大規模学力調査で利用される項目反応理論（IRT）の各種分析技法を実行できるパッケージです。\n\n\n最初に，mirtを使ってダミーデータを生成します。 設定についてはmirtを参照してください。\n\n\nCode\nset.seed(123)\nsize &lt;- 3000\nitem_n &lt;- 20\n\nb_para &lt;- seq(-3, 3, length.out = item_n)\na_para &lt;- rep(0.9, item_n)\n\ntheta &lt;- rnorm(size, 0, 1)\n\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7,\n  d = b_para * -1.7 * a_para,\n  Theta = theta,\n  itemtype = \"2PL\"\n)\n\n\nTAMでは，tam.mml.2pl関数で2PLを推定します。\n\n# 2PLモデルの推定\n# progress = FALSEで出力を抑制\nmod &lt;- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))\n\nTAMで識別力・困難度を出力するのは少し面倒です1。\n\n# 識別力の確認\nmod$B[, 2, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8130275 0.7288229 0.9361247 0.8524752 0.9724010 0.8757284 0.8753386 0.9197561 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9263706 0.9572551 0.9273018 0.9023423 0.8733341 0.8902100 0.9011621 0.8586929 \n  Item_17   Item_18   Item_19   Item_20 \n0.9797010 0.7904457 0.8540210 0.8205279 \n\n# 困難度の確認\nmod$xsi[, 1] / mod$B[, 2, 1]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2573789 -3.1601025 -2.2997212 -2.1571105 -1.6189005 -1.4515025 -1.1525825 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7331885 -0.4406474 -0.1206649  0.1854097  0.4649443  0.8459277  1.1017130 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3793933  1.8235713  1.9504486  2.5446387  2.9344478  3.1024069 \n\n\n\n\n\nTAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。\n\nmle &lt;- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta\nwle &lt;- TAM::tam.wle(mod, progress = FALSE)$theta\neap &lt;- mod$person$EAP\n\n真の能力値（theta）と推定された能力の関係を描画してみます。 ::: {.cell}\nplot(theta, mle) # thetaとMLE\n\n\n\n\n\n\n\n:::",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_tam.html#tamによる2pl",
+    "href": "IRT/irt_tam.html#tamによる2pl",
+    "title": "TAMの使い方",
+    "section": "",
+    "text": "最初に，mirtを使ってダミーデータを生成します。 設定についてはmirtを参照してください。\n\n\nCode\nset.seed(123)\nsize &lt;- 3000\nitem_n &lt;- 20\n\nb_para &lt;- seq(-3, 3, length.out = item_n)\na_para &lt;- rep(0.9, item_n)\n\ntheta &lt;- rnorm(size, 0, 1)\n\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7,\n  d = b_para * -1.7 * a_para,\n  Theta = theta,\n  itemtype = \"2PL\"\n)\n\n\nTAMでは，tam.mml.2pl関数で2PLを推定します。\n\n# 2PLモデルの推定\n# progress = FALSEで出力を抑制\nmod &lt;- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))\n\nTAMで識別力・困難度を出力するのは少し面倒です1。\n\n# 識別力の確認\nmod$B[, 2, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8130275 0.7288229 0.9361247 0.8524752 0.9724010 0.8757284 0.8753386 0.9197561 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9263706 0.9572551 0.9273018 0.9023423 0.8733341 0.8902100 0.9011621 0.8586929 \n  Item_17   Item_18   Item_19   Item_20 \n0.9797010 0.7904457 0.8540210 0.8205279 \n\n# 困難度の確認\nmod$xsi[, 1] / mod$B[, 2, 1]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2573789 -3.1601025 -2.2997212 -2.1571105 -1.6189005 -1.4515025 -1.1525825 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7331885 -0.4406474 -0.1206649  0.1854097  0.4649443  0.8459277  1.1017130 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3793933  1.8235713  1.9504486  2.5446387  2.9344478  3.1024069",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_tam.html#受検者の能力推定",
+    "href": "IRT/irt_tam.html#受検者の能力推定",
+    "title": "TAMの使い方",
+    "section": "",
+    "text": "TAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。\n\nmle &lt;- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta\nwle &lt;- TAM::tam.wle(mod, progress = FALSE)$theta\neap &lt;- mod$person$EAP\n\n真の能力値（theta）と推定された能力の関係を描画してみます。 ::: {.cell}\nplot(theta, mle) # thetaとMLE\n\n\n\n\n\n\n\n:::",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_tam.html#footnotes",
+    "href": "IRT/irt_tam.html#footnotes",
+    "title": "TAMの使い方",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nIRT parameterization↩︎",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "TAMの使い方"
     ]
   },
   {
@@ -102,47 +263,96 @@
     ]
   },
   {
-    "objectID": "SURVEY/survey_index.html",
-    "href": "SURVEY/survey_index.html",
-    "title": "社会調査に関するメモ",
+    "objectID": "IRT/irt_mirt.html",
+    "href": "IRT/irt_mirt.html",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "社会調査関係のメモ\n\n\n\nComplex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合\n\n\n\n\n見つけたら追記していくつもり・・・。\n\nintsvy: たぶん老舗\nEdSurvey: アメリカのNCES制作。NAEPがメインか？WeMixでマルチレベルに対応\nBIFIEsurvey: オーストリアのBIFIE制作。これもマルチレベル対応\nRrepest: OECD作\n\n\n\n\n\nThe survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "text": "mirt: Multidimensional Item Resonse Theory は， 多次元項目反応理論を行うパッケージです。 2PLや3PLといった基本的な項目反応理論はもちろん， 多次元モデルやダミーデータの生成も可能です。\n\n\n\nmirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)\n\n\n\n\n\n# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306 \n\n\n\n\n\nmirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
     "crumbs": [
       "Home",
-      "社会調査"
+      "教育測定",
+      "mirtの使い方"
     ]
   },
   {
-    "objectID": "SURVEY/survey_index.html#記事",
-    "href": "SURVEY/survey_index.html#記事",
-    "title": "社会調査に関するメモ",
+    "objectID": "IRT/irt_mirt.html#ダミーデータの生成",
+    "href": "IRT/irt_mirt.html#ダミーデータの生成",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "Complex Survey\nSPSSの「ケースの重み付け」\nベンゼクリの修正割合",
+    "text": "mirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)",
     "crumbs": [
       "Home",
-      "社会調査"
+      "教育測定",
+      "mirtの使い方"
     ]
   },
   {
-    "objectID": "SURVEY/survey_index.html#大規模学力調査を分析できるrパッケージ一覧",
-    "href": "SURVEY/survey_index.html#大規模学力調査を分析できるrパッケージ一覧",
-    "title": "社会調査に関するメモ",
+    "objectID": "IRT/irt_mirt.html#mirtによる2pl",
+    "href": "IRT/irt_mirt.html#mirtによる2pl",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "見つけたら追記していくつもり・・・。\n\nintsvy: たぶん老舗\nEdSurvey: アメリカのNCES制作。NAEPがメインか？WeMixでマルチレベルに対応\nBIFIEsurvey: オーストリアのBIFIE制作。これもマルチレベル対応\nRrepest: OECD作",
+    "text": "# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306",
     "crumbs": [
       "Home",
-      "社会調査"
+      "教育測定",
+      "mirtの使い方"
     ]
   },
   {
-    "objectID": "SURVEY/survey_index.html#memo",
-    "href": "SURVEY/survey_index.html#memo",
-    "title": "社会調査に関するメモ",
+    "objectID": "IRT/irt_mirt.html#受検者の能力推定",
+    "href": "IRT/irt_mirt.html#受検者の能力推定",
+    "title": "mirtの使い方",
     "section": "",
-    "text": "The survey Package for R, 15 Years on\nSurvey Data Analsysis with R\nExploring Complex Survey Data Analysis Using R\nPEAS",
+    "text": "mirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
     "crumbs": [
       "Home",
-      "社会調査"
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_mirt.html#footnotes",
+    "href": "IRT/irt_mirt.html#footnotes",
+    "title": "mirtの使い方",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．↩︎\nIRT parameterization↩︎",
+    "crumbs": [
+      "Home",
+      "教育測定",
+      "mirtの使い方"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_index.html",
+    "href": "IRT/irt_index.html",
+    "title": "教育測定に関するメモ",
+    "section": "",
+    "text": "教育測定関係のメモをまとめています。\n\n\n\nIRTの概要\nmirtの使い方\nTAMの使い方\n測定の誤差\n\n\n\n\n\nRによる項目反応理論",
+    "crumbs": [
+      "Home",
+      "教育測定"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_index.html#記事",
+    "href": "IRT/irt_index.html#記事",
+    "title": "教育測定に関するメモ",
+    "section": "",
+    "text": "IRTの概要\nmirtの使い方\nTAMの使い方\n測定の誤差",
+    "crumbs": [
+      "Home",
+      "教育測定"
+    ]
+  },
+  {
+    "objectID": "IRT/irt_index.html#books",
+    "href": "IRT/irt_index.html#books",
+    "title": "教育測定に関するメモ",
+    "section": "",
+    "text": "Rによる項目反応理論",
+    "crumbs": [
+      "Home",
+      "教育測定"
     ]
   },
   {
@@ -206,111 +416,6 @@
     ]
   },
   {
-    "objectID": "ICT/ict_index.html",
-    "href": "ICT/ict_index.html",
-    "title": "情報機器に関するメモ",
-    "section": "",
-    "text": "Windows, Linux等に関するメモ\n\n\n\nR on Google Colabで日本語を使う\n\n\n\n\n\nMicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法",
-    "crumbs": [
-      "Home",
-      "情報機器"
-    ]
-  },
-  {
-    "objectID": "ICT/ict_index.html#記事",
-    "href": "ICT/ict_index.html#記事",
-    "title": "情報機器に関するメモ",
-    "section": "",
-    "text": "R on Google Colabで日本語を使う",
-    "crumbs": [
-      "Home",
-      "情報機器"
-    ]
-  },
-  {
-    "objectID": "ICT/ict_index.html#memo",
-    "href": "ICT/ict_index.html#memo",
-    "title": "情報機器に関するメモ",
-    "section": "",
-    "text": "MicrosoftアカウントでログインせずにWindows 11をローカルアカウントで使う方法",
-    "crumbs": [
-      "Home",
-      "情報機器"
-    ]
-  },
-  {
-    "objectID": "ICT/ict_colab_jp.html",
-    "href": "ICT/ict_colab_jp.html",
-    "title": "R on Google Colab",
-    "section": "",
-    "text": "colabで簡単にRを動かせたので， 授業ではcolabを試してみようと思っています。\n\n\n最初に「ランタイム」から「ランタイムの変更」を選択します。 \n続いて，「ランタイムのタイプ」をpython 3からRに変更するだけでok。 \n\n\n\nこのままだと，図に日本語を利用できません。 少し調べてみたところ， 「Google Colabでまたまた日本語表示が豆腐不可避な方に」 の方法が有効なようでした。\n下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています。\n\n# 日本語フォントを導入\nsystem(\"apt-get -y install fonts-ipafont-gothic\")\n# キャッシュを削除（2024年12月時点）\nsystem(\"rm /root/.cache/matplotlib/fontlist-*.json\")\n# 日本語が表示可能\ncurve(sin(x), -pi, pi, main = \"サインカーブ\")",
-    "crumbs": [
-      "Home",
-      "情報機器",
-      "R on Google Colab"
-    ]
-  },
-  {
-    "objectID": "ICT/ict_colab_jp.html#colabでrを動かす方法",
-    "href": "ICT/ict_colab_jp.html#colabでrを動かす方法",
-    "title": "R on Google Colab",
-    "section": "",
-    "text": "最初に「ランタイム」から「ランタイムの変更」を選択します。 \n続いて，「ランタイムのタイプ」をpython 3からRに変更するだけでok。",
-    "crumbs": [
-      "Home",
-      "情報機器",
-      "R on Google Colab"
-    ]
-  },
-  {
-    "objectID": "ICT/ict_colab_jp.html#図を作成すると文字化けする",
-    "href": "ICT/ict_colab_jp.html#図を作成すると文字化けする",
-    "title": "R on Google Colab",
-    "section": "",
-    "text": "このままだと，図に日本語を利用できません。 少し調べてみたところ， 「Google Colabでまたまた日本語表示が豆腐不可避な方に」 の方法が有効なようでした。\n下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています。\n\n# 日本語フォントを導入\nsystem(\"apt-get -y install fonts-ipafont-gothic\")\n# キャッシュを削除（2024年12月時点）\nsystem(\"rm /root/.cache/matplotlib/fontlist-*.json\")\n# 日本語が表示可能\ncurve(sin(x), -pi, pi, main = \"サインカーブ\")",
-    "crumbs": [
-      "Home",
-      "情報機器",
-      "R on Google Colab"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_benzecris.html",
-    "href": "SURVEY/survey_benzecris.html",
-    "title": "ベンゼクリの修正割合",
-    "section": "",
-    "text": "ベンゼクリの修正割合を計算できるmodif.rate関数 （GDAtools）が FactoMineR のMCA関数に使えなかったのでMCA用に修正してみました。\n\n\n\nmodif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}\n\n\n\n\n\ndata(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "ベンゼクリの修正割合"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_benzecris.html#factominerで使える関数",
-    "href": "SURVEY/survey_benzecris.html#factominerで使える関数",
-    "title": "ベンゼクリの修正割合",
-    "section": "",
-    "text": "modif_rate &lt;- function(mca) {\n  # 引数チェック\n  if (!\"MCA\" %in% class(mca)) {\n    stop(\"Input must be an MCA result, such as from FactoMineR::MCA().\")\n  }\n\n  # 質的変数の数を取得\n  Q &lt;- length(mca$call$quali)\n  if (Q &lt; 2) {\n    stop(\"Analysis must include at least two qualitative variables.\")\n  }\n\n  # 閾値の計算\n  seuil &lt;- 1 / Q\n\n  # 固有値のフィルタリング\n  eigenvalues &lt;- mca$eig[, 1]\n  valid_eigenvalues &lt;- eigenvalues[eigenvalues &gt;= seuil]\n\n  # 修正寄与率の計算\n  pseudo &lt;- (Q / (Q - 1) * (valid_eigenvalues - seuil))^2\n\n  # 寄与率の正規化\n  m_rate &lt;- pseudo / sum(pseudo)\n\n  # 累積修正寄与率\n  cum_m_rate &lt;- cumsum(m_rate)\n\n  # データフレームを返す\n  return(data.frame(Dimension = seq_along(m_rate), m_rate, cum_m_rate))\n}",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "ベンゼクリの修正割合"
-    ]
-  },
-  {
-    "objectID": "SURVEY/survey_benzecris.html#使用例",
-    "href": "SURVEY/survey_benzecris.html#使用例",
-    "title": "ベンゼクリの修正割合",
-    "section": "",
-    "text": "data(tea, package = \"FactoMineR\")\nmca &lt;- FactoMineR::MCA(tea, quanti.sup = 19, quali.sup = 20:36, graph = FALSE)\n\nmodif_rate(mca)\n\n       Dimension       m_rate cum_m_rate\ndim 1          1 0.5538062748  0.5538063\ndim 2          2 0.2805390900  0.8343454\ndim 3          3 0.0764716710  0.9108170\ndim 4          4 0.0326093633  0.9434264\ndim 5          5 0.0213224567  0.9647489\ndim 6          6 0.0161325415  0.9808814\ndim 7          7 0.0097041810  0.9905856\ndim 8          8 0.0061503425  0.9967359\ndim 9          9 0.0025455746  0.9992815\ndim 10        10 0.0005692444  0.9998507\ndim 11        11 0.0001492601  1.0000000",
-    "crumbs": [
-      "Home",
-      "社会調査",
-      "ベンゼクリの修正割合"
-    ]
-  },
-  {
     "objectID": "SURVEY/survey_survey.html",
     "href": "SURVEY/survey_survey.html",
     "title": "Complex Survey",
@@ -371,144 +476,51 @@
     ]
   },
   {
-    "objectID": "IRT/irt_tam.html",
-    "href": "IRT/irt_tam.html",
-    "title": "TAMの使い方",
+    "objectID": "ICT/ict_colab_jp.html",
+    "href": "ICT/ict_colab_jp.html",
+    "title": "R on Google Colab",
     "section": "",
-    "text": "TAM（Test Analysis Modules） は，大規模学力調査で利用される項目反応理論（IRT）の各種分析技法を実行できるパッケージです。\n\n\n最初に，mirtを使ってダミーデータを生成します。 設定についてはmirtを参照してください。\n\n\nCode\nset.seed(123)\nsize &lt;- 3000\nitem_n &lt;- 20\n\nb_para &lt;- seq(-3, 3, length.out = item_n)\na_para &lt;- rep(0.9, item_n)\n\ntheta &lt;- rnorm(size, 0, 1)\n\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7,\n  d = b_para * -1.7 * a_para,\n  Theta = theta,\n  itemtype = \"2PL\"\n)\n\n\nTAMでは，tam.mml.2pl関数で2PLを推定します。\n\n# 2PLモデルの推定\n# progress = FALSEで出力を抑制\nmod &lt;- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))\n\nTAMで識別力・困難度を出力するのは少し面倒です1。\n\n# 識別力の確認\nmod$B[, 2, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8130275 0.7288229 0.9361247 0.8524752 0.9724010 0.8757284 0.8753386 0.9197561 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9263706 0.9572551 0.9273018 0.9023423 0.8733341 0.8902100 0.9011621 0.8586929 \n  Item_17   Item_18   Item_19   Item_20 \n0.9797010 0.7904457 0.8540210 0.8205279 \n\n# 困難度の確認\nmod$xsi[, 1] / mod$B[, 2, 1]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2573789 -3.1601025 -2.2997212 -2.1571105 -1.6189005 -1.4515025 -1.1525825 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7331885 -0.4406474 -0.1206649  0.1854097  0.4649443  0.8459277  1.1017130 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3793933  1.8235713  1.9504486  2.5446387  2.9344478  3.1024069 \n\n\n\n\n\nTAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。\n\nmle &lt;- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta\nwle &lt;- TAM::tam.wle(mod, progress = FALSE)$theta\neap &lt;- mod$person$EAP\n\n真の能力値（theta）と推定された能力の関係を描画してみます。\n\nplot(theta, mle) # thetaとMLE",
+    "text": "colabで簡単にRを動かせたので， 授業ではcolabを試してみようと思っています。\n\n\n最初に「ランタイム」から「ランタイムの変更」を選択します。 \n続いて，「ランタイムのタイプ」をpython 3からRに変更するだけでok。 \n\n\n\nこのままだと，図に日本語を利用できません。 少し調べてみたところ， 「Google Colabでまたまた日本語表示が豆腐不可避な方に」 の方法が有効なようでした。\n下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています1。\n\n# 日本語フォントを導入\nsystem(\"apt-get -y install fonts-ipafont-gothic\")\n## キャッシュを削除（2024年12月時点。2025年2月時点では不要）\n#system(\"rm /root/.cache/matplotlib/fontlist-*.json\")\n# 日本語が表示可能\ncurve(sin(x), -pi, pi, main = \"サインカーブ\")",
     "crumbs": [
       "Home",
-      "教育測定",
-      "TAMの使い方"
+      "情報機器",
+      "R on Google Colab"
     ]
   },
   {
-    "objectID": "IRT/irt_tam.html#tamによる2pl",
-    "href": "IRT/irt_tam.html#tamによる2pl",
-    "title": "TAMの使い方",
+    "objectID": "ICT/ict_colab_jp.html#colabでrを動かす方法",
+    "href": "ICT/ict_colab_jp.html#colabでrを動かす方法",
+    "title": "R on Google Colab",
     "section": "",
-    "text": "最初に，mirtを使ってダミーデータを生成します。 設定についてはmirtを参照してください。\n\n\nCode\nset.seed(123)\nsize &lt;- 3000\nitem_n &lt;- 20\n\nb_para &lt;- seq(-3, 3, length.out = item_n)\na_para &lt;- rep(0.9, item_n)\n\ntheta &lt;- rnorm(size, 0, 1)\n\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7,\n  d = b_para * -1.7 * a_para,\n  Theta = theta,\n  itemtype = \"2PL\"\n)\n\n\nTAMでは，tam.mml.2pl関数で2PLを推定します。\n\n# 2PLモデルの推定\n# progress = FALSEで出力を抑制\nmod &lt;- TAM::tam.mml.2pl(resp, control = list(progress = FALSE))\n\nTAMで識別力・困難度を出力するのは少し面倒です1。\n\n# 識別力の確認\nmod$B[, 2, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8130275 0.7288229 0.9361247 0.8524752 0.9724010 0.8757284 0.8753386 0.9197561 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9263706 0.9572551 0.9273018 0.9023423 0.8733341 0.8902100 0.9011621 0.8586929 \n  Item_17   Item_18   Item_19   Item_20 \n0.9797010 0.7904457 0.8540210 0.8205279 \n\n# 困難度の確認\nmod$xsi[, 1] / mod$B[, 2, 1]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2573789 -3.1601025 -2.2997212 -2.1571105 -1.6189005 -1.4515025 -1.1525825 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7331885 -0.4406474 -0.1206649  0.1854097  0.4649443  0.8459277  1.1017130 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3793933  1.8235713  1.9504486  2.5446387  2.9344478  3.1024069",
+    "text": "最初に「ランタイム」から「ランタイムの変更」を選択します。 \n続いて，「ランタイムのタイプ」をpython 3からRに変更するだけでok。",
     "crumbs": [
       "Home",
-      "教育測定",
-      "TAMの使い方"
+      "情報機器",
+      "R on Google Colab"
     ]
   },
   {
-    "objectID": "IRT/irt_tam.html#受検者の能力推定",
-    "href": "IRT/irt_tam.html#受検者の能力推定",
-    "title": "TAMの使い方",
+    "objectID": "ICT/ict_colab_jp.html#図を作成すると文字化けする",
+    "href": "ICT/ict_colab_jp.html#図を作成すると文字化けする",
+    "title": "R on Google Colab",
     "section": "",
-    "text": "TAMでは，MLE，WLE，EAPなどの能力推定法が利用できます。\n\nmle &lt;- TAM::tam.wle(mod, WLE = FALSE, progress = FALSE)$theta\nwle &lt;- TAM::tam.wle(mod, progress = FALSE)$theta\neap &lt;- mod$person$EAP\n\n真の能力値（theta）と推定された能力の関係を描画してみます。\n\nplot(theta, mle) # thetaとMLE",
+    "text": "このままだと，図に日本語を利用できません。 少し調べてみたところ， 「Google Colabでまたまた日本語表示が豆腐不可避な方に」 の方法が有効なようでした。\n下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので， とりあえずワイルドカードを当てています1。\n\n# 日本語フォントを導入\nsystem(\"apt-get -y install fonts-ipafont-gothic\")\n## キャッシュを削除（2024年12月時点。2025年2月時点では不要）\n#system(\"rm /root/.cache/matplotlib/fontlist-*.json\")\n# 日本語が表示可能\ncurve(sin(x), -pi, pi, main = \"サインカーブ\")",
     "crumbs": [
       "Home",
-      "教育測定",
-      "TAMの使い方"
+      "情報機器",
+      "R on Google Colab"
     ]
   },
   {
-    "objectID": "IRT/irt_tam.html#footnotes",
-    "href": "IRT/irt_tam.html#footnotes",
-    "title": "TAMの使い方",
+    "objectID": "ICT/ict_colab_jp.html#footnotes",
+    "href": "ICT/ict_colab_jp.html#footnotes",
+    "title": "R on Google Colab",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nIRT parameterization↩︎",
+    "text": "Footnotes\n\n\n2025年2月時点で試してみたところ，キャッシュ削除は不要になっているようです。 記録としてコメントアウトしています。↩︎",
     "crumbs": [
       "Home",
-      "教育測定",
-      "TAMの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_index.html",
-    "href": "IRT/irt_index.html",
-    "title": "教育測定に関するメモ",
-    "section": "",
-    "text": "教育測定関係のメモをまとめています。\n\n\n\nIRTの概要\nmirtの使い方\nTAMの使い方\n測定の誤差\n\n\n\n\n\nRによる項目反応理論",
-    "crumbs": [
-      "Home",
-      "教育測定"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_index.html#記事",
-    "href": "IRT/irt_index.html#記事",
-    "title": "教育測定に関するメモ",
-    "section": "",
-    "text": "IRTの概要\nmirtの使い方\nTAMの使い方\n測定の誤差",
-    "crumbs": [
-      "Home",
-      "教育測定"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_index.html#books",
-    "href": "IRT/irt_index.html#books",
-    "title": "教育測定に関するメモ",
-    "section": "",
-    "text": "Rによる項目反応理論",
-    "crumbs": [
-      "Home",
-      "教育測定"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html",
-    "href": "IRT/irt_mirt.html",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "mirt: Multidimensional Item Resonse Theory は， 多次元項目反応理論を行うパッケージです。 2PLや3PLといった基本的な項目反応理論はもちろん， 多次元モデルやダミーデータの生成も可能です。\n\n\n\nmirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)\n\n\n\n\n\n# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306 \n\n\n\n\n\nmirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#ダミーデータの生成",
-    "href": "IRT/irt_mirt.html#ダミーデータの生成",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "mirtの2PLは，下記の式で表現されます。\n\\[P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-(\\alpha \\theta + d))}\\]\n通常のIRTの場合，\\(exp()\\)の中は，定数\\(D(=1.7)\\)，識別力\\(a\\)，困難度\\(b\\)を用いて， \\(-Da(\\theta - b)\\)となります。 これは，\\(-(Da\\theta + (-Dab))\\)なので，\\(\\alpha = Da\\), \\(d = -Dab\\)です。 mirtを使う場合はこのパラメータに合わせるために， \\(\\alpha\\)は識別力\\(a\\)を\\(D\\)倍， \\(d\\)は困難度を\\(-Da\\)倍した値を設定します1。\nたとえば，mirtによるダミーデータの生成は次のようになります。\n\nset.seed(123)\n# サンプルサイズと項目数の設定\nsize &lt;- 3000 # サンプルサイズ（受検者数）\nitem_n &lt;- 20 # 項目数（テストの問題数）\n\n# 項目パラメータの設定\nb_para &lt;- seq(-3, 3, length.out = item_n) # 項目困難度\na_para &lt;- rep(0.9, item_n) # 項目識別力\n\n# 受検者の能力値を正規分布から生成\ntheta &lt;- rnorm(size, 0, 1)\n\n# 2PLモデルに基づく応答データの生成\nresp &lt;- mirt::simdata(\n  a = a_para * 1.7, # alphaの設定\n  d = b_para * -1.7 * a_para, # dの設定\n  Theta = theta, # 能力値\n  itemtype = \"2PL\" # モデルタイプ\n)",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#mirtによる2pl",
-    "href": "IRT/irt_mirt.html#mirtによる2pl",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "# 2PLモデルの推定\n# verbose = FALSEで出力を抑制\nmod &lt;- mirt::mirt(resp, 1, verbose = FALSE)\n\n推定されたパラメータの確認は，coef関数で行います。 引数IRTparsをTRUEにすると， \\(P(\\theta|\\alpha, d)=\\frac{1}{1+exp(-Da(\\theta - b))}\\) の形の\\(a\\)と\\(b\\)が出力されます。 ただし\\(D=1\\)で計算されているので， \\(D=1.7\\)の識別力パラメータを得るには1.7で割る必要があります2。\n\nmirt_coef &lt;- mirt::coef(mod, simplify = TRUE, IRTpars = TRUE)$items\n# 識別力\nmirt_coef[, 1] / 1.7\n\n   Item_1    Item_2    Item_3    Item_4    Item_5    Item_6    Item_7    Item_8 \n0.8123192 0.7283712 0.9356659 0.8520897 0.9719813 0.8754340 0.8750573 0.9194588 \n   Item_9   Item_10   Item_11   Item_12   Item_13   Item_14   Item_15   Item_16 \n0.9260979 0.9569549 0.9270091 0.9020534 0.8729786 0.8898285 0.9008022 0.8583342 \n  Item_17   Item_18   Item_19   Item_20 \n0.9790873 0.7899365 0.8532047 0.8196916 \n\n# 困難度\nmirt_coef[, 2]\n\n    Item_1     Item_2     Item_3     Item_4     Item_5     Item_6     Item_7 \n-3.2595804 -3.1617878 -2.3007031 -2.1579826 -1.6195342 -1.4520217 -1.1529965 \n    Item_8     Item_9    Item_10    Item_11    Item_12    Item_13    Item_14 \n-0.7334979 -0.4408787 -0.1208248  0.1853241  0.4649292  0.8460458  1.1019233 \n   Item_15    Item_16    Item_17    Item_18    Item_19    Item_20 \n 1.3796818  1.8240241  1.9511269  2.5456941  2.9361969  3.1044306",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#受検者の能力推定",
-    "href": "IRT/irt_mirt.html#受検者の能力推定",
-    "title": "mirtの使い方",
-    "section": "",
-    "text": "mirtでは，fscores関数で受検者の能力推定ができます。 デフォルトではEAPが出力されますが， 引数（method）を変更することで， MLE，WLE，MAPなども出力できます。\n\neap &lt;- mirt::fscores(mod, verbose = FALSE)\n## 計算に時間がかかるので省略\n# mle &lt;- mirt::fscores(mod, method = \"ML\")\n# wle &lt;- mirt::fscores(mod, method = \"WLE\")\n# map &lt;- mirt::fscores(mod, method = \"MAP\")\n\nthetaとeapの関連をplot関数で表示してみます。\n\nplot(theta, eap)",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
-    ]
-  },
-  {
-    "objectID": "IRT/irt_mirt.html#footnotes",
-    "href": "IRT/irt_mirt.html#footnotes",
-    "title": "mirtの使い方",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\n奥村 太一, 森 慶輔, 宮下 敏恵, 西村 昭徳, 北島 正人, 2015, 「日本版MBI-ESの作成と信頼性・妥当性の検証」『教育心理学研究』86(4), pp.323-332．↩︎\nIRT parameterization↩︎",
-    "crumbs": [
-      "Home",
-      "教育測定",
-      "mirtの使い方"
+      "情報機器",
+      "R on Google Colab"
     ]
   }
 ]
