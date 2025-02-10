@@ -19,14 +19,18 @@
 
 下記のコードを実行して，日本語フォントの導入とキャッシュの削除を行います。
 matplotlibのバージョンが変わるとjsonファイルの名前も変わるので，
-とりあえずワイルドカードを当てています。
+とりあえずワイルドカードを当てています[^1]。
+
+[^1]: 2025年2月時点で試してみたところ，キャッシュ削除は不要になっているようです。
+  記録としてコメントアウトしています。
+
 
 ```{r}
 #| eval: false
 # 日本語フォントを導入
 system("apt-get -y install fonts-ipafont-gothic")
-# キャッシュを削除（2024年12月時点）
-system("rm /root/.cache/matplotlib/fontlist-*.json")
+## キャッシュを削除（2024年12月時点。2025年2月時点では不要）
+#system("rm /root/.cache/matplotlib/fontlist-*.json")
 # 日本語が表示可能
 curve(sin(x), -pi, pi, main = "サインカーブ")
 ```
