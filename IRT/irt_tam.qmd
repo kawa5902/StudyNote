@@ -57,6 +57,7 @@ eap <- mod$person$EAP
 ```
 
 真の能力値（theta）と推定された能力の関係を描画してみます。
+
 ```{r}
 plot(theta, mle) # thetaとMLE
 ```
