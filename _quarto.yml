@@ -18,31 +18,8 @@ website:
         href: SURVEY/survey_index.qmd
       - text: "情報機器"
         href: ICT/ict_index.qmd
-
-  sidebar:
-    style: "docked"
-    search: true
-    contents:
-      - text: "Home"
-        href: index.qmd
-      - section: "教育測定"
-        href: IRT/irt_index.qmd
-        contents:
-          - IRT/irt_2pl.qmd
-          - IRT/irt_mirt.qmd
-          - IRT/irt_tam.qmd
-          - IRT/irt_measurement_error.qmd
-      - section: "社会調査"
-        href: SURVEY/survey_index.qmd
-        contents:
-          - SURVEY/survey_survey.qmd
-          - SURVEY/survey_weight.qmd
-          - SURVEY/survey_benzecris.qmd
-      - section: "情報機器"
-        href: ICT/ict_index.qmd
-        contents:
-          - ICT/ict_colab_jp.qmd
-
+      - text: "覚え書き"
+        href: BLOG/index.qmd
 
 format:
   html:

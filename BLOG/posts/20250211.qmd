@@ -1,0 +1,42 @@
+---
+title: "最近のデスクトップ事情"
+author: "KT"
+date: "2025-02-11"
+categories: [memo, linux]
+---
+
+数年前から[i3wm](https://i3wm.org/)を利用していたのですが，
+さすがにそろそろWaylandに移行する時期だろ・・・ということで，
+年明けに[Sway](https://swaywm.org/)に移行してみました。
+ただ少し使ってみるとミラーリングに難があるようで，
+プロジェクタにPC画面を映してプレゼンすることが難しく，
+常用できずにいました。
+
+そんな折に見つけたのが，[hyprland](https://hyprland.org/)です。
+少しi3wmと操作感は違うのですが，
+設定一つでミラーリングや画面共有がスムーズにできます。
+[wiki](https://wiki.hyprland.org/)も充実していて設定もわかりやすい。
+
+というわけで，現在のデスクトップ環境はhyprlandです。
+操作感をi3wmに近づけるプラグイン（[hy3](https://github.com/outfoxxed/hy3)）もあるようなのですが，
+設定が複雑になるので諦めました。
+
+あとはこれまで使っていたアプリでWayland対応していないもの
+（スクリーンショットは面倒でした・・・）を入れ替えて移行完了です。
+まだ使い始めたばかりなので，ちょいちょいトラブルがあるのですが，
+深刻なものはないのでなんとかなるでしょう。
+
+ちなみに最近トラブったのは，[Zotero](https://www.zotero.org/)の
+プラグインをインストールする画面が起動しないというものですが，
+Xwaylandで起動することでなんとかなりました。
+インストール後はWayland環境で問題なく動いています。
+ZoteroをXwaylandで起動する方法は以下の通り[^1]。
+稀に必要になるのでメモしておきます。
+
+[^1]: [Sway and Zotero 7.x, citation dialogue fix with xwayland](https://forums.zotero.org/discussion/119219/sway-and-zotero-7-x-citation-dialogue-fix-with-xwayland)
+
+```bash
+env WAYLAND_DISPLAY=xwayland-0 zotero
+```
+
+

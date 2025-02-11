@@ -11,3 +11,4 @@ title: ""
 - **[教育測定](IRT/irt_index.qmd)**: 教育測定に関するメモ（IRT，TAM，mirt）
 - **[社会調査](SURVEY/survey_index.qmd)**: 社会調査に関するメモ（survey，FactoMineR）
 - **[情報機器](ICT/ict_index.qmd)**: 情報機器に関するメモ（Windows，Linux）
+- **[覚え書き](BLOG/index.qmd)**: ブログ
