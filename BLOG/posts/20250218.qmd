@@ -1,0 +1,18 @@
+---
+title: "PVsを生成できるRパッケージ"
+author: "KT"
+date: "2025-02-18"
+categories: [memo, R]
+---
+
+PerplexityのDeep Researchに，PVsを生成できるRパッケージについて尋ねてみたら，
+[Dire](https://cran.r-project.org/web/packages/Dire/index.html){target="_blank"}と
+[dexter](https://cran.r-project.org/web/packages/dexter/index.html){target="_blank"}
+というパッケージがあることを知った。
+
+ざっと見た感じ，
+dexterはテストとは関係が薄い気がするが，
+DierはEdSurveyを作っているNAEP製のようなので[^1]，
+もう少し勉強してみる価値がありそう。
+
+[^1]: [EdSurvey Product Development Team Publishes New Version of the Dire R Package](https://naep-research.airprojects.org/R-D-Hub/edsurvey-product-development-team-publishes-new-version-of-the-dire-r-package){target="_blank"}
