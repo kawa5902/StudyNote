@@ -1,0 +1,20 @@
+---
+title: "makoで通知時に音を鳴らす"
+author: "KT"
+date: "2025-02-26"
+categories: [memo, linux]
+---
+
+現在のnotificationデーモンには
+[mako](https://github.com/emersion/mako){target="_blank"}を使っているのですが，
+通知時に音を鳴らしたくなったので少し調べたメモ。
+
+結論から言うと，makoのconfigファイル（`$HOME/.config/mako/config`）に
+以下のように追記すると良い模様[^1]。
+ここでは大仰ですが`vlc`を使っています。
+
+[^1]: [Playing a sound on notifications #36](https://github.com/emersion/mako/issues/36){target="_blank"}
+
+```bash
+on-notify=exec cvlc /usr/share/sounds/freedesktop/stereo/complete.oga
+```
